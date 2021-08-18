@@ -11997,9 +11997,6 @@ uint64 SkillTreeDatabase::parseBodyNode(const YAML::Node &node) {
 
 	if (this->nodeExists(node, "Tree")) {
 		for (const auto &it : node["Tree"]) {
-			if (!this->nodesExist(it, { "Name" }))
-				return 0;
-
 			std::string skill_name;
 
 			if (!this->asString(it, "Name", skill_name))
@@ -12202,13 +12199,22 @@ void SkillTreeDatabase::loadingFinished() {
 		}
 	}
 
-	// remove skills lvl 0
-	for (auto &data : *this) {
-		if (data.second->skills.empty())
+	// remove skills with max_lv = 0
+	std::unordered_map<uint16, std::vector<uint16>> max_lv_zero;
+
+	for (const auto &job : *this) {
+		if (job.second->skills.empty())
 			continue;
-		for (auto &it : data.second->skills) {
-			if (it.second->max_lv == 0)
-				data.second->skills.erase(it.first);
+		for (const auto &skill : job.second->skills) {
+			if (skill.second->max_lv == 0)
+				max_lv_zero[job.first].push_back(skill.first);
+		}
+	}
+
+	for (const auto &job : max_lv_zero) {
+		for (const auto &skill : job.second) {
+			std::shared_ptr<s_skill_tree> tree = this->find(job.first);
+			tree->skills.erase(skill);
 		}
 	}
 }
