@@ -10,6 +10,8 @@
 #include "../common/mmo.hpp"
 #include "../common/timer.hpp"
 
+#include "map.hpp"
+
 enum e_race2 : uint8;
 struct block_list;
 struct mob_data;
@@ -115,6 +117,26 @@ public:
 };
 
 extern SizeFixDatabase size_fix_db;
+
+class AttributeDatabase : public YamlDatabase {
+private:
+	int16 attr_fix_table[MAX_ELE_LEVEL][ELE_MAX][ELE_MAX];
+
+public:
+	AttributeDatabase() : YamlDatabase("ATTRIBUTE_DB", 1) {
+		this->clear();
+	}
+
+	void clear() { 
+		std::fill_n(&attr_fix_table[0][0][0], MAX_ELE_LEVEL * ELE_MAX * ELE_MAX, 100);
+	}
+	const std::string getDefaultLocation();
+	uint64 parseBodyNode(const YAML::Node& node);
+
+	int16 getAttribute(uint16 level, uint16 atk_ele, uint16 def_ele);
+};
+
+extern AttributeDatabase elemental_attribute_db;
 
 /// Status changes listing. These code are for use by the server.
 enum sc_type : int16 {
@@ -521,9 +543,9 @@ enum sc_type : int16 {
 	 **/
 	SC_REFLECTDAMAGE,
 	SC_FORCEOFVANGUARD,
-	SC_SHIELDSPELL_DEF,
-	SC_SHIELDSPELL_MDEF,
-	SC_SHIELDSPELL_REF,//380
+	SC_SHIELDSPELL_HP,
+	SC_SHIELDSPELL_SP,
+	SC_SHIELDSPELL_ATK,//380
 	SC_EXEEDBREAK,
 	SC_PRESTIGE,
 	SC_BANDING,
@@ -975,11 +997,31 @@ enum sc_type : int16 {
 	SC_EP16_2_BUFF_SS,
 	SC_EP16_2_BUFF_SC,
 	SC_EP16_2_BUFF_AC,
+	
+	// Job Improvement Bundle
+	SC_OVERBRANDREADY,
+	SC_POISON_MIST,
+	SC_STONE_WALL,
+	SC_CLOUD_POISON,
+	SC_HOMUN_TIME,
 
 	SC_EMERGENCY_MOVE,
 	SC_MADOGEAR,
 
 	SC_NPC_HALLUCINATIONWALK,
+
+	SC_PACKING_ENVELOPE1,
+	SC_PACKING_ENVELOPE2,
+	SC_PACKING_ENVELOPE3,
+	SC_PACKING_ENVELOPE4,
+	SC_PACKING_ENVELOPE5,
+	SC_PACKING_ENVELOPE6,
+	SC_PACKING_ENVELOPE7,
+	SC_PACKING_ENVELOPE8,
+	SC_PACKING_ENVELOPE9,
+	SC_PACKING_ENVELOPE10,
+
+	SC_SOULATTACK,
 
 	SC_WIDEWEB,
 	SC_BURNT,
@@ -2669,7 +2711,6 @@ struct status_change {
 #ifndef RENEWAL
 	unsigned char sg_counter; //Storm gust counter (previous hits from storm gust)
 #endif
-	unsigned char bs_counter; // Blood Sucker counter
 	struct status_change_entry *data[SC_MAX];
 };
 

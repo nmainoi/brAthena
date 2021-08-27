@@ -1240,9 +1240,9 @@
 	export_constant(SC_LEECHESEND);
 	export_constant(SC_REFLECTDAMAGE);
 	export_constant(SC_FORCEOFVANGUARD);
-	export_constant(SC_SHIELDSPELL_DEF);
-	export_constant(SC_SHIELDSPELL_MDEF);
-	export_constant(SC_SHIELDSPELL_REF);
+	export_constant(SC_SHIELDSPELL_HP);
+	export_constant(SC_SHIELDSPELL_SP);
+	export_constant(SC_SHIELDSPELL_ATK);
 	export_constant(SC_EXEEDBREAK);
 	export_constant(SC_PRESTIGE);
 	export_constant(SC_BANDING);
@@ -1612,6 +1612,22 @@
 	export_constant(SC_EMERGENCY_MOVE);
 	export_constant(SC_MADOGEAR);
 	export_constant(SC_NPC_HALLUCINATIONWALK);
+	export_constant(SC_OVERBRANDREADY);
+	export_constant(SC_POISON_MIST);
+	export_constant(SC_STONE_WALL);
+	export_constant(SC_CLOUD_POISON);
+	export_constant(SC_HOMUN_TIME);
+	export_constant(SC_PACKING_ENVELOPE1);
+	export_constant(SC_PACKING_ENVELOPE2);
+	export_constant(SC_PACKING_ENVELOPE3);
+	export_constant(SC_PACKING_ENVELOPE4);
+	export_constant(SC_PACKING_ENVELOPE5);
+	export_constant(SC_PACKING_ENVELOPE6);
+	export_constant(SC_PACKING_ENVELOPE7);
+	export_constant(SC_PACKING_ENVELOPE8);
+	export_constant(SC_PACKING_ENVELOPE9);
+	export_constant(SC_PACKING_ENVELOPE10);
+	export_constant(SC_SOULATTACK);
 	export_constant(SC_WIDEWEB);
 	export_constant(SC_BURNT);
 	export_constant(SC_CHILL);
@@ -4605,12 +4621,12 @@
 	export_constant(IM_CLAN);
 
 	/* mob random groups */
-	export_constant(MOBG_Branch_Of_Dead_Tree);
-	export_constant(MOBG_Poring_Box);
-	export_constant(MOBG_Bloody_Dead_Branch);
-	export_constant(MOBG_Red_Pouch_Of_Surprise);
-	export_constant(MOBG_ClassChange);
-	export_constant(MOBG_Taekwon_Mission);
+	export_constant(MOBG_BRANCH_OF_DEAD_TREE);
+	export_constant(MOBG_PORING_BOX);
+	export_constant(MOBG_BLOODY_DEAD_BRANCH);
+	export_constant(MOBG_RED_POUCH_OF_SURPRISE);
+	export_constant(MOBG_CLASSCHANGE);
+	export_constant(MOBG_TAEKWON_MISSION);
 
 	/* random option attributes */
 	export_constant(ROA_ID);
@@ -5194,6 +5210,10 @@
 	export_constant(IG_PRIZEOFHERO);
 	export_constant(IG_PRIVATE_AIRSHIP);
 	export_constant(IG_TOKEN_OF_SIEGFRIED);
+	export_constant(IG_ENCHANT_STONE_BOX);
+	export_constant(IG_ENCHANT_STONE_BOX2);
+	export_constant(IG_ENCHANT_STONE_BOX3);
+	export_constant(IG_ENCHANT_STONE_BOX4);
 	export_constant(IG_ENCHANT_STONE_BOX5);
 	export_constant(IG_ENCHANT_STONE_BOX6);
 	export_constant(IG_ENCHANT_STONE_BOX7);
@@ -5211,6 +5231,9 @@
 	export_constant(IG_ENCHANT_STONE_BOX19);
 	export_constant(IG_ENCHANT_STONE_BOX20);
 	export_constant(IG_ENCHANT_STONE_BOX21);
+	export_constant(IG_XMAS_PACKAGE_14);
+	export_constant(IG_EASTER_EGG);
+	export_constant(IG_PITAPAT_BOX);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);
@@ -5221,6 +5244,7 @@
 	export_constant(USW_ALL);
 
 	/* achievement groups */
+	export_constant(AG_NONE);
 	export_constant(AG_ADD_FRIEND);
 	export_constant(AG_ADVENTURE);
 	export_constant(AG_BABY);
@@ -7614,6 +7638,22 @@
 	export_constant(HAT_EF_99LV_SOUL_R_GRAY);
 	export_constant(HAT_EF_160LV_SOUL_R_GRAY);
 	export_constant(HAT_EF_GEARWHEEL);
+	export_constant(HAT_EF_GIFT_OF_SNOW);
+	export_constant(HAT_EF_SNOW_POWDER);
+	export_constant(HAT_EF_FALLING_SNOW);
+	export_constant(HAT_EF_C_PHIGASIA_SCARF_EXE);
+	export_constant(HAT_EF_C_KYEL_HYRE_ULTI_TW);
+	export_constant(HAT_EF_C_MASTER);
+	export_constant(HAT_EF_C_TIME_ACCESSORY);
+	export_constant(HAT_EF_C_HELM_OF_RA);
+	export_constant(HAT_EF_C_2021RTC_HEADSET_TW);
+	export_constant(HAT_EF_C_MOONSTAR_ACCESSORY);
+	export_constant(HAT_EF_BLACK_THUNDER);
+	export_constant(HAT_EF_BLACK_THUNDER_DARK);
+	export_constant(HAT_EF_C_RELEASED_GROUND);
+	export_constant(HAT_EF_C_SAMBA_CARNIVAL);
+	export_constant(HAT_EF_POISON_MASTER);
+	export_constant(HAT_EF_C_SWIRLING_FLAME);
 
 	/* pet catch */
 	export_constant(PET_CATCH_UNIVERSAL);
@@ -7803,7 +7843,6 @@
 	export_constant(INF2_ALLOWWHENHIDDEN);
 	export_constant(INF2_ALLOWWHENPERFORMING);
 	export_constant(INF2_TARGETEMPERIUM);
-	export_constant(INF2_IGNORESTASIS);
 	export_constant(INF2_IGNOREKAGEHUMI);
 	export_constant(INF2_ALTERRANGEVULTURE);
 	export_constant(INF2_ALTERRANGESNAKEEYE);
