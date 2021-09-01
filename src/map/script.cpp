@@ -305,7 +305,8 @@ struct Script_Config script_config = {
 	"OnSat", //timer_saturday_event_name (is executed by a timer on saturday at the specific hour and minute)
 	// Instance related
 	"OnInstanceInit", //instance_init_event_name (is executed right after instance creation)
-	"OnInstanceDestroy", //instance_destroy_event_name (is executed right before instance destruction)
+	"OnInstanceDestroy",
+		//instance_destroy_event_name (is executed right before instance destruction)
 };
 
 static jmp_buf     error_jump;
@@ -2355,36 +2356,33 @@ void script_set_constant_(const char* name, int64 value, const char* constant_na
 const std::string ConstantDatabase::getDefaultLocation(){
 	return std::string(db_path) + "/const.yml";
 }
-
 uint64 ConstantDatabase::parseBodyNode( const YAML::Node& node ) {
 	std::string constant_name;
-
 	if (!this->asString( node, "Name", constant_name ))
 		return 0;
-
-	char name[1024];
-
-	if (sscanf(constant_name.c_str(), "%1023[A-Za-z0-9/_]", name) != 1) {
+		char name[1024];
+			if (sscanf(constant_name.c_str(), "%1023[A-Za-z0-9/_]", name) != 1) {
 		this->invalidWarning( node["Name"], "Invalid constant definition \"%s\", skipping.\n", constant_name.c_str() );
 		return 0;
 	}
 
 	int64 val;
-
-	if (!this->asInt64( node, "Value", val ))
+		if (!this->asInt64( node, "Value", val ))
 		return 0;
-
-	bool type = false;
-
-	if (this->nodeExists(node, "Parameter") && !this->asBool( node, "Parameter", type ))
+		bool type = false;
+		if (this->nodeExists(node, "Parameter") && !this->asBool( node, "Parameter", type ))
 		return 0;
 
 	script_set_constant(name, val, type, false);
 
 	return 1;
 }
-
 ConstantDatabase constant_db;
+/*==========================================
+ * Reading constant databases
+ * const.txt
+ *------------------------------------------*/
+
 
 /**
  * Sets source-end constants for NPC scripts to access.
@@ -4832,7 +4830,7 @@ void do_init_script(void) {
 
 	mapreg_init();
 	add_buildin_func();
-	constant_db.load();
+constant_db.load();
 	script_hardcoded_constants();
 }
 
@@ -4882,6 +4880,56 @@ void script_reload(void) {
 /// If a dialog doesn't exist yet, one is created.
 ///
 /// mes "<message>";
+///
+///
+/// 
+BUILDIN_FUNC(showvend) {
+	struct npc_data* nd;
+	const char* message;
+	const char* name;
+	unsigned char buf[NAME_LENGTH + 1];
+	int flag;
+	
+		name = script_getstr(st, 2);
+	flag = script_getnum(st, 3);
+	
+		if (flag && !script_hasdata(st, 4)) {
+		ShowError("showvend: want to create vendingboard without name.\n");
+		script_reportsrc(st);
+		st->state = END; //Script stops
+		return -1;
+		
+	}
+	 else if (flag)
+		message = script_getstr(st, 4);
+	
+		nd = npc_name2id(name);
+	
+		if (nd == NULL) {
+		ShowError("showvend: no npc found!\n");
+		script_pushint(st, 0); //Fail return 0
+		return 0;
+		
+	}
+	
+		switch (flag) {
+		case 0:
+			clif_closevendingboard(&nd->bl, 0);
+			nd->vend.vends = false;
+			break;
+		default:
+			memcpy(buf, message, NAME_LENGTH + 1);
+			clif_showvendingboard(&nd->bl, (const char*)buf, 0);
+			nd->vend.vends = true;
+			memcpy(nd->vend.vending, message, NAME_LENGTH + 1);
+			break;
+			
+	}
+	
+		script_pushint(st, 1); //Success return 1
+	return 0;
+	
+}
 BUILDIN_FUNC(mes)
 {
 	TBL_PC* sd;
@@ -5985,6 +6033,17 @@ BUILDIN_FUNC(jobchange)
 /*==========================================
  *
  *------------------------------------------*/
+BUILDIN_FUNC(allskill)
+{
+	TBL_PC* sd;
+	if (!script_charid2sd(2, sd))
+		return SCRIPT_CMD_FAILURE;
+	pc_allskillup(sd);
+	sd->status.skill_point = 0;
+	clif_updatestatus(sd, SP_SKILLPOINT);
+	return SCRIPT_CMD_SUCCESS;
+}
+
 BUILDIN_FUNC(jobname)
 {
 	int class_=script_getnum(st,2);
@@ -15408,6 +15467,7 @@ BUILDIN_FUNC(npcstop)
 /**
  * getlook(<type>{,<char_id>})
  **/
+
 BUILDIN_FUNC(getlook)
 {
 	int type,val;
@@ -19469,7 +19529,7 @@ BUILDIN_FUNC(openauction)
 ///
 /// checkcell("<map name>",<x>,<y>,<type>) -> <bool>
 ///
-/// @see cell_chk* constants in src/map/script_constants.hpp for the types
+/// @see cell_chk* constants in const.txt for the types
 BUILDIN_FUNC(checkcell)
 {
 	int16 m = map_mapname2mapid(script_getstr(st,2));
@@ -19486,7 +19546,7 @@ BUILDIN_FUNC(checkcell)
 ///
 /// setcell "<map name>",<x1>,<y1>,<x2>,<y2>,<type>,<flag>;
 ///
-/// @see cell_* constants in src/map/script_constants.hpp for the types
+/// @see cell_* constants in const.txt for the types
 BUILDIN_FUNC(setcell)
 {
 	int16 m = map_mapname2mapid(script_getstr(st,2));
@@ -25180,6 +25240,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(getarg,"i?"),
 	BUILDIN_DEF(jobchange,"i??"),
 	BUILDIN_DEF(jobname,"i"),
+	BUILDIN_DEF(allskill,""),
 	BUILDIN_DEF(input,"r??"),
 	BUILDIN_DEF(warp,"sii?"),
 	BUILDIN_DEF2(warp, "warpchar", "sii?"),
@@ -25339,6 +25400,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF2(sc_start,"sc_start4","iiiiii???"),
 	BUILDIN_DEF(sc_end,"i?"),
 	BUILDIN_DEF(sc_end_class,"??"),
+	BUILDIN_DEF(showvend, "si?"),
 	BUILDIN_DEF(getstatus, "i??"),
 	BUILDIN_DEF(getscrate,"ii?"),
 	BUILDIN_DEF(debugmes,"s"),

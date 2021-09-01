@@ -120,7 +120,11 @@ struct npc_data {
 			int spawn_timer;
 		} tomb;
 	} u;
-
+	struct {
+		char vending[NAME_LENGTH + 1]; //vending name
+		bool vends; //does he vend?
+		
+	} vend;
 	struct sc_display_entry **sc_display;
 	unsigned char sc_display_count;
 

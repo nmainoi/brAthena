@@ -4790,6 +4790,9 @@ void clif_getareachar_unit( struct map_session_data* sd,struct block_list *bl ){
 			else if( nd->size == SZ_MEDIUM )
 				clif_specialeffect_single(bl,EF_BABYBODY2,sd->fd);
 			clif_efst_status_change_sub(&sd->bl, bl, SELF);
+			if (nd->vend.vends == true)
+				clif_showvendingboard(&nd->bl, nd->vend.vending, 0);
+
 			clif_progressbar_npc(nd, sd);
 		}
 		break;
@@ -13093,6 +13096,9 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd) {
 		case SA_CREATECON:
 			skill_produce_mix(sd,SA_CREATECON,p->itemId,0,0,0,1,-1);
 			break;
+		case WL_READING_SB:
+			skill_spellbook(sd, p->itemId);
+			break;
 		case GC_POISONINGWEAPON:
 			skill_poisoningweapon(sd,p->itemId);
 			break;
@@ -13103,8 +13109,43 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd) {
 
 	clif_menuskill_clear(sd);
 }
+/**
+ * Warlock
+ **/
+ /*==========================================
+  * Spellbook list [LimitLine/3CeAM]
+  *------------------------------------------*/
+void clif_spellbook_list(struct map_session_data* sd) {
+	nullpo_retv(sd);
 
+	int fd = sd->fd;
 
+	if (!session_isActive(fd)) {
+		return;
+	}
+
+	WFIFOHEAD(fd, sizeof(struct PACKET_ZC_MAKINGARROW_LIST) + MAX_INVENTORY * sizeof(struct PACKET_ZC_MAKINGARROW_LIST_sub));
+	struct PACKET_ZC_MAKINGARROW_LIST* p = (struct PACKET_ZC_MAKINGARROW_LIST*)WFIFOP(fd, 0);
+	p->packetType = HEADER_ZC_MAKINGARROW_LIST;
+
+	int count = 0;
+	for (int i = 0; i < MAX_INVENTORY; i++) {
+		if (reading_spellbook_db.findBook(sd->inventory.u.items_inventory[i].nameid)) {
+			p->items[count].itemId = client_nameid(sd->inventory.u.items_inventory[i].nameid);
+			count++;
+		}
+	}
+	if (count > 0) {
+		p->packetLength = sizeof(struct PACKET_ZC_MAKINGARROW_LIST) + count * sizeof(struct PACKET_ZC_MAKINGARROW_LIST_sub);
+		WFIFOSET(fd, p->packetLength);
+		sd->menuskill_id = WL_READING_SB;
+		sd->menuskill_val = count;
+	}
+	else {
+		status_change_end(&sd->bl, SC_STOP, INVALID_TIMER);
+		clif_skill_fail(sd, WL_READING_SB, USESKILL_FAIL_SPELLBOOK, 0);
+	}
+}
 /// Answer to SA_AUTOSPELL skill selection dialog (CZ_SELECTAUTOSPELL).
 /// 01ce <skill id>.L
 void clif_parse_AutoSpell(int fd,struct map_session_data *sd)
@@ -18880,7 +18921,7 @@ void clif_search_store_info_ack( struct map_session_data* sd ){
 	}
 
 	unsigned int start = sd->searchstore.pages * SEARCHSTORE_RESULTS_PER_PAGE ;
-	unsigned int end   = umin( sd->searchstore.items.size(), start + SEARCHSTORE_RESULTS_PER_PAGE );
+	unsigned int end   = umin(sd->searchstore.items.size(), start + SEARCHSTORE_RESULTS_PER_PAGE );
 	int len = sizeof( struct PACKET_ZC_SEARCH_STORE_INFO_ACK ) + ( end - start ) * sizeof( struct PACKET_ZC_SEARCH_STORE_INFO_ACK_sub );
 
 	WFIFOHEAD( fd, len );
@@ -18906,11 +18947,10 @@ void clif_search_store_info_ack( struct map_session_data* sd ){
 		p->items[i].refine = ssitem->refine;
 
 		// make-up an item for clif_addcards
-		struct item it = {};
+		struct item it;
 
-		for( int j = 0; j < MAX_SLOTS; j++ ){
-			it.card[j] = ssitem->card[j];
-		}
+		memset( &it, 0, sizeof( it ) );
+		memcpy( &it.card, &ssitem->card, sizeof( it.card ) );
 		it.nameid = ssitem->nameid;
 		it.amount = ssitem->amount;
 

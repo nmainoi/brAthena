@@ -1240,9 +1240,12 @@
 	export_constant(SC_LEECHESEND);
 	export_constant(SC_REFLECTDAMAGE);
 	export_constant(SC_FORCEOFVANGUARD);
-	export_constant(SC_SHIELDSPELL_HP);
-	export_constant(SC_SHIELDSPELL_SP);
-	export_constant(SC_SHIELDSPELL_ATK);
+	export_constant(SC_SHIELDSPELL_DEF);
+	export_constant(SC_SHIELDSPELL_MDEF);
+	export_constant(SC_SHIELDSPELL_REF);
+	//export_constant(SC_SHIELDSPELL_HP);
+	//export_constant(SC_SHIELDSPELL_SP);
+	//export_constant(SC_SHIELDSPELL_ATK);
 	export_constant(SC_EXEEDBREAK);
 	export_constant(SC_PRESTIGE);
 	export_constant(SC_BANDING);
@@ -1603,8 +1606,8 @@
 	export_constant(SC_ADD_ATK_DAMAGE);
 	export_constant(SC_ADD_MATK_DAMAGE);
 	export_constant(SC_SOUNDOFDESTRUCTION);
-	export_constant(SC_LUXANIMA);
-	export_constant(SC_REUSE_LIMIT_LUXANIMA);
+	//export_constant(SC_LUXANIMA);
+	//export_constant(SC_REUSE_LIMIT_LUXANIMA);
 	export_constant(SC_ENSEMBLEFATIGUE);
 	export_constant(SC_EP16_2_BUFF_SS);
 	export_constant(SC_EP16_2_BUFF_SC);
@@ -1612,7 +1615,7 @@
 	export_constant(SC_EMERGENCY_MOVE);
 	export_constant(SC_MADOGEAR);
 	export_constant(SC_NPC_HALLUCINATIONWALK);
-	export_constant(SC_OVERBRANDREADY);
+	//export_constant(SC_OVERBRANDREADY);
 	export_constant(SC_POISON_MIST);
 	export_constant(SC_STONE_WALL);
 	export_constant(SC_CLOUD_POISON);
@@ -3560,7 +3563,7 @@
 	export_constant(EFST_BATH_FOAM_B);
 	export_constant(EFST_BATH_FOAM_C);
 	export_constant(EFST_AROMA_OIL);
-	export_constant(EFST_REUSE_LIMIT_LUXANIMA);
+//	export_constant(EFST_REUSE_LIMIT_LUXANIMA);
 	export_constant(EFST_POWERFUL_FAITH);
 	export_constant(EFST_SINCERE_FAITH);
 	export_constant(EFST_FIRM_FAITH);
@@ -3703,7 +3706,7 @@
 	export_constant(EFST_AID_PERIOD_ADD_ALL_STATE);
 	export_constant(EFST_POISON_MIST);
 	export_constant(EFST_STONE_WALL);
-	export_constant(EFST_OVERBRANDREADY);
+	//export_constant(EFST_OVERBRANDREADY);
 	export_constant(EFST_SHIELDSPELL);
 	export_constant(EFST_CLOUD_POISON);
 	export_constant(EFST_SPORE_EXPLOSION_DEBUFF);
@@ -3852,7 +3855,7 @@
 	export_constant(ATF_WEAPON);
 	export_constant(ATF_MAGIC);
 	export_constant(ATF_MISC);
-	// TODO: Check why this was in const.yml, but not on source side
+	// TODO: Check why this was in const.txt, but not on source side
 	export_constant2("ATF_SKILL",ATF_MAGIC|ATF_MISC);
 
 	/* emoticons */

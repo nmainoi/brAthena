@@ -1,0 +1,267 @@
+function	script	F_GetITEM	{
+
+	switch (BaseJob) {
+	case Job_Knight:
+			getitem2 18600,1,1,13,0,4403,0,0,0;equip 18600;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15046,1,1,13,0,4302,0,0,0;equip 15046;	
+			getitem2 15046,1,1,13,0,4105,0,0,0;
+			getitem2 1436,1,1,13,0,0,0,0,0;equip 1436; //VELLUM LANC
+			getitem2 1426,1,1,13,0,0,0,0,0; //GLORIOSA LANC
+			getitem2 1228,1,1,13,0,0,0,0,0; // CK
+			getitem2 1408,1,1,13,0,4497,4497,4497,4497;
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2586,1,1,13,0,4133,0,0,0;equip 2586; // capa
+			getitem2 2483,1,1,13,0,4381,0,0,0;equip 2483;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 			
+		break;
+	case Job_Priest:
+			Getitem2 18601,1,1,9,0,4403,0,0,0;equip 18601;equip 18601;	
+		break;
+	case Job_Wizard:
+			getitem2 18601,1,1,13,0,4403,0,0,0;equip 18601;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15048,1,1,13,0,4302,0,0,0;equip 15048;	
+			getitem2 15048,1,1,13,0,4105,0,0,0;
+			getitem2 2016,1,1,13,0,0,0,0,0; //VELLUM 
+			getitem2 2002,1,1,13,0,0,0,0,0; //GLORIOSA 
+			getitem2 1228,1,1,13,0,0,0,0,0;equip 1228; // CK
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2587,1,1,13,0,4133,0,0,0;equip 2587; // capa
+			getitem2 2485,1,1,13,0,4539,0,0,0;equip 2485;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0;
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 	
+		break;
+	case Job_Blacksmith:
+			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+		break;
+	case Job_Hunter:
+			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+		break;
+	case Job_Assassin:
+			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+		break;
+	case Job_Crusader:
+			getitem2 18600,1,1,13,0,4403,0,0,0;equip 18600;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15046,1,1,13,0,4302,0,0,0;equip 15046;	
+			getitem2 1228,1,1,0,0,0,0,0,0;
+			getitem2 15046,1,1,13,0,4105,0,0,0;
+			getitem2 1436,1,1,13,0,0,0,0,0;equip 1436; //VELLUM LANC
+			getitem2 1426,1,1,13,0,0,0,0,0; //GLORIOSA LANC
+			getitem2 1228,1,1,13,0,0,0,0,0; // CK
+			getitem2 1408,1,1,13,0,4497,4497,4497,4497;
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2586,1,1,13,0,4133,0,0,0;equip 2586; // capa
+			getitem2 2483,1,1,13,0,4381,0,0,0;equip 2483;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 	
+		break;
+	case Job_Monk:
+			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+		break;
+	case Job_Sage:
+			getitem2 18601,1,1,13,0,4403,0,0,0;equip 18601;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15048,1,1,13,0,4302,0,0,0;equip 15048;	
+			getitem2 15048,1,1,13,0,4105,0,0,0;
+			getitem2 2016,1,1,13,0,0,0,0,0; //VELLUM 
+			getitem2 2002,1,1,13,0,0,0,0,0; //GLORIOSA 
+			getitem2 1228,1,1,13,0,0,0,0,0;equip 1228; // CK
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2587,1,1,13,0,4133,0,0,0;equip 2587; // capa
+			getitem2 2485,1,1,13,0,4539,0,0,0;equip 2485;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0;
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 
+		break;
+	case Job_Rogue:
+			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+		break;
+	case Job_Alchemist:
+			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+		break;
+	case Job_Bard:
+	getitem2 18601,1,1,9,0,4403,0,0,0;equip 18601;
+		break;
+	case Job_Dancer:
+	getitem2 18601,1,1,9,0,4403,0,0,0;equip 18601;
+		break;
+	default:
+		break;
+	}
+	return 1;
+	end;
+}
+function	script	F_CONSU	{
+setarray .@items[0],12016,12118,12119,12120,12121,12427,11548,11549,12033,715,716,717,523,12115,12116,12114,12117,12928,12020,14536,12414,525,12424,14538,606,12220,12404,12375,14511,656,645,12029;
+callfunc "F_CONSU_ESPE", .@items; 
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT){
+	setarray .@items2,12731,12728,12731,12733,12729,12730,12726,12725,12727,12732;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_WARLOCK){
+	setarray .@items2,6190,6189,6191,6200,6198,6192,6194,6199,6203,6204,6205,6202,6195,6196;	
+callfunc "F_MECA", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_MINSTRELWANDERER){
+	setarray .@items2,6144,11513,1751,1752,1753,1754,1755,1756,1759,1760,1761,1762,1763,1764,1765,1766,1767,1768,1770,1772,1773,1775,1776;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER ){
+	setarray .@items2,1065,7940,1751,1752,1753,1754,1755,1756,1759,1760,1761,1762,1763,1764,1765,1766,1767,1768,1770,1772,1773,1775,1776;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_SHADOW_CHASER ){
+	setarray .@items2,6122,6123,6120,6121,7049,1065,7940,1751,1752,1753,1754,1755,1756,1759,1760,1761,1762,1763,1764,1765,1766,1767,1768,1770,1772,1773,1775,1776;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_SORCERER){
+	setarray .@items2,6361,6360,6362,6363,1025,990,994,991,995,992,996,993,997;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_ARCH_BISHOP){
+	setarray .@items2,12333;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_GUILLOTINE_CROSS){
+	setarray .@items2,678,7049,12717,12719,12721,12723,12724,12718,12720,12722,6128,1771;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC){
+	setarray .@items2,18000,18001,18003,18004,7135,7136,7137,7138,7139,6210,6211,6212,970,6217,7142,13264,13262,13261,13263,13260,13290,7140;
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC){
+	setarray .@items2,6145,6146,6147,18000,18001,18003,18004;
+	setarray .@items3,1549,2139,6147,2800,2801,2802,2804,2805,2806,2808,2807;
+callfunc "F_MECA", .@items3; 
+callfunc "F_CONSU_ESPE", .@items2; 
+}
+//
+if ((eaclass()&EAJ_THIRDMASK)==EAJ_KAGEROUOBORO){
+	setarray .@items2,7521,7522,7523,7521,7524,13294,6512,6513,6514,6515,6493;
+callfunc "F_CONSU_ESPE", .@items2; 
+return;		
+}
+return;
+end;
+	}
+
+function	script	F_CONSU_ESPE	{
+	.@value = 30000;
+	.@size = getarraysize(getarg(0));
+	copyarray .@new_array, getarg(0), .@size;
+	for ( ; .@i < getarraysize(.@new_array); .@i++)
+	{	
+	 .@amount = countitem(.@new_array[.@i]); 
+ 	if(.@amount >= .@value)
+    	continue;
+  getitem(.@new_array[.@i], .@value - .@amount);
+	}
+	return;
+end;
+}
+
+function	script	F_MECA	{
+	.@size = getarraysize(getarg(0));
+	copyarray .@new_array, getarg(0), .@size;
+	for ( ; .@i < getarraysize(.@new_array); .@i++)
+	{	
+		mes getitemslots(.@new_array[.@i]);
+		if (getitemslots(.@new_array[.@i]) != -1)
+			  delitem(.@new_array[.@i],1);
+			  getitem(.@new_array[.@i], 1);
+	}
+	return;
+end;
+}
+function	script	F_BUFF	{
+		set .@str$, getarg(0);
+		repairall;
+		sc_start SC_INCREASEAGI,3600000,10;
+		sc_start SC_BLESSING, 3600000,10;
+		sc_start SC_ANGELUS,3600000,10;
+		sc_start SC_IMPOSITIO,3600000,5;
+		sc_start SC_GLORIA,3600000,5;
+		sc_start SC_MAGNIFICAT,3600000,5;
+		sc_start SC_CP_WEAPON,3600000,5;
+		sc_start SC_SPEEDUP1,3600000,50;
+		sc_start SC_STRFOOD,3600000,30;
+		sc_start SC_AGIFOOD,3600000,30;
+		sc_start SC_VITFOOD,3600000,30;
+		sc_start SC_INTFOOD,3600000,30;
+		sc_start SC_DEXFOOD,3600000,30;
+		sc_start SC_LUKFOOD,3600000,30;
+		sc_start SC_HITFOOD,3600000,30;
+		sc_start SC_FLEEFOOD,3600000,30;
+		sc_start SC_BATKFOOD,3600000,10;
+		sc_start SC_MATKFOOD,3600000,10;
+		sc_start SC_ATKPOTION,3600000,52;
+		sc_start SC_MATKFOOD,3600000,55;
+		sc_start SC_INCALLSTATUS,3600000,3;
+					set .@type,getiteminfo(getequipid(EQI_HAND_R), ITEMINFO_VIEW);
+				if (.@type == W_1HAXE || .@type == W_2HAXE || .@type == W_MACE) {
+					skilleffect "BS_ADRENALINE",0;
+					sc_start SC_ADRENALINE,150000,5;
+				}
+				if (.@str$[0] == "1") {  // multiple words
+					percentheal 100,100;
+					specialeffect2 EF_HEAL2;
+					specialeffect2 EF_INCAGILITY;
+					specialeffect2 EF_BLESSING;
+					sc_end SC_STONE;
+					sc_end SC_FREEZE;
+					sc_end SC_STUN;
+					sc_end SC_SLEEP;
+					sc_end SC_POISON;
+					sc_end SC_CURSE;
+					sc_end SC_SILENCE;
+					sc_end SC_CONFUSION;
+					sc_end SC_BLIND;
+					sc_end SC_BLOODING;
+					sc_end SC_DPOISON;
+					sc_end SC_FEAR;
+					sc_end SC_COLD;
+					sc_end SC_BURNING;
+					sc_end SC_DEEP_SLEEP;
+					sc_end SC_DEC_AGI;
+					sc_end SC_BROKENARMOR;
+					sc_end SC_BROKENWEAPON;
+					sc_end SC_NOEQUIPWEAPON;
+					sc_end SC_NOEQUIPSHIELD;
+					sc_end SC_NOEQUIPARMOR;
+					sc_end SC_NOEQUIPHELM;
+					sc_end SC__STRIPACCESSARY;
+					sc_end SC_PROPERTYUNDEAD;
+					sc_end SC_ORCISH;
+					sc_end SC_BERSERK;
+					sc_end SC_SKE;
+					sc_end SC_SWOO;
+					sc_end SC_SKA;
+					if (ismounting()) {
+						
+					} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124)) {
+									getitem 6124,1; //Wolf's_Flute
+					} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC) && !checkcart() && getskilllv("MC_PUSHCART")) {
+						if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) {
+							if(select(" ~ Cart: ~ Mado")==1) setcart;
+							else setmadogear;
+						} else setcart;
+					} else if (!checkcart() && getskilllv("MC_PUSHCART")) setcart;
+					else if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug()) setfalcon;
+					else if (!checkriding() && !checkdragon() && getskilllv("KN_RIDING")) {
+						if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) setdragon;
+						else setriding;
+					} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
+					else {
+						
+					}
+			return 1;
+}
+return 1;
+}

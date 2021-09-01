@@ -1,0 +1,552 @@
+prontera,147,169,6	script	encantamentos	620,{
+	set .zenycost,0;    // base cost of the card remover services (in Zeny)
+	set .percardcost,0;  // cost per card of the card remover services (in Zeny)
+	set .faildestroy,0;      // should the card remover have a chance of failure that destroys items? (1=yes, 0=no)
+
+	disable_items;
+	mes .n$;
+    mes "Este NPC encanta:";
+    mes " >> ^0000FF Asa de arcanjo caido ^000000";
+    mes " >> ^0000FF Armaduras ^000000";
+    mes " >> ^0000FF Armas nivel 4  ^000000";
+    mes " >> ^0000FF Aneis RWC ^000000";
+
+	next;
+
+		for( set .@i,1; .@i <= 10; set .@i,.@i+1 ) {
+            		if( getequipisequiped(.indices[.@i]) ){ //mora_lista
+                          if(inarray(.can_enchant_list, getequipid(.indices[.@i])) == 0 ) {
+			                 set .@menu$, .@menu$ + F_getpositionname(.indices[.@i]) + " - ^FF0000[" + getequipname(.indices[.@i]) + "]^000000";
+                         }else if( inarray(.mora_lista, getequipid(.indices[.@i])) >= 0 ){
+			                 set .@menu$, .@menu$ + F_getpositionname(.indices[.@i]) + " - ^FF0000[" + getequipname(.indices[.@i]) + "]^000000";
+                         }else{
+                             set .@menu$, .@menu$ + F_getpositionname(.indices[.@i]) + " - ^808080[" + getequipname(.indices[.@i]) + "]^000000";
+                        }}
+			set .@menu$, .@menu$ + ":";
+		}
+			set .@part, .indices[ select(.@menu$) ];
+        if (inarray(.can_enchant_list, getequipid(.@part)) == 0 ){
+         			next; callsub F_ENCHANT_FALL;
+         }else if (inarray(.mora_lista, getequipid(.@part)) >= 0 ){
+                    next;callsub F_ENCHANT_ARMA;
+                
+}else{
+		mes .n$;
+		mes "Esse item nao pode ser encantando.";
+
+}
+		close;
+	end;
+
+// MALANGDO ARMA 4
+    F_ENCHANT_ARMA:
+    disable_items;
+
+
+	next;
+		@mal_enchant_select = 1;
+
+	if (!getequipisequiped(EQI_HAND_R)) {
+		mes .n$;;
+		mes "Equipa o item MULA!";
+		@mal_enchant_select = 0;
+		close;
+	}
+	@mal_equip_id = getequipid(EQI_HAND_R);
+	.@equip_type = getiteminfo(@mal_equip_id,11);
+
+	// callsub L_Socket,<cost multiplier>,<4-x enchants possible>;
+	switch(.@equip_type) {	//  Check weapon type first to speed up the checks.
+	case 1:	// Daggers
+		switch(@mal_equip_id) {
+			case 1224: callsub L_Socket,1,2;	// Sword_Breaker
+			case 1225: callsub L_Socket,1,2;	// Mail_Breaker
+			case 1227: callsub L_Socket,1,2;	// Weeder_Knife
+			case 1229: callsub L_Socket,1,2;	// Mama's_Knife
+			case 1232: callsub L_Socket,1,2;	// Assasin_Dagger
+			case 1233: callsub L_Socket,1,2;	// Exercise
+			case 1235: callsub L_Socket,1,2;	// Azoth
+			case 1236: callsub L_Socket,1,2;	// Sucsamad
+			case 1237: callsub L_Socket,1,2;	// Grimtooth_
+			case 1240: callsub L_Socket,1,2;	// Princess_Knife
+			case 1241: callsub L_Socket,1,2;	// Cursed_Dagger
+			case 1242: callsub L_Socket,1,2;	// Counter_Dagger
+			case 1244: callsub L_Socket,1,2;	// Holy_Dagger
+			case 13046: callsub L_Socket,1,3;	// Krieg
+			case 13047: callsub L_Socket,1,2;	// Weihna
+			case 13061: callsub L_Socket,1,2;	// Black_Wing
+			case 1223: callsub L_Socket,2,2;	// Forturn_Sword
+			case 1228: callsub L_Socket,2,2;	// Combat_Knife
+			case 1234: callsub L_Socket,2,2;	// Moonlight_Sword
+			case 1230: callsub L_Socket,4,2;	// House_Auger
+			case 1231: callsub L_Socket,4,2;	// Bazerald
+			case 13062: callsub L_Socket,4,2;	// Ancient_Dagger
+		}
+		break;
+	case 16:	// Katars
+		switch(@mal_equip_id) {
+			case 1271: callsub L_Socket,1,2;	// Blood_Tears
+			case 1263: callsub L_Socket,1,2;	// Unholy_Touch
+			case 1270: callsub L_Socket,1,2;	// Drill_Katar
+			case 1284: callsub L_Socket,1,2;	// Krishna
+			case 1285: callsub L_Socket,1,2;	// Cakram
+			case 1268: callsub L_Socket,2,2;	// Wild_Beast_Claw
+			case 1269: callsub L_Socket,2,2;	// Inverse_Scale
+			case 1265: callsub L_Socket,2,2;	// Bloody_Roar
+			case 1261: callsub L_Socket,4,2;	// Infiltrator
+			case 1266: callsub L_Socket,4,2;	// Infiltrator_
+			case 28010: callsub L_Socket,4,2;	// Juliette_D._Rachel
+			case 1291: callsub L_Socket,4,2;	
+		}
+		break;
+	case 6:	// 1-H Axes
+		switch(@mal_equip_id) {
+			case 1305: callsub L_Socket,1,2;	// Cleaver
+			case 1311: callsub L_Socket,1,2;	// Vecer_Axe
+		}
+		break;
+	case 7:	// 2-H Axes
+		switch(@mal_equip_id) {
+			case 1364: callsub L_Socket,1,2;	// Great_Axe
+			case 1365: callsub L_Socket,1,2;	// Sabbath
+			case 1385: callsub L_Socket,1,2;	// Bradium_Stonehammer
+			case 1367: callsub L_Socket,1,2;	// Slaughter
+			case 1368: callsub L_Socket,1,2;	// Tomahawk
+			case 1387: callsub L_Socket,2,2;	// Giant_Axe
+			case 1369: callsub L_Socket,2,2;	// Guillotine
+			case 1363: callsub L_Socket,2,2;	// Brood_Axe
+			case 1376: callsub L_Socket,4,2;	// Heart_Breaker
+			case 1377: callsub L_Socket,4,2;	// Hurricane_Fury
+			case 1366: callsub L_Socket,4,2;	// Right_Epsilon
+			case 1370: callsub L_Socket,4,2;	// Doom_Slayer
+			case 1371: callsub L_Socket,4,2;	// Doom_Slayer_
+		}
+		break;
+	case 2:	// 1-H Swords
+		switch(@mal_equip_id) {
+			case 1131: callsub L_Socket,1,2;	// Ice_Falchon
+			case 1133: callsub L_Socket,1,2;	// Fire_Brand
+			case 1134: callsub L_Socket,1,2;	// Scissores_Sword
+			case 1135: callsub L_Socket,1,2;	// Cutlas
+			case 13400: callsub L_Socket,1,2;	// Cutlas_
+			case 1136: callsub L_Socket,1,2;	// Solar_Sword
+			case 1138: callsub L_Socket,1,2;	// Mysteltainn_
+			case 1139: callsub L_Socket,1,2;	// Tale_Fing_
+			case 1140: callsub L_Socket,1,2;	// Byeorrun_Gum
+			case 1141: callsub L_Socket,1,2;	// Immaterial_Sword
+			case 1148: callsub L_Socket,1,2;	// Star_Dust_Blade
+			case 13421: callsub L_Socket,1,2;	// Ruber
+			case 13431: callsub L_Socket,2,2;	// Chrome_Sword
+			case 1137: callsub L_Socket,2,2;	// Excalibur
+			case 1130: callsub L_Socket,2,2;	// Nagan
+			case 1132: callsub L_Socket,4,2;	// Edge
+			// case 13460: callsub L_Socket,?,2;	// Sealed_Magic_Sword
+			// case 13461: callsub L_Socket,?,2;	// Sealed_Evil_Sword
+			// case 13462: callsub L_Socket,?,2;	// Sealed_Maximum_Sword
+			case 13412: callsub L_Socket,1,3;	// Twin_Edge_B
+			case 13413: callsub L_Socket,1,3;	// Twin_Edge_R
+		}
+		break;
+	case 3:	// 2-H Swords
+		switch(@mal_equip_id) {
+			case 1164: callsub L_Socket,1,2;	// Muramasa
+			case 1166: callsub L_Socket,1,2;	// Dragon_Slayer
+			case 1167: callsub L_Socket,1,2;	// Schweizersabel
+			case 1168: callsub L_Socket,1,2;	// Zweihander
+			case 1170: callsub L_Socket,1,2;	// Katzbalger
+			case 1171: callsub L_Socket,1,2;	// Zweihander_
+			case 1176: callsub L_Socket,1,2;	// Muscle_Cutter
+			case 1178: callsub L_Socket,1,2;	// Schweizersabel_
+			case 1180: callsub L_Socket,1,2;	// Dragon_Slayer_
+			case 1181: callsub L_Socket,1,2;	// Tae_Goo_Lyeon
+			case 1182: callsub L_Socket,1,2;	// Bloody_Eater
+			case 1188: callsub L_Socket,1,2;	// Veteran_Sword
+			case 1189: callsub L_Socket,1,3;	// Krasnaya
+			case 1196: callsub L_Socket,2,2;	// Chrome_Twohand_Sword
+			case 1165: callsub L_Socket,2,2;	// Masamune
+			case 1169: callsub L_Socket,2,2;	// Executioner_
+			case 1179: callsub L_Socket,2,2;	// Executioner__
+			case 1175: callsub L_Socket,2,2;	// Altas_Weapon
+			case 1185: callsub L_Socket,4,2;	// Violet_Fear
+			case 1186: callsub L_Socket,4,2;	// Death_Guidance
+			case 21018: callsub L_Socket,4,2;	// Lindy_Hop
+		}
+		break;
+	case 4:	// 1-H Spears
+		switch(@mal_equip_id) {
+			case 1420: callsub L_Socket,1,2;	// Long_Horn
+			case 1413: callsub L_Socket,1,2;	// Gungnir
+			case 1414: callsub L_Socket,1,2;	// Gelerdria
+			case 1416: callsub L_Socket,1,2;	// Tjungkuletti
+			case 1418: callsub L_Socket,1,2;	// Gungnir_
+			case 1433: callsub L_Socket,2,2;	// Imperial_Spear
+			case 1415: callsub L_Socket,2,2;	// Skewer
+			case 1421: callsub L_Socket,2,2;	// Battle_Hook
+			case 1422: callsub L_Socket,4,2;	// Hunting_Spear
+			// case 1447: callsub L_Socket,?,3;	// Poison_Forged_Spear
+		}
+		break;
+	case 5:	// 2-H Spears
+		switch(@mal_equip_id) {
+			case 1466: callsub L_Socket,1,2;	// Crescent_Scythe
+			case 1467: callsub L_Socket,1,2;	// Bill_Guisarme
+			case 1468: callsub L_Socket,1,2;	// Zephyrus
+			case 1469: callsub L_Socket,1,2;	// Longinus's_Spear
+			case 1470: callsub L_Socket,1,2;	// Brionac
+			case 1471: callsub L_Socket,1,2;	// Hell_Fire
+			case 1474: callsub L_Socket,1,2;	// Gae_Bolg
+			case 1476: callsub L_Socket,1,2;	// Crescent_Scythe_
+			case 1477: callsub L_Socket,1,2;	// Spectral_Spear
+			case 1478: callsub L_Socket,1,2;	// Ahlspiess
+			case 1479: callsub L_Socket,1,2;	// Spectral_Spear_
+			case 1480: callsub L_Socket,1,2;	// Gae_Bolg_
+			case 1481: callsub L_Socket,1,3;	// Zephyrus_
+			case 1484: callsub L_Socket,2,2;	// Cardo
+		}
+		break;
+	case 10:	// Staves
+		switch(@mal_equip_id) {
+			case 1616: callsub L_Socket,1,2;	// Staff_Of_Wing
+			case 1629: callsub L_Socket,1,2;	// Walking_Stick
+			case 1631: callsub L_Socket,1,2;	// Holy_Stick
+			case 1643: callsub L_Socket,1,2;	// Dead_Tree_Cane
+			case 1654: callsub L_Socket,1,2;	// Mental_Stick
+			case 1636: callsub L_Socket,2,2;	// Thorn_Staff
+			case 1637: callsub L_Socket,2,2;	// Eraser
+			// case 1697: callsub L_Socket,?,2;	// Exquisite_Yellow_Foxtail_Model
+			// case 1693: callsub L_Socket,?,2;	// Magical_Yellow_Foxtail_Staff
+		}
+		break;
+	case 23:	// New 2-H Staves
+		switch(@mal_equip_id) {
+			case 1473: callsub L_Socket,1,2;	// Wizardy_Staff
+			case 2004: callsub L_Socket,1,2;	// Kronos
+			case 2005: callsub L_Socket,1,2;	// Dea_Staff
+			case 2001: callsub L_Socket,2,2;	// Divine_Cross
+			case 2000: callsub L_Socket,4,2;	// Destruction_Rod
+			// case 2027: callsub L_Socket,4,?;	// Sunflower_Kid
+		}
+		break;
+	case 8:	// Maces
+		switch(@mal_equip_id) {
+			case 1524: callsub L_Socket,1,2;	// Golden_Mace
+			case 1525: callsub L_Socket,1,2;	// Long_Mace
+			case 1527: callsub L_Socket,1,2;	// Quadrille
+			case 1539: callsub L_Socket,1,2;	// Golden_Mace_
+			case 1541: callsub L_Socket,1,2;	// Nemesis
+			case 16000: callsub L_Socket,1,2;	// Erde
+			case 16001: callsub L_Socket,1,2;	// Red_Square_Bag
+			case 16010: callsub L_Socket,1,2;	// Red_Ether_Bag
+			case 1523: callsub L_Socket,2,2;	// Spike
+			case 1538: callsub L_Socket,2,2;	// Spike_
+			case 1526: callsub L_Socket,2,2;	// Slash
+			case 1528: callsub L_Socket,4,2;	// Grand_Cross
+			case 1540: callsub L_Socket,4,2;	// Grand_Cross_
+		}
+		break;
+	case 15:	// Books
+		switch(@mal_equip_id) {
+			case 1557: callsub L_Socket,1,2;	// Book_Of_The_Apocalypse
+			case 1558: callsub L_Socket,1,2;	// Girl's_Diary
+			case 1559: callsub L_Socket,1,2;	// Legacy_Of_Dragon
+			case 1561: callsub L_Socket,1,2;	// Hardback
+			case 1562: callsub L_Socket,1,2;	// Bible_Of_Battlefield
+			case 1565: callsub L_Socket,4,2;	// Death_Note
+		}
+		break;
+	case 12:	// Knuckles
+		switch(@mal_equip_id) {
+			case 1813: callsub L_Socket,1,2;	// Kaiser_Knuckle
+			case 1814: callsub L_Socket,1,2;	// Berserk
+			case 1815: callsub L_Socket,1,2;	// Claw_Of_Garm
+			case 1816: callsub L_Socket,1,2;	// Berserk_
+			case 1830: callsub L_Socket,2,2;	// Sura_Rampage
+		}
+		break;
+	case 11:	// Bows
+		switch(@mal_equip_id) {
+			case 1719: callsub L_Socket,1,2;	// Bow_Of_Roguemaster
+			case 1722: callsub L_Socket,1,2;	// Balistar
+			case 1724: callsub L_Socket,1,2;	// Dragon_Wing
+			case 1725: callsub L_Socket,1,2;	// Bow_Of_Minstrel
+			case 1727: callsub L_Socket,1,2;	// Balistar_
+			case 1737: callsub L_Socket,1,2;	// Ixion_Wing
+			case 1740: callsub L_Socket,1,2;	// Nepenthes_Bow
+			case 1741: callsub L_Socket,1,2;	// Cursed_Lyre
+			case 1745: callsub L_Socket,1,2;	// Falken_Blitz
+			case 18103: callsub L_Socket,1,2;	// Mystic_Bow
+			case 1720: callsub L_Socket,2,2;	// Bow_Of_Rudra
+		}
+		break;
+	case 13:	// Musical Instruments
+		switch(@mal_equip_id) {
+			case 1913: callsub L_Socket,1,2;	// Electronic_Guitar
+			case 1918: callsub L_Socket,1,2;	// Oriental_Lute
+			case 1920: callsub L_Socket,1,2;	// Berserk_Guitar
+			case 1922: callsub L_Socket,1,2;	// Oriental_Lute_
+			case 1926: callsub L_Socket,1,2;	// Harp_Of_Nepenthes
+			case 1930: callsub L_Socket,2,2;	// Green_Whistle
+		}
+		break;
+	case 14:	// Whips
+		switch(@mal_equip_id) {
+			case 1962: callsub L_Socket,1,2;	// Lariat
+			case 1963: callsub L_Socket,1,2;	// Rapture_Rose
+			case 1964: callsub L_Socket,1,2;	// Chemeti
+			case 1969: callsub L_Socket,1,2;	// Bladed_Whip
+			case 1970: callsub L_Socket,1,2;	// Queen's_Whip
+			case 1972: callsub L_Socket,1,2;	// Electric_Eel
+			case 1973: callsub L_Socket,1,2;	// Sea_Witch_Foot
+			case 1974: callsub L_Socket,1,2;	// Carrot_Whip
+			case 1976: callsub L_Socket,1,2;	// Queen's_Whip_
+			case 1979: callsub L_Socket,1,2;	// Stem_Of_Nepenthes
+			case 1984: callsub L_Socket,2,2;	// Stem_Whip
+			case 1985: callsub L_Socket,4,2;	// Rosebine
+		}
+		break;
+	case 17:	// Revolvers
+	case 18:	// Rifles
+	case 19:	// Gatling guns
+	case 20:	// Shotguns
+	case 21:	// Grenade launchers
+		// switch(@mal_equip_id) {
+		// 	case 13138: callsub L_Socket,4,2;	// Dark_Rose
+		// 	case 28223: callsub L_Socket,4,2;	// Finisher
+		// 	case 28224: callsub L_Socket,4,2;	// Dustfire
+		// 	case 28225: callsub L_Socket,4,2;	// Burning_Rose
+		// 	case 28226: callsub L_Socket,4,2;	// Avenger
+		// }
+		break;
+	}
+	mes .n$;
+	if (@mal_enchant_select == 1)	{
+		mes "Esse item ae da nao";
+	@mal_equip_id = 0;
+	@mal_enchant_select = 0;	
+	close;
+	}
+L_Socket:
+	.@select = @mal_enchant_select;
+	.@equip_id = @mal_equip_id;
+	.@equip_refine = getequiprefinerycnt(EQI_HAND_R);
+	.@equip_name$ = getitemname(.@equip_id) + ( getitemslots(.@equip_id) ? "[" + getitemslots(.@equip_id) + "]" : "" );
+	setarray .@equip_card[0], getequipcardid(EQI_HAND_R,0), getequipcardid(EQI_HAND_R,1), getequipcardid(EQI_HAND_R,2), getequipcardid(EQI_HAND_R,3);
+	@mal_equip_id = 0;
+	@mal_enchant_select = 0;
+
+	
+			switch( select( "Sair", "Magico", "Distancia", "Fisico") ) {
+			case 1:
+				mes .n$;
+				mes "Vai dar missclick na casa do car#@/%!";
+				close;
+			case 2:
+				.@enchant_type = 1;
+				break;
+			case 3:
+				.@enchant_type = 2;
+				break;
+			case 4:
+				.@enchant_type = 3;
+				break;
+			}
+		
+		if (.@equip_card[3] == 0 && .@enclimit < 4) {
+			.@socket = 4;
+			.@str$ = "1st";
+		} else if (.@equip_card[2] == 0 && .@enclimit < 3) {
+			.@socket = 3;
+			.@str$ = "2nd";
+		} else {
+			mes .n$;
+			mes "Ta full enchant ta vendo nao?";
+			close;
+		}
+		switch(.@enchant_type) {
+				case 1:	// Anger_Seagod - Caster
+						switch( select( 
+				"Pedra de Encantamento 6",
+				"ATQM +2%",
+				"+6 INT",
+				"+6 DEX"	
+				)
+				){
+				case 1:
+				.@enchant = 4827;	// Spell6
+				break;
+				case 2:
+				.@enchant = 4761;	// Matk2
+				break;
+				case 3:
+				.@enchant = 4715;	// Inteligence6
+				break;
+				case 4:
+				.@enchant =  4715; //DEX 6
+				break;
+				default:
+				break;}
+			break;
+		case 2:	// Anger_Seagod - Long Range
+				switch( select( 
+				"Pedra da Mira Apurada 6",
+				"+6 AGI",
+				"+6 LUK"	
+				)
+				){
+				case 1:
+				.@enchant = 4837;	// Spell6
+				break;
+				case 2:
+				.@enchant = 4735;	// Matk2
+				break;
+				case 3:
+				.@enchant = 4755;	// Inteligence6
+				break;
+				default:
+				break;}
+			break;
+		case 3:	// Anger_Seagod - Short Range
+						switch( select( 
+				"Esp?rito do Lutador 8",
+				"Fatal 4",
+				"+6 FOR",
+				"+6 VIT"	
+				)
+				){
+				case 1:
+				.@enchant = 4823;	// Spell6
+				break;
+				case 2:
+				.@enchant = 4866;	// Matk2
+				break;
+				case 3:
+				.@enchant = 4705;	// Inteligence6
+				break;
+				case 4:
+				.@enchant = 4745;	// Inteligence6
+				break;
+				default:
+				break;}
+			break;
+		default:
+			mes .n$;
+			mes "There is something wrong. Please try again.";
+			close;
+		}
+
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_HAND_R, .@equip_id) || callfunc("F_IsEquipRefineHack", EQI_HAND_R, .@equip_refine) || 
+		    callfunc("F_IsEquipCardHack", EQI_HAND_R, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]))
+			close;
+
+		     if (.@equip_card[3] == 0 && .@enclimit < 4) .@equip_card[3] = .@enchant;
+		else if (.@equip_card[2] == 0 && .@enclimit < 3) .@equip_card[2] = .@enchant;
+		else if (.@equip_card[1] == 0 && .@enclimit < 2) .@equip_card[1] = .@enchant;
+		else if (.@equip_card[0] == 0 && .@enclimit < 1) .@equip_card[0] = .@enchant;
+		else {
+		}
+		if (.@enchant == 9) {	//  Should never happen.
+
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		delequip EQI_HAND_R;
+
+		// GetNonSlotItemSock2 .@equip_refine .@equip_id .@equip_card[0] .@equip_card[1] .@equip_card[2] .@equip_card[3]
+		getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+
+		close;
+end;
+// FALL
+    F_ENCHANT_FALL:
+    		mes .n$;
+			mes "Qual slot deseja encantar?";
+volta:
+if( getequipid( EQI_GARMENT ) == .faw_itemid ){
+
+	.@refine = getequiprefinerycnt( EQI_GARMENT );
+	for( .@i = 0; .@i < 4; .@i++ )
+		.@card[.@i] = getequipcardid( EQI_GARMENT,.@i );
+		.@slot = select(
+				( .@card[1] || .@refine < 6 )?"":" Slot 1",
+				( .@card[2] || .@refine < 7 )?"":" Slot 2",
+				( .@card[3] || .@refine < 9 )?"":" Slot 3",
+				"Cancelar"
+			);
+			if( .@slot < 4 ){
+
+				.@type = select( .enchant_type_menu$ ) - 1;
+				.@size = .enchant_list_size[.@type];
+				if( .@size ){
+					copyarray .@enchant_list[0],getd( ".enchant_list_"+( .@type+1 )+"[0]" ),.@size;
+					if( .@refine >= 9 ){
+						.@enchant_list[.@size] = .special_enchant[.@type];
+						.@size++;
+					}
+    					delequip EQI_GARMENT;
+						setd( ".@card["+.@slot+"]" ),.@enchant_list[ rand( .@size ) ];
+						getitem2 .faw_itemid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+                        
+				}
+			}
+ }
+next;
+end;
+	OnInit:
+    // NPC SETS
+	//waitingroom "Remove cartas",0; ff0000
+    .n$ = "^0000FF [ Encantador ] ^000000";
+    //itens encantaveis
+    		setarray .indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+    setarray .can_enchant_list,2589;
+	setarray .mora_lista,1224,1225,1227,1229,1232,1233,1235,1236,1237,1240,1241,1242,1244,13046,13061,1223,1228,1234,1230,1231,1271,1263,1270,1284,1285,1268,1269,1265,1261,1266,28010,1291,1305,1311,1364,1365,1385,1367,1368,1387,1369,1363,1376,1377,1366,1370,1371,1131,1133,1134,1135,13400,1136,1138,1139,1140,1141,1148,13421,13431,1137,1130,1132,13412,13413,1164,1166,1167,1168,1170,1171,1178,1180,1181,1182,1188,1189,1196,1165,1169,1179,1175,1185,1186,21018,1420,1413,1414,1416,1418,1433,1415,1421,1422,1466,1467,1468,1469,1470,1471,1474,1476,1477,1478,1479,1480,1481,1484,1616,1629,1631,1643,1654,1636,1637,1524,1525,1527,1539,1541,16000,16001,16010,1523,1538,1540,1557,1558,1559,1561,1562,1565,1813,1814,1815,1816,1830,1719,1722,1724,1725,1737,1740,1741,1745,18103,1720,1913,1918,1920,1922,1926,1930,1962,1963,1964,1969,1970,1972,1973,1974,1976,1979,1984,1985;
+// ASA ARCANJO
+// FAW item id
+.faw_itemid = 2589;
+// enchant success rate
+.success_rate = 100;
+// enchant reset cost
+.enchant_reset_Zeny = 1;
+// enchant type category
+setarray .enchant_type$,"Espirito do Lutador","Pedra de Encantamento","Pedra de mira apurada","Fatal","MaxHP","MaxSP","ASPD","STR","AGI","DEX","VIT","INT","LUK";
+// enchant list ( Fighting Spirit )
+setarray .enchant_list_1,4820,4820,4820;
+// enchant list ( Magic )
+setarray .enchant_list_2,4826,4826,4826;
+// enchant list ( Archer )
+setarray .enchant_list_3,4834,4834,4834;
+// enchant list ( Critical )
+setarray .enchant_list_4,4865,4865;
+// enchant list ( Max HP )
+setarray .enchant_list_5,4862,4862;
+// enchant list ( Max SP )
+setarray .enchant_list_6,4871,4871;
+// enchant list ( ASPD )
+setarray .enchant_list_7,4842,4842;
+// enchant list ( STR )
+setarray .enchant_list_8,4705,4705,4705;
+// enchant list ( AGI )
+setarray .enchant_list_9,4735,4735,4735;
+// enchant list ( DEX )
+setarray .enchant_list_10,4725,4725,4725;
+// enchant list ( VIT )
+setarray .enchant_list_11,4745,4745,4745;
+// enchant list ( INT )
+setarray .enchant_list_12,4715,4715,4715;
+// enchant list ( LUK )
+setarray .enchant_list_13,4755,4755,4755;
+// extra 1 special enchant for 3rd slot if refine above 9 ( follow by category sequences )
+setarray .special_enchant,4821,4828,4835,4866,4868,4801,4807,4853,4854,4857,4855,4856,4858;
+.enchant_type_size = getarraysize( .enchant_type$ );
+for( .@i = 0; .@i < .enchant_type_size; .@i++ ){
+	.enchant_list_size[.@i] = getarraysize( getd( ".enchant_list_"+( .@i+1 ) ) );
+	if( !.enchant_list_size[.@i] ){
+		.enchant_type$[.@i] = "";
+	}
+	else{
+		.enchant_type_menu$ = .enchant_type_menu$ + .enchant_type$[.@i];
+	}
+	.enchant_type_menu$ = .enchant_type_menu$ + ":";
+}
+end;
+}

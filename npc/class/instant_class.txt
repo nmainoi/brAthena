@@ -1,0 +1,23 @@
+prontera,157,193,4	script	Job Master	918,{
+    .@i = select( .Menu$ ) - 1;
+    	if( select( "Change to "+jobname( .JobList[.@i] )+"?:Cancel" ) == 1 ){
+		jobchange .JobList[.@i];
+		BaseLevel = .BaseLevel;
+		JobLevel = .JobLevel;
+        allskill;   
+        resetstatus;
+        callfunc "F_BUFF","1";
+        callfunc "F_CONSU";
+        callfunc "F_GetPlatinumSkills";
+        callfunc "F_GetITEM";
+        }
+        end;
+   OnInit:
+            setarray .JobList[0],4060,4073,4061,4074,4062,4075,4063,4077,4064,4078,4065,4079; // 
+            .BaseLevel = 175; // Level base maximo
+            .JobLevel = 60; // level job maximo
+            .@size = getarraysize( .JobList );
+            for( .@i = 0; .@i < .@size; .@i++ )
+                .Menu$ = .Menu$ + jobname( .JobList[.@i] )+":";
+            end;
+        }

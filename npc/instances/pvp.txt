@@ -1,0 +1,51 @@
+prontera,148,190,4	script	Ranking	857,{
+    if (getgmlevel() != 99){
+        goto ranking;
+    }           
+		mes .n$;
+		mes "O que deseja fazer?";
+		next;
+		switch ( select ( 
+			"PVP Ranking",
+			( getgmlevel() >= 99 ) ? "^FF0000[GM] Reset PVP Ranking^000000":""
+		)) {
+			case 1:
+                goto ranking;
+			case 2:
+		        mes .n$;
+				mes "Reset Ranking? Action cant be undo. Confirm your action.";
+				if ( select( "Confirm","Cancel" ) == 1 ) {
+					query_sql( "UPDATE `char` SET `pvp_kill` = 0 ");
+							query_sql( "UPDATE `char` SET `pvp_death` = 0" );
+					mes "Done.";
+				}
+				break;
+		}
+		close;
+	end;
+ ranking:
+		        mes .n$;
+                mes " ";
+				query_sql( "SELECT `name`,`pvp_kill`,`pvp_death`,`pvp_kill` -`pvp_death` as KDA FROM `char` WHERE `pvp_kill` > 0 or `pvp_death` > 0 ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 100", .@name$, .@pvp_kill, .@pvp_death, .@KDA );
+				.@size = getarraysize( .@name$ );
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+                    mes "[^FF0000"+(.@i + 1 )+"^000000] ^0000FF" + .@name$[.@i]+ "^000000 - Rate: ^00A000" + .@KDA[.@i] +"^000000" ;
+                    mes " [Abates: "+.@pvp_kill[.@i] + "] [Mortes: " + .@pvp_death[.@i] + "]";
+					mes "========================";
+				}
+                end;
+		OnInit:
+         .n$ = "^0000FF [ Ranking PvP ] ^000000";
+         end;
+}
+prontera,151,192,5	script	PvP Keeper	459,{
+	if (select("Entrar no PVP ["+getmapusers(""+$@lista$+"") +"]:Sair") == 1) {
+		warp ""+$@lista$+"",0,0;
+		end;
+	}
+	next;
+	close;
+	OnInit:
+.n$ = "^0000FF [ Arena PvP ] ^000000";
+end;
+}

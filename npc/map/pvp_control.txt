@@ -1,0 +1,75 @@
+pvp_y_1-1	mapflag	pvp
+pvp_y_1-2	mapflag	pvp
+pvp_y_1-4	mapflag	pvp
+pvp_y_1-5	mapflag	pvp
+-	script	PvP_Events	-1,{
+OnPCKillEvent:
+		if ( getcharid(3) != killedrid && strcharinfo(3) != $@lista$ )
+		end;
+		if (gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) <= 23 ) {
+			if (getgmlevel() >= 1 && #value != 4)
+			#value = 4;
+
+			if(getgmlevel() < 1 && #value != 2)
+			#value = 2;
+
+			if (#kill != 0)
+			#kill = 0;		
+		}else{
+			if (getgmlevel() >= 1 && #value > 2)
+			#value = 2;
+
+			if(getgmlevel() < 1 && #value > 1)
+			#value = 1;					
+		}
+		if (#mapakill$ !=  $@lista$)
+		#kill = 0;
+
+	query_sql( "UPDATE `char` SET `pvp_kill` = `pvp_kill` + 1 WHERE `char_id` = "+getcharid(0)+" LIMIT 1" );
+	message strcharinfo(0),"Voce eliminou " + rid2name(killedrid);
+
+		if (#kill <= 60) {
+		getitem(7420,#value);
+		callfunc "DaItems", killedrid, getcharid(3);
+		}
+		#mapakill$ = $@lista$;
+		#kill += 1;
+end;		
+	OnPCDieEvent: // eaclass({<job number>,<char_id>}) // CPC_CHAR convertpcinfo(<account_id>,<type>)
+		if ( getcharid(3) != killerrid && strcharinfo(3) != "prontera" ) {
+			query_sql( "UPDATE `char` SET `pvp_death` = `pvp_death` + 1 WHERE `char_id` = "+getcharid(0)+" LIMIT 1" );
+			message strcharinfo(0),	rid2name(killerrid) + " Eliminou voce";
+			dispbottom "Voce ira renascer em 3 segundos";
+			sleep2 3000;
+			if (strcharinfo(3) == $@lista$) {
+				warp strcharinfo(3),0,0;
+			}
+		callfunc "F_BUFF","1";
+		}
+			end;
+OnInit:
+   	setarray .lista$[0],"pvp_y_1-1","pvp_y_1-2";
+   	set .rotatetime, 600000;
+// ======================================	
+	set $@lista$, ""+.lista$[0]+"";
+	set .count, getarraysize(.lista$);
+	for( set .@i,0; .@i < .count; set .@i, .@i+1 ){
+			sleep .rotatetime-60000;
+			mapannounce ""+.lista$[.@i]+"","O mapa sera trocado em 30 segundos.",8;
+			sleep 10000;
+			mapannounce ""+.lista$[.@i]+"","O mapa sera trocado em 20 segundos.",8;
+			sleep 10000;
+			mapannounce ""+.lista$[.@i]+"","O mapa sera trocado em 10 segundos.",8;
+			sleep 10000;
+			if(.lista$[.@i] == .lista$[.count-1]){						
+				mapwarp ""+.lista$[.@i]+"",""+.lista$[0]+"",0,0;
+				set $@lista$, ""+.lista$[0]+"";
+				set .@i,-1;
+			}
+			else{
+				mapwarp ""+.lista$[.@i]+"",""+.lista$[.@i+1]+"",0,0;
+				set $@lista$, ""+.lista$[.@i+1]+"";
+			}			
+		}
+		end;
+}

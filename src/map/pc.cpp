@@ -10553,7 +10553,6 @@ bool pc_equipitem(struct map_session_data *sd,short n,int req_pos,bool equipswit
 	if (!(id = sd->inventory_data[n]))
 		return false;
 	pos = pc_equippoint(sd,n); //With a few exceptions, item should go in all specified slots.
-
 	if(battle_config.battle_log && !equipswitch)
 		ShowInfo("equip %u (%d) %x:%x\n",sd->inventory.u.items_inventory[n].nameid,n,id?id->equip:0,req_pos);
 
@@ -10780,6 +10779,7 @@ bool pc_equipitem(struct map_session_data *sd,short n,int req_pos,bool equipswit
 			}
 		}
 	}
+
 	sd->npc_item_flag = iflag;
 
 	return true;
@@ -10792,13 +10792,12 @@ bool pc_equipitem(struct map_session_data *sd,short n,int req_pos,bool equipswit
  * @param flag: Whether to recalculate a player's status or not
  * @return True on success or false on failure
  */
-static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
+static void pc_unequipitem_sub(struct map_session_data* sd, int n, int flag) {
 	int i, iflag;
 	bool status_calc = false;
 
-	if (sd->state.autobonus&sd->inventory.u.items_inventory[n].equip)
+	if (sd->state.autobonus & sd->inventory.u.items_inventory[n].equip)
 		sd->state.autobonus &= ~sd->inventory.u.items_inventory[n].equip; //Check for activated autobonus [Inkfish]
-
 	sd->inventory.u.items_inventory[n].equip = 0;
 	if (!(flag & 4))
 		pc_checkallowskill(sd);
@@ -10815,7 +10814,7 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 			; // No cards
 		else {
 			for (i = 0; i < MAX_SLOTS; i++) {
-				item_data *data;
+				item_data* data;
 
 				if (!sd->inventory.u.items_inventory[n].card[i])
 					continue;
@@ -10845,7 +10844,7 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 			; //No cards
 		else {
 			for (i = 0; i < MAX_SLOTS; i++) {
-				struct item_data *data;
+				struct item_data* data;
 				if (!sd->inventory.u.items_inventory[n].card[i])
 					continue;
 
@@ -10860,7 +10859,6 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 
 	sd->npc_item_flag = iflag;
 }
-
 /**
  * Called when attempting to unequip an item from a player
  * @param sd: Player data
@@ -10922,8 +10920,8 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 		}
 	}
 	if(pos & EQP_HAND_L) {
-		if (sd->status.shield && battle_getcurrentskill(&sd->bl) == LG_SHIELDSPELL)
-			unit_skillcastcancel(&sd->bl, 0); // Cancel Shield Spell if player swaps shields.
+		/*if (sd->status.shield && battle_getcurrentskill(&sd->bl) == LG_SHIELDSPELL)
+			unit_skillcastcancel(&sd->bl, 0);*/ // Cancel Shield Spell if player swaps shields.
 
 		sd->status.shield = sd->weapontype2 = W_FIST;
 		pc_calcweapontype(sd);

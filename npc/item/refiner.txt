@@ -1,0 +1,21 @@
+prontera,147,172,6	script	Refiner	600,{
+callsub F_ENCHANT,EQI_HEAD_TOP;
+callsub F_ENCHANT,EQI_HAND_L;
+callsub F_ENCHANT,EQI_HAND_R;
+callsub F_ENCHANT,EQI_GARMENT;
+callsub F_ENCHANT,EQI_SHOES;
+callsub F_ENCHANT,EQI_ARMOR;
+end;
+    F_ENCHANT:
+		set .@EQI, getarg(0);
+			.@ITEM = getequipid(.@EQI);
+			if( .@ITEM < 1	 ){
+				return;
+			}
+            if (getequipisenableref(.@EQI) == false || getequiprefinerycnt(.@EQI) != 0 ) {
+                return;
+            }
+           successrefitem(.@EQI,13); 
+            return;
+end;
+}

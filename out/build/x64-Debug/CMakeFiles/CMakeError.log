@@ -1,0 +1,86 @@
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Maino/Emulador/rAthena/brAthena/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_43354 && [1/2] Building C object CMakeFiles\cmTC_43354.dir\CheckIncludeFile.c.obj
+FAILED: CMakeFiles/cmTC_43354.dir/CheckIncludeFile.c.obj 
+C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x64\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\cmTC_43354.dir\CheckIncludeFile.c.obj /FdCMakeFiles\cmTC_43354.dir\ /FS -c CheckIncludeFile.c
+CheckIncludeFile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+ninja: build stopped: subcommand failed.
+
+
+
+Performing C SOURCE FILE Test HAVE_TLS failed with the following compile output:
+Change Dir: C:/Maino/Emulador/rAthena/brAthena/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_74226 && [1/2] Building C object CMakeFiles\cmTC_74226.dir\src.c.obj
+FAILED: CMakeFiles/cmTC_74226.dir/src.c.obj 
+C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x64\cl.exe  /nologo -DHAVE_TLS  /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\cmTC_74226.dir\src.c.obj /FdCMakeFiles\cmTC_74226.dir\ /FS -c src.c
+src.c(1): error C2054: expected '(' to follow '__thread'
+src.c(1): error C2085: 'tls': not in formal parameter list
+src.c(4): error C2085: 'main': not in formal parameter list
+src.c(4): error C2143: syntax error: missing ';' before '{'
+ninja: build stopped: subcommand failed.
+
+
+...and run output:
+
+Return value: 1
+Source file was:
+__thread int tls;
+
+int main(int argc, char** argv)
+{
+	return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_MONOTONIC_CLOCK failed with the following compile output:
+Change Dir: C:/Maino/Emulador/rAthena/brAthena/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_a264d && [1/2] Building C object CMakeFiles\cmTC_a264d.dir\src.c.obj
+FAILED: CMakeFiles/cmTC_a264d.dir/src.c.obj 
+C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x64\cl.exe  /nologo -DHAVE_MONOTONIC_CLOCK  /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\cmTC_a264d.dir\src.c.obj /FdCMakeFiles\cmTC_a264d.dir\ /FS -c src.c
+src.c(1): fatal error C1083: Cannot open include file: 'sys/time.h': No such file or directory
+ninja: build stopped: subcommand failed.
+
+
+...and run output:
+
+Return value: 1
+Source file was:
+#include <sys/time.h>
+#include <time.h>
+#include <unistd.h>
+int main(int argc, char** argv)
+{
+	struct timespec tval;
+	return clock_gettime(CLOCK_MONOTONIC, &tval);
+}
+
+Determining if the function setrlimit exists failed with the following output:
+Change Dir: C:/Maino/Emulador/rAthena/brAthena/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_850a8 && [1/2] Building C object CMakeFiles\cmTC_850a8.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_850a8.exe
+FAILED: cmTC_850a8.exe 
+cmd.exe /C "cd . && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_850a8.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\mt.exe --manifests  -- C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_850a8.dir\CheckFunctionExists.c.obj  /out:cmTC_850a8.exe /implib:cmTC_850a8.lib /pdb:cmTC_850a8.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+LINK Pass 1: command "C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_850a8.dir\CheckFunctionExists.c.obj /out:cmTC_850a8.exe /implib:cmTC_850a8.lib /pdb:cmTC_850a8.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\cmTC_850a8.dir/intermediate.manifest CMakeFiles\cmTC_850a8.dir/manifest.res" failed (exit code 1120) with the following output:
+CheckFunctionExists.c.obj : error LNK2019: unresolved external symbol setrlimit referenced in function main
+cmTC_850a8.exe : fatal error LNK1120: 1 unresolved externals
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the function gettid exists failed with the following output:
+Change Dir: C:/Maino/Emulador/rAthena/brAthena/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_20471 && [1/2] Building C object CMakeFiles\cmTC_20471.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_20471.exe
+FAILED: cmTC_20471.exe 
+cmd.exe /C "cd . && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_20471.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\mt.exe --manifests  -- C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_20471.dir\CheckFunctionExists.c.obj  /out:cmTC_20471.exe /implib:cmTC_20471.lib /pdb:cmTC_20471.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+LINK Pass 1: command "C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_20471.dir\CheckFunctionExists.c.obj /out:cmTC_20471.exe /implib:cmTC_20471.lib /pdb:cmTC_20471.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\cmTC_20471.dir/intermediate.manifest CMakeFiles\cmTC_20471.dir/manifest.res" failed (exit code 1120) with the following output:
+CheckFunctionExists.c.obj : error LNK2019: unresolved external symbol gettid referenced in function main
+cmTC_20471.exe : fatal error LNK1120: 1 unresolved externals
+ninja: build stopped: subcommand failed.
+
+
+

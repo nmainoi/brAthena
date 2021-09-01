@@ -2517,9 +2517,9 @@ int mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int b
 			if (pc_isvip(sd)) { // Increase item drop rate for VIP.
 				// Unsure how the VIP and other bonuses should stack, this is additive.
 				drop_rate_bonus += battle_config.vip_drop_increase;
-				cap = battle_config.drop_rate_cap_vip;
+				cap = 9000;
 			} else
-				cap = battle_config.drop_rate_cap;
+				cap = 9000;
 
 			drop_rate = (int)( 0.5 + drop_rate * drop_rate_bonus / 100. );
 

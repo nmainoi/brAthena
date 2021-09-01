@@ -1,0 +1,5 @@
+prontera,166,197,4	script	Consumiveis	564,{
+callfunc "F_CONSU";
+	end;
+end;
+}

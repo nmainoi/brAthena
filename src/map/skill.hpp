@@ -568,7 +568,7 @@ std::shared_ptr<s_skill_unit_group> skill_initunitgroup(struct block_list* src, 
 int skill_delunitgroup_(std::shared_ptr<s_skill_unit_group> group, const char* file, int line, const char* func);
 #define skill_delunitgroup(group) skill_delunitgroup_(group,__FILE__,__LINE__,__func__)
 void skill_clear_unitgroup(struct block_list *src);
-int skill_clear_group(struct block_list *bl, int flag);
+int skill_clear_group(block_list* bl, uint8 flag);
 void ext_skill_unit_onplace(struct skill_unit *unit, struct block_list *bl, t_tick tick);
 int64 skill_unit_ondamaged(struct skill_unit *unit,int64 damage);
 
@@ -1980,7 +1980,7 @@ enum e_skill {
 	NV_BREAKTHROUGH,
 	NV_HELPANGEL,
 	NV_TRANSCENDENCE,
-	WL_READING_SB_READING,
+	//WL_READING_SB_READING,
 
 	HLIF_HEAL = 8001,
 	HLIF_AVOID,
@@ -2277,6 +2277,7 @@ void skill_usave_trigger(struct map_session_data *sd);
 /**
  * Warlock
  **/
+#define MAX_SKILL_SPELLBOOK_DB	17
 enum e_wl_spheres {
 	WLS_FIRE = 0x44,
 	WLS_WIND,
@@ -2288,6 +2289,7 @@ struct s_skill_spellbook_db {
 	uint16 skill_id, points;
 	t_itemid nameid;
 };
+
 
 class ReadingSpellbookDatabase : public TypesafeYamlDatabase<uint16, s_skill_spellbook_db> {
 public:

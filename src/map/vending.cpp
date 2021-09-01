@@ -80,8 +80,26 @@ void vending_closevending(struct map_session_data* sd)
 void vending_vendinglistreq(struct map_session_data* sd, int id)
 {
 	struct map_session_data* vsd;
+	struct npc_data* nd_sd;
 	nullpo_retv(sd);
-
+	if (nd_sd = (TBL_NPC*)map_id2bl(id)) { //It's an NPC
+		if (nd_sd->vend.vends == true) {
+			char event_name[64 + 23 + 1];
+			if (nd_sd->subtype == NPCTYPE_CASHSHOP) //Act as if it was clicked
+				npc_click(sd, nd_sd);
+			if (nd_sd->subtype == NPCTYPE_SHOP) //Open Buy-Windows directly
+				npc_buysellsel(sd, nd_sd->bl.id, 0);
+			if (nd_sd->subtype == NPCTYPE_SCRIPT) { //Trigger OnVendingClick event
+				sprintf(event_name, "%s::OnVendingClick", &nd_sd->name);
+				npc_event(sd, event_name, 0);
+				return;
+				
+			}
+			
+		}
+		 return; //WARP will just return
+		
+	}
 	if( (vsd = map_id2sd(id)) == NULL )
 		return;
 	if( !vsd->state.vending )
@@ -429,44 +447,44 @@ bool vending_searchall(struct map_session_data* sd, const struct s_search_store_
 	unsigned int idx, cidx;
 	struct item* it;
 
-	if( !sd->state.vending ) // not vending
+	if (!sd->state.vending) // not vending
 		return true;
 
-	for( idx = 0; idx < s->item_count; idx++ ) {
-		ARR_FIND( 0, sd->vend_num, i, sd->cart.u.items_cart[sd->vending[i].index].nameid == s->itemlist[idx].itemId );
-		if( i == sd->vend_num ) { // not found
+	for (idx = 0; idx < s->item_count; idx++) {
+		ARR_FIND(0, sd->vend_num, i, sd->cart.u.items_cart[sd->vending[i].index].nameid == s->itemlist[idx].itemId);
+		if (i == sd->vend_num) { // not found
 			continue;
 		}
 		it = &sd->cart.u.items_cart[sd->vending[i].index];
 
-		if( s->min_price && s->min_price > sd->vending[i].value ) { // too low price
+		if (s->min_price && s->min_price > sd->vending[i].value) { // too low price
 			continue;
 		}
 
-		if( s->max_price && s->max_price < sd->vending[i].value ) { // too high price
+		if (s->max_price && s->max_price < sd->vending[i].value) { // too high price
 			continue;
 		}
 
-		if( s->card_count ) { // check cards
-			if( itemdb_isspecial(it->card[0]) ) { // something, that is not a carded
+		if (s->card_count) { // check cards
+			if (itemdb_isspecial(it->card[0])) { // something, that is not a carded
 				continue;
 			}
 			slot = itemdb_slots(it->nameid);
 
-			for( c = 0; c < slot && it->card[c]; c ++ ) {
-				ARR_FIND( 0, s->card_count, cidx, s->cardlist[cidx].itemId == it->card[c] );
-				if( cidx != s->card_count ) { // found
+			for (c = 0; c < slot && it->card[c]; c++) {
+				ARR_FIND(0, s->card_count, cidx, s->cardlist[cidx].itemId == it->card[c]);
+				if (cidx != s->card_count) { // found
 					break;
 				}
 			}
 
-			if( c == slot || !it->card[c] ) { // no card match
+			if (c == slot || !it->card[c]) { // no card match
 				continue;
 			}
 		}
 
 		// Check if the result set is full
-		if( s->search_sd->searchstore.items.size() >= (unsigned int)battle_config.searchstore_maxresults ){
+		if (s->search_sd->searchstore.items.size() >= (unsigned int)battle_config.searchstore_maxresults) {
 			return false;
 		}
 
@@ -474,17 +492,17 @@ bool vending_searchall(struct map_session_data* sd, const struct s_search_store_
 
 		ssitem->store_id = sd->vender_id;
 		ssitem->account_id = sd->status.account_id;
-		safestrncpy( ssitem->store_name, sd->message, sizeof( ssitem->store_name ) );
+		safestrncpy(ssitem->store_name, sd->message, sizeof(ssitem->store_name));
 		ssitem->nameid = it->nameid;
 		ssitem->amount = sd->vending[i].amount;
 		ssitem->price = sd->vending[i].value;
-		for( int j = 0; j < MAX_SLOTS; j++ ){
+		for (int j = 0; j < MAX_SLOTS; j++) {
 			ssitem->card[j] = it->card[j];
 		}
 		ssitem->refine = it->refine;
 		ssitem->enchantgrade = it->enchantgrade;
 
-		s->search_sd->searchstore.items.push_back( ssitem );
+		s->search_sd->searchstore.items.push_back(ssitem);
 	}
 
 	return true;

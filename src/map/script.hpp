@@ -170,7 +170,6 @@ struct Script_Config {
 	const char* oncommand_event_name;
 	const char* onbuy_event_name;
 	const char* onsell_event_name;
-
 	// Init related
 	const char* init_event_name;
 	const char* inter_init_event_name;
@@ -2058,7 +2057,6 @@ enum e_iteminfo : uint8 {
 	ITEMINFO_ID,
 	ITEMINFO_AEGISNAME	// 18
 };
-
 class ConstantDatabase : public YamlDatabase {
 public:
 	ConstantDatabase() : YamlDatabase("CONSTANT_DB", 1) {
@@ -2069,6 +2067,7 @@ public:
 	const std::string getDefaultLocation();
 	uint64 parseBodyNode(const YAML::Node& node);
 };
+
 
 /**
  * used to generate quick script_array entries
