@@ -3,6 +3,10 @@ pvp_y_1-2	mapflag	pvp
 pvp_y_1-4	mapflag	pvp
 pvp_y_1-5	mapflag	pvp
 -	script	PvP_Events	-1,{
+	OnPCLogoutEvent:
+	if (strcharinfo(3) == $@lista$)
+		warp "prontera",156,191;
+	end;
 OnPCKillEvent:
 		if ( getcharid(3) != killedrid && strcharinfo(3) != $@lista$ )
 		end;
@@ -72,4 +76,31 @@ OnInit:
 			}			
 		}
 		end;
+}
+function	script	DaItems	{
+	set .@str, getarg(0);
+voltaKiller:	
+	.@wsd$ = rid2name(.@str);
+	.@jonumber = readparam(Class,.@wsd$);
+	set .@eac, eaclass(.@jonumber);
+	if ((.@eac&EAJ_THIRDMASK) == EAJ_MINSTRELWANDERER || (.@eac&EAJ_THIRDMASK) ==  EAJ_RANGER) {
+ 			getitem(29543,#value);
+    }else if ((.@eac&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT || (.@eac&EAJ_THIRDMASK) ==  EAJ_ROYAL_GUARD) {
+			getitem(29541,#value);
+	}else if ((.@eac&EAJ_THIRDMASK) == EAJ_WARLOCK || (.@eac&EAJ_THIRDMASK) ==  EAJ_SORCERER) {
+			getitem(29542,#value);
+	}else if ((.@eac&EAJ_THIRDMASK) == EAJ_KAGEROUOBORO || (.@eac&EAJ_THIRDMASK) ==  EAJ_REBELLION  || (.@eac&EAJ_THIRDMASK) ==  EAJ_SUPER_NOVICE  || (.@eac&EAJ_THIRDMASK) ==  EAJ_STAR_EMPEROR  || (.@eac&EAJ_THIRDMASK) ==  EAJ_SOUL_REAPER) {
+			getitem(29547,#value);
+	}else if ((.@eac&EAJ_THIRDMASK) == EAJ_ARCH_BISHOP || (.@eac&EAJ_THIRDMASK) ==  EAJ_SURA) {
+			getitem(29546,#value);
+	}else if ((.@eac&EAJ_THIRDMASK) == EAJ_GENETIC || (.@eac&EAJ_THIRDMASK) ==  EAJ_MECHANIC) {
+			getitem(29544,#value);
+	}else if ((.@eac&EAJ_THIRDMASK) == EAJ_SHADOW_CHASER || (.@eac&EAJ_THIRDMASK) ==  EAJ_GUILLOTINE_CROSS) {
+			getitem(29544,#value);
+	}
+	if (.@str != getarg(1)){
+    .@str = getarg(1);
+	goto voltaKiller;	
+	}
+return;
 }

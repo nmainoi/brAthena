@@ -5068,8 +5068,6 @@ int status_calc_pc_sub(struct map_session_data* sd, enum e_status_calc_opt opt)
 		//	sd->bonus.short_attack_atk_rate += sc->data[SC_LUXANIMA]->val3;
 		//	sd->bonus.long_attack_atk_rate += sc->data[SC_LUXANIMA]->val3;
 		//}
-		if (sc->data[SC_STRIKING])
-			sd->bonus.perfect_hit += 20 + 10 * pc_checkskill(sd, SO_STRIKING);
 	}
 	status_cpy(&sd->battle_status, base_status);
 
@@ -7176,6 +7174,8 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		critical += sc->data[SC_TRUESIGHT]->val2;
 	if (sc->data[SC_CLOAKING])
 		critical += critical;
+	if (sc->data[SC_STRIKING])
+		critical += critical * sc->data[SC_STRIKING]->val1 / 100;
 #ifdef RENEWAL
 	if (sc->data[SC_SPEARQUICKEN])
 		critical += 3*sc->data[SC_SPEARQUICKEN]->val1*10;
