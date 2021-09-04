@@ -4952,10 +4952,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		}
 		break;
 
-#ifndef RENEWAL
+
 	case SN_SHARPSHOOTING:
-		flag |= 2; // Flag for specific mob damage formula
-#endif
 	case MA_SHARPSHOOTING:
 	case NJ_KAMAITACHI:
 	case NPC_DARKPIERCING:
@@ -4983,6 +4981,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 				skill_get_splash(skill_id, skill_lv), skill_get_maxcount(skill_id, skill_lv), splash_target(src),
 				skill_get_type(skill_id), src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY);
 		}
+		if (skill_id == SN_SHARPSHOOTING)
+			status_change_end(src, SC_CAMOUFLAGE, INVALID_TIMER);
 		break;
 
 	case MO_INVESTIGATE:
@@ -5125,9 +5125,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case MG_NAPALMBEAT:
 	case MG_FIREBALL:
 	case RG_RAID:
-#ifdef RENEWAL
-	case SN_SHARPSHOOTING:
-#endif
 	case HW_NAPALMVULCAN:
 	case NJ_HUUMA:
 	case ASC_METEORASSAULT:
@@ -5224,11 +5221,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 						status_heal(src, heal, 0, 0);
 					}
 					break;
-#ifdef RENEWAL
-				case SN_SHARPSHOOTING:
-					status_change_end(src, SC_CAMOUFLAGE, INVALID_TIMER);
-					break;
-#endif
 				case SJ_PROMINENCEKICK: // Trigger the 2nd hit. (100% fire damage.)
 					skill_attack(skill_get_type(skill_id), src, src, bl, skill_id, skill_lv, tick, sflag|8|SD_ANIMATION);
 					break;

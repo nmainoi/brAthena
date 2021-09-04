@@ -1,0 +1,237 @@
+prontera,147,166,6	script	Job Helper	918,{
+    if(BaseJob == Job_Rogue)
+        goto Renegado;
+    if(BaseJob == Job_Alchemist)
+        goto bio;
+        mes .n1$; mes "  ";
+        mes "Nao posso fazer nada por voce..";
+end;
+
+bio:
+	if(checkhomcall() == 1){
+		mes "[ Homunculus ]";
+		mes "Voce nao pode ter um homunculus para usar este npc";
+		close;
+	}
+    switch( select( 
+				"Lif",
+				"Amistr",
+				"Filir",
+				"Vanilmirth"	
+				)
+				){
+				case 1:
+					atcommand "@makehomun 6013";
+					atcommand "@homlvl 99 "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homevolve "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homhungry 100 "+strcharinfo(0);
+				break;
+				case 2:
+					atcommand "@makehomun 6014";
+					atcommand "@homlvl 99 "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homevolve "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homhungry 100 "+strcharinfo(0);
+				break;
+				case 3:
+					atcommand "@makehomun 6015";
+				atcommand "@homlvl 99 "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homevolve "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homhungry 100 "+strcharinfo(0);
+				break;
+				case 4:
+					atcommand "@makehomun 6016";
+				atcommand "@homlvl 99 "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homevolve "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homhungry 100 "+strcharinfo(0);
+					break;
+				default:
+					break;		
+				}
+
+                atcommand "@homlvl 99 "+strcharinfo(0);
+                atcommand "@homfriendly 1000 "+strcharinfo(0);
+                atcommand "@homevolve "+strcharinfo(0);
+                atcommand "@homfriendly 1000 "+strcharinfo(0);
+                atcommand "@homhungry 100 "+strcharinfo(0); 
+                    mes "[ Homunculus ]";
+                    mes "Agora escolha a segunda evolucao";
+                    next;
+                        atcommand "@homlvl 99 "+strcharinfo(0);
+                atcommand "@homfriendly 1000 "+strcharinfo(0);
+                atcommand "@homevolve "+strcharinfo(0);
+                atcommand "@homfriendly 1000 "+strcharinfo(0);
+                atcommand "@homhungry 100 "+strcharinfo(0); 
+				switch( select( 
+				"Eira",
+				"Bayeri",
+				"Sera",
+				"Dieter",
+				"Eleanor"	
+				)
+				){
+				case 1:
+					morphembryo;
+					hommutate(6048);//Eira
+					//callfunc "UpHomun";
+					atcommand "@homlvl 99 "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homevolve "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homhungry 100 "+strcharinfo(0);
+				break;
+				case 2:
+					morphembryo;
+					hommutate(6049); //Bayeri
+					//callfunc "UpHomun";
+					atcommand "@homlvl 99 "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homevolve "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homhungry 100 "+strcharinfo(0);
+				break;
+				case 3:
+					morphembryo;
+					hommutate(6050);//Sera
+				//	callfunc "UpHomun";
+				atcommand "@homlvl 99 "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homevolve "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homhungry 100 "+strcharinfo(0);
+				break;
+				case 4:
+					morphembryo;
+					hommutate(6051);//Dieter
+				//	callfunc "UpHomun";
+				atcommand "@homlvl 99 "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homevolve "+strcharinfo(0);
+				atcommand "@homfriendly 1000 "+strcharinfo(0);
+				atcommand "@homhungry 100 "+strcharinfo(0);
+					break;
+				case 5:
+					morphembryo;
+					hommutate(6051);//Eleanor
+					//callfunc "UpHomun";
+					atcommand "@homlvl 99 "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homevolve "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homhungry 100 "+strcharinfo(0);
+				break;
+				default:
+					break;		
+				}
+end;
+
+
+
+
+
+
+
+
+
+Renegado:
+            mes .n1$;
+        mes "Ola, sou ajudante de renegados.";
+        mes "Voce podera escolher em qual";
+        mes "Qual habilidade deseja plagiar";
+        mes "E em qual skill deseja alocar";
+        next;
+switch(select( "Plagio","Mimetismo","Ambas")){
+				case 1: callsub F_PLAGIO,0; break;
+				case 2: callsub F_MIMETISMO; ;break;
+                case 3: callsub F_PLAGIO,1; ;break;
+				default:end;break;
+				}
+end;
+
+    F_PLAGIO:
+		set .@EQI, getarg(0);
+        set .@menu, select(.menu$) -1;
+    if ( getskilllv(.skill$[.@menu * 3 +1]) ) {
+        mes .n1$;
+        mes "Voce ja copiou essa skill.";
+                    close;
+        }
+        mes .n1$; mes "  ";
+        mes "Sera necessario deslogar para copiar a skill de plagio.";
+        next;
+
+    set CLONE_SKILL, .skill$[.@menu * 3 +1];
+    set CLONE_SKILL_LV, .skill$[.@menu * 3 +2];
+
+    if(.@EQI != 1 ){
+        atcommand "@kick "+ strcharinfo(0);
+    }else
+        mes .n1$; mes "  ";
+        mes "Agora iremos para a skill do mimetismo.";
+        next;
+        callsub F_MIMETISMO;
+
+end;
+
+
+    F_MIMETISMO:
+        set .@menuM, select(.menuM$) -1;
+    if ( getskilllv(.skillM$[.@menuM * 3 +1]) ) {
+        mes .n1$;
+    mes "Voce ja copiou essa skill.";
+                close;
+    }
+    mes .n1$; mes "  ";
+    mes "Sera necessario deslogar para copiar a skill de mimetismo.";
+    next;
+    set REPRODUCE_SKILL, .skillM$[.@menuM * 3 +1];
+    set REPRODUCE_SKILL_LV, .skillM$[.@menuM * 3 +2];
+    atcommand "@kick "+ strcharinfo(0);
+    end;
+       
+Oninit:
+  .n1$ = "[ ^4682B4 Job Helper ^000000]";
+//Renegado
+        setarray .skill$, "Chute Aereo", 421, 7,
+            "Congelar", 88, 10,
+            "Chuva de Moedas", 526, 10,
+            "Lanca Congelante", 537, 10,
+            "Lamina de Vento", 540, 10,
+            "Petalas Flamejantes", 534, 10,
+            "Rajada Congelante", 15, 10,
+            "Nevasca", 89, 10,
+            "Impacto de Tyr", 62, 10,
+            "Punho Supremo de Asura", 271,5;
+        set .@skillsize, getarraysize(.skill$);
+        for ( set .@i,0; .@i < .@skillsize; set .@i, .@i +3 )
+        set .menu$, .menu$ + .skill$[.@i] +":";
+
+        setarray .skillM$, "Chute Aereo", 421, 7,
+            "Congelar", 88, 10,
+            "Chuva de Moedas", 526, 10,
+            "Lanca Congelante", 537, 10,
+            "Lamina de Vento", 540, 10,
+            "Petalas Flamejantes", 534, 10,
+            "Rajada Congelante", 15, 10,
+            "Nevasca", 89, 10,
+            "Impacto de Tyr", 62, 10,
+            "Punho Supremo de Asura", 271,5,
+            "Esquife de Gelo", 2204, 5,
+            "Adoramus", 2040, 10,
+            "Meteoro Escarlate", 2211, 5,
+            "Po de Diamante", 2447, 5,
+            "Garra Sombria", 5001, 5;
+        set .@skillsizeM, getarraysize(.skillM$);
+        for ( set .@i,0; .@i < .@skillsizeM; set .@i, .@i +3 )
+        set .menuM$, .menuM$ + .skillM$[.@i] +":";
+//BIO
+
+end;
+}

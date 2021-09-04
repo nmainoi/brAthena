@@ -40,7 +40,7 @@ OnPCKillEvent:
 		#kill += 1;
 end;		
 	OnPCDieEvent: // eaclass({<job number>,<char_id>}) // CPC_CHAR convertpcinfo(<account_id>,<type>)
-		if ( getcharid(3) != killerrid && strcharinfo(3) != "prontera" ) {
+		if ( getcharid(3) != killerrid && strcharinfo(3) != $@lista$ ) {
 			query_sql( "UPDATE `char` SET `pvp_death` = `pvp_death` + 1 WHERE `char_id` = "+getcharid(0)+" LIMIT 1" );
 			message strcharinfo(0),	rid2name(killerrid) + " Eliminou voce";
 			dispbottom "Voce ira renascer em 3 segundos";

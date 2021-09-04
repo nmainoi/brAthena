@@ -2719,21 +2719,10 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 				break;
 			case SN_SHARPSHOOTING:
 			case MA_SHARPSHOOTING:
-#ifdef RENEWAL
-				cri += 300; // !TODO: Confirm new bonus
-#else
 				cri += 200;
-#endif
 				break;
 			case NJ_KIRIKAGE:
 				cri += 250 + 50*skill_lv;
-				break;
-#ifdef RENEWAL
-			case ASC_BREAKER:
-#endif
-			//case LG_CANNONSPEAR:
-			case GC_CROSSIMPACT:
-				cri /= 2;
 				break;
 		}
 		if(tsd && tsd->bonus.critical_def)
@@ -3752,6 +3741,10 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 		//	if (sd && sd->weapontype1 == W_2HSWORD)
 		//		wd->div_ = 2;
 		//	break;
+	case RA_AIMEDBOLT:
+		if (tsc && (tsc->data[SC_BITE] || tsc->data[SC_ANKLE] || tsc->data[SC_ELECTRICSHOCKER]))
+			wd->div_ = tstatus->size + 2 + ((rnd() % 100 < 50 - tstatus->size * 10) ? 1 : 0);
+		break;
 		case SC_FATALMENACE:
 			if (sd && sd->weapontype1 == W_DAGGER)
 				wd->div_++;
@@ -4128,21 +4121,8 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 #endif
 			break;
 		case SN_SHARPSHOOTING:
-			if (src->type == BL_MOB) { // TODO: Did these formulas change in the renewal balancing?
-				if (wd->miscflag & 2) // Splash damage bonus
-					skillratio += -100 + 140 * skill_lv;
-				else
-					skillratio += 100 + 50 * skill_lv;
-				break;
-			}
-			// Fall through
 		case MA_SHARPSHOOTING:
-#ifdef RENEWAL
-			skillratio += -100 + 300 + 300 * skill_lv;
-			RE_LVL_DMOD(100);
-#else
 			skillratio += 100 + 50 * skill_lv;
-#endif
 			break;
 #ifdef RENEWAL
 		case CR_ACIDDEMONSTRATION:
@@ -4430,21 +4410,15 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 50 + 15 * skill_lv;
 			break;
 		case NPC_ARROWSTORM:
-			skillratio += 900 + 80 * skill_lv;
-			break;
 		case RA_ARROWSTORM:
-			if (sc && sc->data[SC_FEARBREEZE])
-				skillratio += -100 + 200 + 250 * skill_lv;
-			else
-				skillratio += -100 + 200 + 180 * skill_lv;
+			skillratio += 900 + 80 * skill_lv;
 			RE_LVL_DMOD(100);
+			skillratio += 3 * skillratio;
 			break;
 		case RA_AIMEDBOLT:
-			if (sc && sc->data[SC_FEARBREEZE])
-				skillratio += -100 + 800 + 35 * skill_lv;
-			else
-				skillratio += -100 + 500 + 20 * skill_lv;	
+			skillratio += 400 + 50 * skill_lv;
 			RE_LVL_DMOD(100);
+			skillratio += 5 * skillratio / 2;
 			break;
 		case RA_CLUSTERBOMB:
 			skillratio += 100 + 100 * skill_lv;

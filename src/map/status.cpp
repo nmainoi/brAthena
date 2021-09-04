@@ -14055,7 +14055,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			break;
 		case SC_HOMUN_TIME:
 			if (sd && hom_is_active(sd->hd))
-				hom_vaporize(sd, HOM_ST_REST);
+			//	hom_vaporize(sd, HOM_ST_REST);
 			break;
 	}
 
