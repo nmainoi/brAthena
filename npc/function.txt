@@ -91,7 +91,7 @@ function	script	F_GetITEM	{
 			getitem 18670,1;equip 18670;
 			getitem2 15048,1,1,13,0,4302,0,0,0;equip 15048;	
 			getitem2 15048,1,1,13,0,4105,0,0,0;
-			getitem2 1543,1,1,13,0,0,0,0,0; //VELLUM 
+			getitem2 1546,1,1,13,0,0,0,0,0; //VELLUM 
 			getitem2 1502,1,1,13,0,4497,4497,4497,4497;
 			getitem2 1525,1,1,13,0,0,0,0,0;equip 1525; // CK
 			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO

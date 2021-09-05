@@ -3749,9 +3749,6 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			if (sd && sd->weapontype1 == W_DAGGER)
 				wd->div_++;
 			break;
-		case SR_RIDEINLIGHTNING:
-			wd->div_ = (sd ? max(1, sd->spiritball_old) : 1);
-			break;
 		case RL_QD_SHOT:
 			wd->div_ = 1 + (sd ? sd->status.job_level : 1) / 20 + (tsc && tsc->data[SC_C_MARKER] ? 2 : 0);
 			break;
@@ -4057,9 +4054,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 #else
 			skillratio += 140 + 60 * skill_lv;
 #endif
-			if (sc->data[SC_GT_ENERGYGAIN])
-				skillratio += skillratio * 50 / 100;
-			break;
 		case BA_MUSICALSTRIKE:
 		case DC_THROWARROW:
 #ifdef RENEWAL
@@ -4075,9 +4069,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 #else
 			skillratio += -60 + 100 * skill_lv;
 #endif
-			if (sc->data[SC_GT_ENERGYGAIN])
-				skillratio += skillratio * 50 / 100;
-			break;
 		case CH_CHAINCRUSH:
 #ifdef RENEWAL
 			skillratio += -100 + 200 * skill_lv;
@@ -4085,9 +4076,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 #else
 			skillratio += 300 + 100 * skill_lv;
 #endif
-			if (sc->data[SC_GT_ENERGYGAIN])
-				skillratio += skillratio * 50 / 100;
-			break;
 		case CH_PALMSTRIKE:
 #ifdef RENEWAL
 			skillratio += 100 + 100 * skill_lv + sstatus->str; // !TODO: How does STR play a role?
@@ -4618,31 +4606,23 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 
 				if (wd->miscflag&8)
 					// Base_Damage = [((Caster consumed HP + SP) / 2) x Caster Base Level / 100] %
-					skillratio += -100 + (hp + sp) / 2;
+					skillratio += -100 + (hp + sp) / 3;
 				else
 					// Base_Damage = [((Caster consumed HP + SP) / 4) x Caster Base Level / 100] %
-					skillratio += -100 + (hp + sp) / 4;
+					skillratio += -100 + (hp + sp) / 6;
 				RE_LVL_DMOD(100);
+				skillratio = (skillratio * 3) / 4 ;
 			}
-			if (sc->data[SC_GT_REVITALIZE])
-				skillratio += skillratio * 30 / 100;
-			break;
-		case SR_SKYNETBLOW:
-			//ATK [{(Skill Level x 200) + (Caster AGI)} x Caster Base Level / 100] %
-			skillratio += -100 + 200 * skill_lv + sstatus->agi / 6; // !TODO: Confirm AGI bonus
-			RE_LVL_DMOD(100);
 			break;
 
 		case SR_RAMPAGEBLASTER:
 			if (tsc && tsc->data[SC_EARTHSHAKER]) {
-				skillratio += 1400 + 550 * skill_lv;
-				RE_LVL_DMOD(120);
+				skillratio += 1400 + 1200 * skill_lv;
+				RE_LVL_DMOD(100);
 			} else {
 				skillratio += 900 + 350 * skill_lv;
 				RE_LVL_DMOD(150);
 			}
-			if (sc->data[SC_GT_CHANGE])
-				skillratio += skillratio * 30 / 100;
 			break;
 		case SR_KNUCKLEARROW:
 			if (wd->miscflag&4) { // ATK [(Skill Level x 150) + (1000 x Target current weight / Maximum weight) + (Target Base Level x 5) x (Caster Base Level / 150)] %
@@ -4657,9 +4637,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 					skillratio += 400 + 100 * skill_lv;
 				RE_LVL_DMOD(100);
 			}
-			if (sc->data[SC_GT_CHANGE])
-				skillratio += skillratio * 30 / 100;
-			break;
 		case SR_WINDMILL: // ATK [(Caster Base Level + Caster DEX) x Caster Base Level / 100] %
 			skillratio += -100 + status_get_lv(src) + sstatus->dex;
 			RE_LVL_DMOD(100);
@@ -4670,8 +4647,15 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			else
 				skillratio += -100 + 500 * skill_lv;
 			RE_LVL_DMOD(100);
-			if (sc->data[SC_GT_REVITALIZE])
-				skillratio += skillratio * 30 / 100;
+			break;
+		case SR_SKYNETBLOW:
+			if (wd->miscflag & 8)
+				//ATK [{(Skill Level x 100) + (Caster AGI) + 150} x Caster Base Level / 100] %
+				skillratio += -100 + 100 * skill_lv + sstatus->agi + 150;
+			else
+				//ATK [{(Skill Level x 80) + (Caster AGI)} x Caster Base Level / 100] %
+				skillratio += -100 + 80 * skill_lv + sstatus->agi;
+			RE_LVL_DMOD(100);
 			break;
 		case SR_GENTLETOUCH_QUIET:
 			skillratio += -100 + 100 * skill_lv + sstatus->dex;
@@ -5077,8 +5061,6 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 				RE_ALLATK_ADDRATE(wd, 100);
 			}
 		}
-		if (sc->data[SC_GT_CHANGE])
-			ATK_ADDRATE(wd->damage, wd->damage2, sc->data[SC_GT_CHANGE]->val1);
 		if (sc->data[SC_EDP]) {
 			switch(skill_id) {
 				case AS_SPLASHER:
@@ -5275,7 +5257,7 @@ static void battle_calc_defense_reduction(struct Damage* wd, struct block_list *
 		}
 
 		if (tsc->data[SC_GT_REVITALIZE])
-			def1 += tsc->data[SC_GT_REVITALIZE]->val4;
+			def2 += tsc->data[SC_GT_REVITALIZE]->val4;
 
 		if (tsc->data[SC_OVERED_BOOST] && target->type == BL_PC)
 			def1 = (def1 * tsc->data[SC_OVERED_BOOST]->val4) / 100;
@@ -6116,9 +6098,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case SR_TIGERCANNON:
 			// (Tiger Cannon skill level x 240) + (Target Base Level x 40)
 			if (wd.miscflag&8) {
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 500 + status_get_lv(target) * 40);
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 120 + status_get_lv(target) * 40);
 			} else
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 240 + status_get_lv(target) * 40);
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 60 + status_get_lv(target) * 40);
 			break;
 		case SR_GATEOFHELL: {
 			status_data *sstatus = status_get_status_data(src);

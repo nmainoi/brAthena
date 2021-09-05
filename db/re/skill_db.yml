@@ -23906,7 +23906,7 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
-    Range: 1
+    Range: 2
     Hit: Multi_Hit
     HitCount: -2
     Element: Weapon
@@ -24028,7 +24028,7 @@ Body:
     TargetType: Self
     Flags:
       NoTargetSelf: true
-    Range: 1
+    Range: 3
     Hit: Multi_Hit
     HitCount: -2
     Element: Weapon
@@ -24068,7 +24068,7 @@ Body:
       IgnoreFlee: true
     Flags:
       TargetTrap: true
-    Range: 1
+    Range: 3
     Hit: Single
     HitCount: 1
     Element: Weapon

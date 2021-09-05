@@ -3807,6 +3807,9 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 
 	if( damage > 0 ) { // Post-damage effects
 		switch( skill_id ) {
+		case SR_TIGERCANNON:
+			status_zap(bl, 0, damage * 10 / 100);
+			break;
 			case GC_VENOMPRESSURE: {
 					struct status_change *ssc = status_get_sc(src);
 					if( ssc && ssc->data[SC_POISONINGWEAPON] && rnd()%100 < 70 + 5*skill_lv ) {
