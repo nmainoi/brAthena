@@ -3665,9 +3665,6 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 			if (!(flag&SD_ANIMATION))
 				clif_skill_nodamage(dsrc, bl, skill_id, skill_lv, 1);
 			// Fall through
-		case WM_REVERBERATION:
-			dmg.dmotion = clif_skill_damage(dsrc, bl, tick, dmg.amotion, dmg.dmotion, damage, dmg.div_, skill_id, -2, dmg_type);
-			break;
 		case SJ_FALLINGSTAR_ATK:
 		case SJ_FALLINGSTAR_ATK2:
 			dmg.dmotion = clif_skill_damage(src,bl,tick, dmg.amotion, dmg.dmotion, damage, dmg.div_, skill_id, -2, DMG_MULTI_HIT);
@@ -3947,6 +3944,7 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 		case SC_DIMENSIONDOOR:
 		case SC_BLOODYLUST:
 		case NPC_REVERBERATION:
+		case WM_REVERBERATION:
 		case GN_THORNS_TRAP:
 		case RL_B_TRAP:
 		case SC_ESCAPE:
@@ -4359,6 +4357,8 @@ static TIMER_FUNC(skill_timerskill){
 					}
 					break;
 				case NPC_REVERBERATION_ATK:
+				case WM_REVERBERATION_MELEE:
+				case WM_REVERBERATION_MAGIC:
 					skill_castend_damage_id(src,target,skl->skill_id,skl->skill_lv,tick,skl->flag|SD_LEVEL|SD_ANIMATION);
 					break;
 				case LG_MOONSLASHER:
@@ -4526,7 +4526,7 @@ static int skill_active_reverberation(struct block_list *bl, va_list ap) {
 
 	std::shared_ptr<s_skill_unit_group> sg = su->group;
 
-	if (su->alive && sg && sg->skill_id == NPC_REVERBERATION) {
+	if (su->alive && sg && (sg->skill_id == WM_REVERBERATION || sg->skill_id == NPC_REVERBERATION)) {
 		map_foreachinallrange(skill_trap_splash, bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, bl, gettick());
 		su->limit = DIFF_TICK(gettick(), sg->tick);
 		sg->unit_id = UNT_USED_TRAPS;
@@ -5162,6 +5162,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case SR_SKYNETBLOW:
 	case SR_WINDMILL:
 	case SR_RIDEINLIGHTNING:
+	case WM_REVERBERATION_MELEE:
+	case WM_REVERBERATION_MAGIC:
 	case SO_VARETYR_SPEAR:
 	case SO_POISON_BUSTER:
 	case GN_CART_TORNADO:
@@ -5255,6 +5257,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 					clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skill_id, skill_lv, DMG_SINGLE);
 					break;
 				case NPC_REVERBERATION_ATK:
+				case WM_REVERBERATION_MELEE:
+				case WM_REVERBERATION_MAGIC:
 				case NC_ARMSCANNON:
 					skill_area_temp[1] = 0;
 					starget = splash_target(src);
@@ -6208,15 +6212,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		}
 		break;
 
-	case WM_REVERBERATION:
-		if (flag & 1)
-			skill_attack(skill_get_type(skill_id), src, src, bl, skill_id, skill_lv, tick, flag);
-		else {
-			clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-			map_foreachinallrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR|BL_SKILL, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
-			battle_consume_ammo(sd, skill_id, skill_lv); // Consume here since Magic/Misc attacks reset arrow_atk
-		}
-		break;
+
 
 	case NPC_POISON_BUSTER:
 		if( tsc && tsc->data[SC_POISON] ) {
@@ -8077,34 +8073,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		}
 		break;
 
-#ifdef RENEWAL
-	case BD_LULLABY:
-	case BD_RICHMANKIM:
-	case BD_ETERNALCHAOS:
-	case BD_DRUMBATTLEFIELD:
-	case BD_RINGNIBELUNGEN:
-	case BD_ROKISWEIL:
-	case BD_INTOABYSS:
-	case BD_SIEGFRIED:
-	case BA_DISSONANCE:
-	case BA_POEMBRAGI:
-	case BA_WHISTLE:
-	case BA_ASSASSINCROSS:
-	case BA_APPLEIDUN:
-	case DC_UGLYDANCE:
-	case DC_HUMMING:
-	case DC_DONTFORGETME:
-	case DC_FORTUNEKISS:
-	case DC_SERVICEFORYOU:
-		skill_castend_song(src, skill_id, skill_lv, tick);
-		break;
-#endif
+
 
 	case TF_STEAL:
 		if(sd) {
 			if(pc_steal_item(sd,bl,skill_lv))
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-			else
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL,0);
 		}
 		break;
@@ -11088,11 +11062,42 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case WM_SOUND_OF_DESTRUCTION:
-		if (flag&1) {
-			sc_start(src, bl, type, 100, skill_lv, (sd ? pc_checkskill(sd, WM_LESSON) * 500 : 0) + skill_get_time(skill_id, skill_lv)); // !TODO: Confirm Lesson increase
-		} else {
-			map_foreachinallrange(skill_area_sub, src, skill_get_splash(skill_id, skill_lv),BL_PC, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
-			clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
+		if (tsc && (tsc->data[SC_SWINGDANCE] || tsc->data[SC_SYMPHONYOFLOVER] || tsc->data[SC_MOONLITSERENADE] ||
+			tsc->data[SC_RUSHWINDMILL] || tsc->data[SC_ECHOSONG] || tsc->data[SC_HARMONIZE] ||
+			tsc->data[SC_VOICEOFSIREN] || tsc->data[SC_DEEPSLEEP] || tsc->data[SC_SIRCLEOFNATURE] ||
+			tsc->data[SC_GLOOMYDAY] || tsc->data[SC_GLOOMYDAY_SK] || tsc->data[SC_SONGOFMANA] ||
+			tsc->data[SC_DANCEWITHWUG] || tsc->data[SC_SATURDAYNIGHTFEVER] || tsc->data[SC_LERADSDEW] ||
+			tsc->data[SC_MELODYOFSINK] || tsc->data[SC_BEYONDOFWARCRY] || tsc->data[SC_UNLIMITEDHUMMINGVOICE]) &&
+			rnd() % 100 < 4 * skill_lv + 2 * ((sd) ? pc_checkskill(sd, WM_LESSON) : skill_get_max(WM_LESSON)) + 10 * battle_calc_chorusbonus(sd)) {
+			status_change_start(src, bl, SC_STUN, 10000, skill_lv, 0, 0, 0, skill_get_time(skill_id, skill_lv), SCSTART_NOTICKDEF);
+			status_change_end(bl, SC_DANCING, INVALID_TIMER);
+			status_change_end(bl, SC_RICHMANKIM, INVALID_TIMER);
+			status_change_end(bl, SC_ETERNALCHAOS, INVALID_TIMER);
+			status_change_end(bl, SC_DRUMBATTLE, INVALID_TIMER);
+			status_change_end(bl, SC_NIBELUNGEN, INVALID_TIMER);
+			status_change_end(bl, SC_INTOABYSS, INVALID_TIMER);
+			status_change_end(bl, SC_SIEGFRIED, INVALID_TIMER);
+			status_change_end(bl, SC_WHISTLE, INVALID_TIMER);
+			status_change_end(bl, SC_ASSNCROS, INVALID_TIMER);
+			status_change_end(bl, SC_POEMBRAGI, INVALID_TIMER);
+			status_change_end(bl, SC_APPLEIDUN, INVALID_TIMER);
+			status_change_end(bl, SC_HUMMING, INVALID_TIMER);
+			status_change_end(bl, SC_FORTUNE, INVALID_TIMER);
+			status_change_end(bl, SC_SERVICE4U, INVALID_TIMER);
+			status_change_end(bl, SC_LONGING, INVALID_TIMER);
+			status_change_end(bl, SC_SWINGDANCE, INVALID_TIMER);
+			status_change_end(bl, SC_SYMPHONYOFLOVER, INVALID_TIMER);
+			status_change_end(bl, SC_MOONLITSERENADE, INVALID_TIMER);
+			status_change_end(bl, SC_RUSHWINDMILL, INVALID_TIMER);
+			status_change_end(bl, SC_ECHOSONG, INVALID_TIMER);
+			status_change_end(bl, SC_HARMONIZE, INVALID_TIMER);
+			status_change_end(bl, SC_WINKCHARM, INVALID_TIMER);
+			status_change_end(bl, SC_SONGOFMANA, INVALID_TIMER);
+			status_change_end(bl, SC_DANCEWITHWUG, INVALID_TIMER);
+			status_change_end(bl, SC_LERADSDEW, INVALID_TIMER);
+			status_change_end(bl, SC_MELODYOFSINK, INVALID_TIMER);
+			status_change_end(bl, SC_BEYONDOFWARCRY, INVALID_TIMER);
+			status_change_end(bl, SC_UNLIMITEDHUMMINGVOICE, INVALID_TIMER);
 		}
 		break;
 
@@ -12691,7 +12696,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case WE_CALLPARENT:
 	case WE_CALLBABY:
 	case SA_LANDPROTECTOR:
-#ifndef RENEWAL
+
 	case BD_LULLABY:
 	case BD_RICHMANKIM:
 	case BD_ETERNALCHAOS:
@@ -12710,7 +12715,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case DC_DONTFORGETME:
 	case DC_FORTUNEKISS:
 	case DC_SERVICEFORYOU:
-#endif
+
 	case CG_MOONLIT:
 	case GS_DESPERADO:
 	case NJ_KAENSIN:
@@ -12743,6 +12748,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case SC_CHAOSPANIC:
 	case SC_MAELSTROM:
 	case SC_BLOODYLUST:
+	case WM_REVERBERATION:
 	case WM_POEMOFNETHERWORLD:
 	case SO_PSYCHIC_WAVE:
 	case SO_VACUUM_EXTREME:
@@ -13797,7 +13803,7 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 		}
 		break;
 	case DC_HUMMING:
-		val1 = 1 + 2 * skill_lv + status->dex / 10; // Hit increase
+		val1 = 20 + 2 * skill_lv + status->dex / 15; // Hit increase
 		if (sd)
 			val1 += pc_checkskill(sd, DC_DANCINGLESSON);
 		break;
@@ -14117,6 +14123,7 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 				unit_val2 = 0;
 				break;
 			case NPC_REVERBERATION:
+			case WM_REVERBERATION:
 				unit_val1 = 1 + skill_lv;
 				break;
 			case WM_POEMOFNETHERWORLD:
@@ -14456,13 +14463,13 @@ static int skill_unit_onplace(struct skill_unit *unit, struct block_list *bl, t_
 			break;
 
 		case UNT_REVERBERATION:
-			if (sg->src_id == bl->id)
-				break; //Does not affect the caster.
-			clif_changetraplook(&unit->bl,UNT_USED_TRAPS);
-			map_foreachinrange(skill_trap_splash,&unit->bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, &unit->bl,tick);
-			sg->limit = DIFF_TICK(tick,sg->tick) + 1500;
-			sg->unit_id = UNT_USED_TRAPS;
-			break;
+			if (ss->type != BL_PC)
+				skill_addtimerskill(ss, tick + 50, bl->id, 0, 0, NPC_REVERBERATION_ATK, sg->skill_lv, BF_WEAPON, 0);
+			else {
+				skill_addtimerskill(ss, tick + status_get_amotion(ss), bl->id, 0, 0, WM_REVERBERATION_MELEE, sg->skill_lv, BF_WEAPON, 0);
+				skill_addtimerskill(ss, tick + status_get_amotion(ss) * 2, bl->id, 0, 0, WM_REVERBERATION_MAGIC, sg->skill_lv, BF_MAGIC, 0);
+			}
+			break;;
 
 		case UNT_FIRE_EXPANSION_SMOKE_POWDER:
 			if (!sce && battle_check_target(&unit->bl, bl, sg->target_flag) > 0)
@@ -17636,7 +17643,25 @@ int skill_castfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv) {
 		time = time * (1 - (float)reduce_cast_rate / 100);
 	}
 #endif
+	struct map_session_data* sd = BL_CAST(BL_PC, bl);
+	struct status_change* sc = status_get_sc(bl);
+	int reduce_cast_rate = 0;
+	uint8 flag = skill_get_castnodex(skill_id);
+	if (sc && sc->count) {
+		// Magic Strings stacks additively with item bonuses
+		if (!(flag & 2) && sc->data[SC_POEMBRAGI])
+			reduce_cast_rate += sc->data[SC_POEMBRAGI]->val2;
+		// Foresight halves the cast time, it does not stack additively
+		if (sc->data[SC_MEMORIZE]) {
+			if (!(flag & 2))
+				time -= time * 50 / 100;
+			// Foresight counter gets reduced even if the skill is not affected by it
+			if ((--sc->data[SC_MEMORIZE]->val2) <= 0)
+				status_change_end(bl, SC_MEMORIZE, INVALID_TIMER);
+		}
+	}
 
+	time = time * (1 - (float)reduce_cast_rate / 100);
 	// config cast time multiplier
 	if (battle_config.cast_rate != 100)
 		time = time * battle_config.cast_rate / 100;
@@ -17914,8 +17939,6 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
 			if (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 3 && skill_get_type(skill_id) == BF_MAGIC && skill_get_ele(skill_id, skill_lv) == ELE_WIND)
 				time /= 2; // After Delay of Wind element spells reduced by 50%.
-			if (sc->data[SC_MAGICMUSHROOM] && sc->data[SC_MAGICMUSHROOM]->val3 == 0)
-				time -= time * sc->data[SC_MAGICMUSHROOM]->val2 / 100;
 		}
 	}
 

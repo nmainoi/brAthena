@@ -2560,7 +2560,7 @@ bool is_infinite_defense(struct block_list *target, int flag)
 	if(target->type == BL_SKILL) {
 		TBL_SKILL *su = ((TBL_SKILL*)target);
 
-		if (su && su->group && (su->group->skill_id == NPC_REVERBERATION || su->group->skill_id == WM_POEMOFNETHERWORLD))
+		if (su && su->group && (su->group->skill_id == WM_REVERBERATION || su->group->skill_id == NPC_REVERBERATION || su->group->skill_id == WM_POEMOFNETHERWORLD))
 			return true;
 	}
 
@@ -4681,6 +4681,11 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += -100 + 500 * skill_lv;
 			RE_LVL_DMOD(100);	
 			break;
+		case WM_REVERBERATION_MELEE:
+			// ATK [{(Skill Level x 100) + 300} x Caster Base Level / 100]
+			skillratio += 200 + 100 * ((sd) ? pc_checkskill(sd, WM_REVERBERATION) : 1);
+			RE_LVL_DMOD(100);
+			break;
 		case SR_RIDEINLIGHTNING: 
 			skillratio += -100 + 40 * skill_lv;
 			if (sd && sd->status.weapon == W_KNUCKLE)
@@ -4688,10 +4693,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			RE_LVL_DMOD(100);
 			break;
 		case WM_SEVERE_RAINSTORM_MELEE:
-			//ATK [{(Caster DEX / 300 + AGI / 200)} x Caster Base Level / 100] %
-			skillratio += -100 + 100 * skill_lv + (sstatus->dex / 300 + sstatus->agi / 200);
-			if (wd->miscflag&4) // Whip/Instrument equipped
-				skillratio += 20 * skill_lv;
+			skillratio = (status_get_dex(src) + status_get_agi(src)) * skill_lv / 5;
 			RE_LVL_DMOD(100);
 			break;
 		case WM_GREAT_ECHO:
@@ -6304,10 +6306,6 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				ad.div_ = 3;
 			}
 			break;
-		case WM_REVERBERATION:
-			if (sd)
-				s_ele = sd->bonus.arrow_ele;
-			break;
 		case SO_PSYCHIC_WAVE:
 			if( sc && sc->count ) {
 				if( sc->data[SC_HEATER_OPTION] )
@@ -6762,6 +6760,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						//	skillratio += 70 * skill_lv;
 						//RE_LVL_DMOD(100);
 						break;
+					case WM_REVERBERATION_MAGIC:
+						// MATK [{(Skill Level x 100) + 100} x Casters Base Level / 100] %
+						skillratio += 100 * skill_lv;	
+						RE_LVL_DMOD(100);
+						break;
 					case LG_SHIELDSPELL: // [(Casters Base Level x 4) + (Shield MDEF x 100) + (Casters INT x 2)] %
 						if (sd && skill_lv == 2)
 							skillratio += -100 + status_get_lv(src) * 4 + sd->bonus.shieldmdef * 100 + status_get_int(src) * 2;
@@ -6771,7 +6774,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WM_METALICSOUND:
 						skillratio += -100 + 120 * skill_lv + 60 * ((sd) ? pc_checkskill(sd, WM_LESSON) : 1);
 						if (tsc && tsc->data[SC_SLEEP])
-							skillratio += 100; // !TODO: Confirm target sleeping bonus
+							skillratio += skillratio * ((3 / 2) / 2); // !TODO: Confirm target sleeping bonus
 						RE_LVL_DMOD(100);
 						break;
 					case WM_REVERBERATION:
@@ -8417,7 +8420,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 			if( !su || !su->group)
 				return 0;
 			if( skill_get_inf2(su->group->skill_id, INF2_ISTRAP) && su->group->unit_id != UNT_USED_TRAPS) {
-				if (!skill_id || su->group->skill_id == NPC_REVERBERATION || su->group->skill_id == WM_POEMOFNETHERWORLD) {
+				if (!skill_id || su->group->skill_id == WM_REVERBERATION || su->group->skill_id == NPC_REVERBERATION || su->group->skill_id == WM_POEMOFNETHERWORLD) {
 					;
 				}
 				else if (skill_get_inf2(skill_id, INF2_TARGETTRAP)) { // Only a few skills can target traps

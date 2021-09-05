@@ -35974,7 +35974,7 @@ Body:
       Both_Accessory: true
     EquipLevelMin: 1 # 90
     Script: |
-      bonus2 bSkillAtk,"WM_METALICSOUND",150;
+      bonus2 bSkillAtk,"WM_METALICSOUND",450;
       bonus2 bSkillUseSP,"WM_METALICSOUND",-60;
       bonus bVariableCastrate,-50;
   - Id: 2900

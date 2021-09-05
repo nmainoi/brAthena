@@ -1,7 +1,19 @@
 prontera,157,193,4	script	Job Master	918,{
-    .@i = select( .Menu$ ) - 1;
-    	if( select( "Change to "+jobname( .JobList[.@i] )+"?:Cancel" ) == 1 ){
-		jobchange .JobList[.@i];
+    if (sex == 1) {
+    .@i = select( .MenuM$ ) - 1;
+    	if( select( "Change to "+jobname( .JobListM[.@i] )+"?:Cancel" ) == 1 ){
+            		jobchange .JobListM[.@i];
+                     goto changejob;
+        }
+    }else{
+    .@i = select( .MenuF$ ) - 1;
+    	if( select( "Change to "+jobname( .JobListF[.@i] )+"?:Cancel" ) == 1 ){
+            		jobchange .JobListF[.@i];
+                     goto changejob;
+        }
+    }
+    end;
+changejob:
 		BaseLevel = .BaseLevel;
 		JobLevel = .JobLevel;
         allskill;   
@@ -10,14 +22,18 @@ prontera,157,193,4	script	Job Master	918,{
         callfunc "F_CONSU";
         callfunc "F_GetPlatinumSkills";
         callfunc "F_GetITEM";
-        }
-        end;
+                end;
    OnInit:
-            setarray .JobList[0],4060,4073,4061,4074,4062,4075,4063,4077,4064,4078,4065,4079; // 
+            setarray .JobListM[0],4060,4073,4061,4074,4062,4075,4063,4077,4064,4078,4065,4079; // 
+            setarray .JobListF[0],4060,4073,4061,4074,4062,4076,4063,4077,4064,4078,4065,4079;
             .BaseLevel = 175; // Level base maximo
             .JobLevel = 60; // level job maximo
-            .@size = getarraysize( .JobList );
-            for( .@i = 0; .@i < .@size; .@i++ )
-                .Menu$ = .Menu$ + jobname( .JobList[.@i] )+":";
+            .@size = getarraysize( .JobListM );
+            for( .@i = 0; .@i < .@size; .@i++ ){
+                 .MenuM$ = .MenuM$ + jobname( .JobListM[.@i] )+":";
+                .MenuF$ = .MenuF$ + jobname( .JobListF[.@i] )+":";
+            }
             end;
+
+
         }

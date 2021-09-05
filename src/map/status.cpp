@@ -10110,49 +10110,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		status_change_end(bl, SC_MERC_QUICKEN, INVALID_TIMER);
 		status_change_end(bl, SC_ACCELERATION, INVALID_TIMER);
 		break;
-#ifdef RENEWAL
-	case SC_RICHMANKIM:
-	case SC_ETERNALCHAOS:
-	case SC_DRUMBATTLE:
-	case SC_NIBELUNGEN:
-	case SC_ROKISWEIL:
-	case SC_INTOABYSS:
-	case SC_SIEGFRIED:
-		status_change_end(bl, SC_RICHMANKIM, INVALID_TIMER);
-		status_change_end(bl, SC_ETERNALCHAOS, INVALID_TIMER);
-		status_change_end(bl, SC_DRUMBATTLE, INVALID_TIMER);
-		status_change_end(bl, SC_NIBELUNGEN, INVALID_TIMER);
-		status_change_end(bl, SC_ROKISWEIL, INVALID_TIMER);
-		status_change_end(bl, SC_INTOABYSS, INVALID_TIMER);
-		status_change_end(bl, SC_SIEGFRIED, INVALID_TIMER);
-		break;
-	case SC_WHISTLE:
-	case SC_ASSNCROS:
-	case SC_POEMBRAGI:
-	case SC_APPLEIDUN:
-		status_change_end(bl, SC_WHISTLE, INVALID_TIMER);
-		status_change_end(bl, SC_ASSNCROS, INVALID_TIMER);
-		status_change_end(bl, SC_POEMBRAGI, INVALID_TIMER);
-		status_change_end(bl, SC_APPLEIDUN, INVALID_TIMER);
-		break;
-	case SC_DONTFORGETME:
-		status_change_end(bl, SC_INCREASEAGI, INVALID_TIMER);
-		status_change_end(bl, SC_ADRENALINE, INVALID_TIMER);
-		status_change_end(bl, SC_ADRENALINE2, INVALID_TIMER);
-		status_change_end(bl, SC_SPEARQUICKEN, INVALID_TIMER);
-		status_change_end(bl, SC_TWOHANDQUICKEN, INVALID_TIMER);
-		status_change_end(bl, SC_ONEHAND, INVALID_TIMER);
-		status_change_end(bl, SC_MERC_QUICKEN, INVALID_TIMER);
-		status_change_end(bl, SC_ACCELERATION, INVALID_TIMER);
-	case SC_HUMMING:
-	case SC_FORTUNE:
-	case SC_SERVICE4U:
-		status_change_end(bl, SC_DONTFORGETME, INVALID_TIMER);
-		status_change_end(bl, SC_HUMMING, INVALID_TIMER);
-		status_change_end(bl, SC_FORTUNE, INVALID_TIMER);
-		status_change_end(bl, SC_SERVICE4U, INVALID_TIMER);
-		break;
-#endif
+
 	case SC_ADORAMUS:
 		status_change_end(bl, SC_DECREASEAGI, INVALID_TIMER);
 		break;
@@ -14594,7 +14552,7 @@ TIMER_FUNC(status_change_timer){
 			if (--sce->val3 <= 0)
 				break;
 			switch(sce->val1&0xFFFF) {
-#ifndef RENEWAL
+
 				case BD_RICHMANKIM:
 				case BD_DRUMBATTLEFIELD:
 				case BD_RINGNIBELUNGEN:
@@ -14621,7 +14579,7 @@ TIMER_FUNC(status_change_timer){
 				case BA_APPLEIDUN:
 					s=6;
 					break;
-#endif
+
 				case CG_MOONLIT:
 					// Moonlit's cost is 4sp*skill_lv [Skotlex]
 					sp= 4*(sce->val1>>16);

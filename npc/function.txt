@@ -18,7 +18,19 @@ function	script	F_GetITEM	{
 			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 			
 		break;
 	case Job_Priest:
-			Getitem2 18601,1,1,9,0,4403,0,0,0;equip 18601;equip 18601;	
+				getitem2 18601,1,1,13,0,4403,0,0,0;equip 18601;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15048,1,1,13,0,4302,0,0,0;equip 15048;	
+			getitem2 15048,1,1,13,0,4105,0,0,0;
+			getitem2 16018,1,1,13,0,4625,0,0,0; //VELLUM 
+			getitem2 1502,1,1,13,0,4497,4497,4497,4497;
+			getitem2 1525,1,1,13,0,0,0,0,0;equip 1525; // CK
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2587,1,1,13,0,4133,0,0,0;equip 2587; // capa
+			getitem2 2485,1,1,13,0,4539,0,0,0;equip 2485;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0;
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 
 		break;
 	case Job_Wizard:
 			getitem2 18601,1,1,13,0,4403,0,0,0;equip 18601;	
@@ -74,7 +86,19 @@ function	script	F_GetITEM	{
 			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 	
 		break;
 	case Job_Monk:
-			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+			getitem2 18600,1,1,13,0,4403,0,0,0;equip 18600;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15048,1,1,13,0,4302,0,0,0;equip 15048;	
+			getitem2 15048,1,1,13,0,4105,0,0,0;
+			getitem2 1543,1,1,13,0,0,0,0,0; //VELLUM 
+			getitem2 1502,1,1,13,0,4497,4497,4497,4497;
+			getitem2 1525,1,1,13,0,0,0,0,0;equip 1525; // CK
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2587,1,1,13,0,4133,0,0,0;equip 2587; // capa
+			getitem2 2485,1,1,13,0,4381,0,0,0;equip 2485;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0;
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936;equip 2936;	
 		break;
 	case Job_Sage:
 			getitem2 18601,1,1,13,0,4403,0,0,0;equip 18601;	
@@ -98,10 +122,35 @@ function	script	F_GetITEM	{
 			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
 		break;
 	case Job_Bard:
-	getitem2 18601,1,1,9,0,4403,0,0,0;equip 18601;
+				getitem2 18600,1,1,13,0,4403,0,0,0;equip 18600;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15047,1,1,13,0,4302,0,0,0;equip 15047;	
+			getitem2 15047,1,1,13,0,4105,0,0,0;
+			getitem2 1935,1,1,13,0,4499,4094,0,0; //
+			getitem2 1228,1,1,13,0,0,0,0,0;equip 1228;  // CK
+			getitem2 1902,1,1,13,0,4497,4497,4497,4497;
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2586,1,1,13,0,4133,0,0,0;equip 2586; // capa
+			getitem2 2484,1,1,13,0,4381,0,0,0;equip 2484;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0; 
+			getitem2 2936,1,1,0,0,4486,0,0,0; 
+			getitem2 2988,1,1,0,0,4486,0,0,0; equip 2988;equip 2936;
 		break;
 	case Job_Dancer:
-	getitem2 18601,1,1,9,0,4403,0,0,0;equip 18601;
+				getitem2 18601,1,1,13,0,4403,0,0,0;equip 18601;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15047,1,1,13,0,4302,0,0,0;equip 15047;	
+			getitem2 15047,1,1,13,0,4105,0,0,0;
+			getitem2 1988,1,1,13,0,4625,0,0,0; //
+			getitem2 1228,1,1,13,0,0,0,0,0;equip 1228;  // CK
+			getitem2 1951,1,1,13,0,4497,4497,4497,4497;
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190	; // ESCUDO
+			getitem2 2586,1,1,13,0,4133,0,0,0;equip 2586; // capa
+			getitem2 2484,1,1,13,0,4539,0,0,0;equip 2484;// sapato
+			getitem2 2899,1,1,0,0,4486,0,0,0;equip 2899; 
+			getitem2 2899,1,1,0,0,4486,0,0,0; equip 2899;
 		break;
 	default:
 		break;
