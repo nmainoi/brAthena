@@ -236,7 +236,8 @@ switch( getarg(1) ){
 		break;
 }
 return;
-end;       
+end;  
+}     
 Oninit:
 // 1 = Save & Switch 
 // 2 = Reset Status
@@ -284,4 +285,5 @@ setarray .Length,4,26; // Min. ~ Max. Words.
 //BIO
 
 end;
+
 }
