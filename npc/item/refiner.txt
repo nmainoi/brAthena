@@ -1,4 +1,9 @@
 prontera,147,172,6	script	Refiner	600,{
+switch(select("Encantar itens:Remover cartas")	){
+case 1: goto encanta;break;
+case 2: goto remove_carta;break;
+default:break;}
+ encanta:   
 callsub F_ENCHANT,EQI_HEAD_TOP;
 callsub F_ENCHANT,EQI_HAND_L;
 callsub F_ENCHANT,EQI_HAND_R;
@@ -18,4 +23,42 @@ end;
            successrefitem(.@EQI,13); 
             return;
 end;
+remove_carta:
+		mes .n$;
+		mes "Muito bem. Qual item devo examinar para voce?";
+		next;
+
+		setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+		for( set .@i,1; .@i <= 10; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) ){
+            if(getequipcardcnt(.@indices[.@i]) == 0) {
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - ^808080[" + getequipname(.@indices[.@i]) + "]^000000";
+            }else{
+            	set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - ^0000FF[ " + getequipname(.@indices[.@i]) + " ]^000000";}
+            }
+			set .@menu$, .@menu$ + ":";
+		}
+		set .@part, .@indices[ select(.@menu$) ];
+		if(!getequipisequiped(.@part)) {
+			mes .n$;
+			mes "Jovem... Voce nao este usando nada de onde eu possa remover cartas.";
+			close;
+		}
+		if(getequipcardcnt(.@part) == 0) {
+			mes .n$;
+			mes "Jovem ... Nao ha cartas neste item. Nao posso fazer nada com isso, estou com medo.";
+			close;
+		}
+		set .@cardcount,getequipcardcnt(.@part);
+		
+		successremovecards .@part;
+		mes .n$;
+		mes "O processo foi um sucesso. Aqui estao suas cartas e seu item. Adeus.";
+		close;
+	end;
+    	OnInit:
+    // NPC SETS
+	//waitingroom "Remove cartas",0; ff0000
+    .n$ = "^0000FF [ Gerente de itens ] ^000000";
+    end;
 }

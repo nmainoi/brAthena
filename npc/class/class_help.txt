@@ -1,4 +1,7 @@
-prontera,147,166,6	script	Job Helper	918,{
+prontera,147,166,6	script	Job Helper	997,{
+    switch(select("Gerente de builds:Copia de skills:Mimetismo")){
+    case 1: goto gerenciabuild; end; break;
+    default:break;}
     if(BaseJob == Job_Rogue)
         goto Renegado;
     if(BaseJob == Job_Alchemist)
@@ -8,131 +11,78 @@ prontera,147,166,6	script	Job Helper	918,{
 end;
 
 bio:
-	if(checkhomcall() == 1){
+	if(checkhomcall() != -1){
 		mes "[ Homunculus ]";
 		mes "Voce nao pode ter um homunculus para usar este npc";
 		close;
 	}
-    switch( select( 
-				"Lif",
-				"Amistr",
-				"Filir",
-				"Vanilmirth"	
+    switch( select( "Lif","Amistr","Filir","Vanilmirth"	
 				)
 				){
 				case 1:
 					atcommand "@makehomun 6013";
-					atcommand "@homlvl 99 "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homevolve "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homhungry 100 "+strcharinfo(0);
+					callsub	homUP;
 				break;
 				case 2:
 					atcommand "@makehomun 6014";
-					atcommand "@homlvl 99 "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homevolve "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homhungry 100 "+strcharinfo(0);
+					callsub	homUP;
 				break;
 				case 3:
 					atcommand "@makehomun 6015";
-				atcommand "@homlvl 99 "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homevolve "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homhungry 100 "+strcharinfo(0);
+				callsub	homUP;
 				break;
 				case 4:
 					atcommand "@makehomun 6016";
-				atcommand "@homlvl 99 "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homevolve "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homhungry 100 "+strcharinfo(0);
+					callsub	homUP;
 					break;
 				default:
 					break;		
 				}
-
-                atcommand "@homlvl 99 "+strcharinfo(0);
-                atcommand "@homfriendly 1000 "+strcharinfo(0);
-                atcommand "@homevolve "+strcharinfo(0);
-                atcommand "@homfriendly 1000 "+strcharinfo(0);
-                atcommand "@homhungry 100 "+strcharinfo(0); 
+				callsub	homUP;
                     mes "[ Homunculus ]";
                     mes "Agora escolha a segunda evolucao";
                     next;
-                        atcommand "@homlvl 99 "+strcharinfo(0);
-                atcommand "@homfriendly 1000 "+strcharinfo(0);
-                atcommand "@homevolve "+strcharinfo(0);
-                atcommand "@homfriendly 1000 "+strcharinfo(0);
-                atcommand "@homhungry 100 "+strcharinfo(0); 
-				switch( select( 
-				"Eira",
-				"Bayeri",
-				"Sera",
-				"Dieter",
-				"Eleanor"	
-				)
+					callsub	homUP;
+				switch( select( "Eira","Bayeri","Sera","Dieter","Eleanor"	)
 				){
 				case 1:
 					morphembryo;
-					hommutate(6048);//Eira
-					//callfunc "UpHomun";
-					atcommand "@homlvl 99 "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homevolve "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homhungry 100 "+strcharinfo(0);
+					hommutate(6048);
+					callsub	homUP;
 				break;
 				case 2:
 					morphembryo;
 					hommutate(6049); //Bayeri
-					//callfunc "UpHomun";
-					atcommand "@homlvl 99 "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homevolve "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homhungry 100 "+strcharinfo(0);
+					callsub	homUP;
 				break;
 				case 3:
 					morphembryo;
 					hommutate(6050);//Sera
-				//	callfunc "UpHomun";
-				atcommand "@homlvl 99 "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homevolve "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homhungry 100 "+strcharinfo(0);
+					callsub	homUP;
 				break;
 				case 4:
 					morphembryo;
 					hommutate(6051);//Dieter
-				//	callfunc "UpHomun";
-				atcommand "@homlvl 99 "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homevolve "+strcharinfo(0);
-				atcommand "@homfriendly 1000 "+strcharinfo(0);
-				atcommand "@homhungry 100 "+strcharinfo(0);
+					callsub	homUP;
 					break;
 				case 5:
 					morphembryo;
 					hommutate(6051);//Eleanor
-					//callfunc "UpHomun";
-					atcommand "@homlvl 99 "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homevolve "+strcharinfo(0);
-					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homhungry 100 "+strcharinfo(0);
+					callsub	homUP;
 				break;
 				default:
 					break;		
 				}
 end;
+homUP:
 
-
+					atcommand "@homlvl 99 "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homevolve "+strcharinfo(0);
+					atcommand "@homfriendly 1000 "+strcharinfo(0);
+					atcommand "@homhungry 100 "+strcharinfo(0);
+					return;
+end;
 
 
 
@@ -149,7 +99,7 @@ Renegado:
         next;
 switch(select( "Plagio","Mimetismo","Ambas")){
 				case 1: callsub F_PLAGIO,0; break;
-				case 2: callsub F_MIMETISMO; ;break;
+				case 2: callsub F_MIMETISMO,0,0,0; ;break;
                 case 3: callsub F_PLAGIO,1; ;break;
 				default:end;break;
 				}
@@ -167,21 +117,26 @@ end;
         mes "Sera necessario deslogar para copiar a skill de plagio.";
         next;
 
-    set CLONE_SKILL, .skill$[.@menu * 3 +1];
-    set CLONE_SKILL_LV, .skill$[.@menu * 3 +2];
+
 
     if(.@EQI != 1 ){
+		set CLONE_SKILL, .skill$[.@menu * 3 +1];
+    	set CLONE_SKILL_LV, .skill$[.@menu * 3 +2];
         atcommand "@kick "+ strcharinfo(0);
-    }else
+		end;
+    }
         mes .n1$; mes "  ";
         mes "Agora iremos para a skill do mimetismo.";
         next;
-        callsub F_MIMETISMO;
+        callsub F_MIMETISMO,1,.skill$[.@menu * 3 +1],.skill$[.@menu * 3 +2];
 
 end;
 
 
     F_MIMETISMO:
+	set .@EQI2, getarg(0);
+	set .@MENU1, getarg(1);
+	set .@MENU2, getarg(2);
         set .@menuM, select(.menuM$) -1;
     if ( getskilllv(.skillM$[.@menuM * 3 +1]) ) {
         mes .n1$;
@@ -193,10 +148,105 @@ end;
     next;
     set REPRODUCE_SKILL, .skillM$[.@menuM * 3 +1];
     set REPRODUCE_SKILL_LV, .skillM$[.@menuM * 3 +2];
-    atcommand "@kick "+ strcharinfo(0);
+	    if(.@EQI2 != 0 ){
+		set CLONE_SKILL, .@MENU1;
+    	set CLONE_SKILL_LV,.@MENU2;
+    }
+	    atcommand "@kick "+ strcharinfo(0);
     end;
-       
+gerenciabuild:
+function ManageBuild;
+
+mes "Selecione seus servi?os";
+next;
+switch( select( ( .BMMode & 1 )?"^FF0000Salvar & Switch builds^000000":"",
+				( .BMMode & 2 )?"^0000FFResetar Status^000000":"",	
+				( .BMMode & 4 )?"^0000FFResetar Skills^000000":"")){
+	Case 1:
+		for( set .@i,1; .@i <= .MaxSlots; set .@i,.@i + 1 )
+			set .@Menu$,.@Menu$ + (( getd( "Slot_"+.@i+"$" ) == "" )?"^FF0000Slot Vazio^000000":getd( "Slot_"+.@i+"$" ) )+":";
+		set .@Slot,select( .@Menu$ );
+		do{
+			next;
+			mes "Build : ^FF0000"+(( getd( "Slot_"+.@Slot+"$" ) == "" )?"Slot "+.@Slot:getd( "Slot_"+.@Slot+"$" ) )+"^000000";
+			mes "STR - ^0000FF"+getd( "STR_"+.@Slot )+"^000000      INT - ^0000FF"+getd( "INT_"+.@Slot )+"^000000";
+			mes "AGI - ^0000FF"+getd( "AGI_"+.@Slot )+"^000000      DEX - ^0000FF"+getd( "DEX_"+.@Slot )+"^000000";
+			mes "VIT - ^0000FF"+getd( "VIT_"+.@Slot )+"^000000      LUK - ^0000FF"+getd( "LUK_"+.@Slot )+"^000000";
+			mes " ";
+			mes "Pontos Restantes : ^0000FF"+getd( "STATS_"+.@Slot )+"^000000";
+			set .@Option,select(( getd( "Slot_"+.@Slot+"$" ) == "" )?"":"^0000FFSwitar Build",
+								( getd( "Slot_"+.@Slot+"$" ) == "" )?"Save":"",
+								( getd( "Slot_"+.@Slot+"$" ) == "" )?"":"^FF0000Apagar Build" );
+			ManageBuild( .@Slot,.@Option);
+		}while( .@Option != 1 );
+		break;
+	Case 2:
+		ResetStatus;
+		mes "O status foi redefinido.";
+		break;
+	Case 3:
+		ResetSkill;
+		mes "Habilidades foram redefinidas.";
+		break;
+}
+close;
+
+function	ManageBuild	{
+switch( getarg(1) ){
+	Case 1:	//	Switch Build
+		message strcharinfo(0),"A build foi switada.";
+			ResetStatus;
+			set StatusPoint,getd( "STATS_"+getarg(0) );
+			statusup2 bStr,getd( "STR_"+getarg(0) ) - 1;
+			statusup2 bAgi,getd( "AGI_"+getarg(0) ) - 1;
+			statusup2 bVit,getd( "VIT_"+getarg(0) ) - 1;
+			statusup2 bInt,getd( "INT_"+getarg(0) ) - 1;
+			statusup2 bDex,getd( "DEX_"+getarg(0) ) - 1;
+			statusup2 bLuk,getd( "LUK_"+getarg(0) ) - 1;
+		break;
+	Case 2:	//	Save Build
+			setd( "STR_"+getarg(0) ),readparam(bStr);
+			setd( "AGI_"+getarg(0) ),readparam(bAgi);
+			setd( "VIT_"+getarg(0) ),readparam(bVIT);
+			setd( "INT_"+getarg(0) ),readparam(bInt);
+			setd( "DEX_"+getarg(0) ),readparam(bDex);
+			setd( "LUK_"+getarg(0) ),readparam(bLuk);
+			setd( "STATS_"+getarg(0) ),StatusPoint;
+		if( .Length[0] < .Length[1] && .Length[0] ){
+			mes "Insira um ^FF0000Nome^000000 para este slot.";
+			mes "Tamanho do Nome : "+.Length[0]+" ~ "+.Length[1]+" caracteres";
+			do{
+				input getd( "Slot_"+getarg(0)+"$" );
+			}while( getstrlen( getd( "Slot_"+getarg(0)+"$" ) ) < .Length[0] || getstrlen( getd( "Slot_"+getarg(0)+"$" ) ) > .Length[1] );
+		}else{
+			setd( "Slot_"+getarg(0)+"$" ),"Build "+getarg(0);
+		}
+		message strcharinfo(0),"A Build foi Salva.";
+		break;
+	Case 3:	//	Remove Build
+		message strcharinfo(0),"A Build foi apagada.";
+			setd( "STR_"+getarg(0) ),0;
+			setd( "AGI_"+getarg(0) ),0;
+			setd( "VIT_"+getarg(0) ),0;
+			setd( "INT_"+getarg(0) ),0;
+			setd( "DEX_"+getarg(0) ),0;
+			setd( "LUK_"+getarg(0) ),0;
+			setd( "STATS_"+getarg(0) ),0;
+			setd( "Slot_"+getarg(0)+"$" ),"";
+		break;
+}
+return;
+end;       
 Oninit:
+// 1 = Save & Switch 
+// 2 = Reset Status
+// 4 = Reset Skills
+// 7 = All of Above [ 1+2+4 = 7 ]
+set .BMMode,7;
+// How Many Slots available to Save Status Builds.
+set .MaxSlots,3;
+// Enable Stats Slot Rename + Max Name Length ( 0 = Disable )
+setarray .Length,4,26; // Min. ~ Max. Words.
   .n1$ = "[ ^4682B4 Job Helper ^000000]";
 //Renegado
         setarray .skill$, "Chute Aereo", 421, 7,

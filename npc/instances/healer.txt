@@ -17,4 +17,4 @@ OnInit:
 
 // Duplicates
 //============================================================
-prontera,162,194,4	duplicate(Healer)	Healer#prt	811
+prontera,162,194,4	duplicate(Healer)	Healer#prt	677

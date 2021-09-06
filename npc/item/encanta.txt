@@ -1,9 +1,4 @@
 prontera,147,169,6	script	encantamentos	620,{
-	set .zenycost,0;    // base cost of the card remover services (in Zeny)
-	set .percardcost,0;  // cost per card of the card remover services (in Zeny)
-	set .faildestroy,0;      // should the card remover have a chance of failure that destroys items? (1=yes, 0=no)
-
-	disable_items;
 	mes .n$;
     mes "Este NPC encanta:";
     mes " >> ^0000FF Asa de arcanjo caido ^000000";

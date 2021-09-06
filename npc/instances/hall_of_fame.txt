@@ -1,0 +1,607 @@
+prontera,151,159,4	script	Top RK1	676,{
+        close;
+                    OnClock2359:
+			OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 RK");
+		setunitdata getnpcid(0),UNPC_CLASS,4060;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4060 and `pvp_kill` > 0 or `pvp_death` > 0 ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_CLASS,4060;
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+								setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}
+                end;
+
+}
+prontera,154,159,4	script	Top RG2	676,{
+        close;
+                    OnClock2359:
+				OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 RG");
+		setunitdata getnpcid(0),UNPC_CLASS,4073;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4073  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_CLASS,4073;
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+				setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}
+                end;
+}
+prontera,157,159,4	script	Top WL3	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 WL");
+		setunitdata getnpcid(0),UNPC_CLASS,4061;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4061  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_CLASS,4061;
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}
+                end;
+}
+prontera,160,159,4	script	Top SORC4	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 SORC");
+		setunitdata getnpcid(0),UNPC_CLASS,4074;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4074  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_CLASS,4074;
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,151,156,4	script	Top RANGR4	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 RANGER");
+		setunitdata getnpcid(0),UNPC_CLASS,4062;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4062  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,154,156,4	script	Top BARDO	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 BARDO");
+		setunitdata getnpcid(0),UNPC_CLASS,4075;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4075  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,157,156,4	script	Top MUSA	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 MUSA");
+		setunitdata getnpcid(0),UNPC_CLASS,4076;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4076  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,160,156,4	script	Top REBEL	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 REBEL");
+		setunitdata getnpcid(0),UNPC_CLASS,4215;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4215  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,151,153,4	script	Top AB	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 AB");
+		setunitdata getnpcid(0),UNPC_CLASS,4063;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4063  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,154,153,4	script	Top SH	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 SH");
+		setunitdata getnpcid(0),UNPC_CLASS,4077;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4077  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,157,153,4	script	Top MS	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 Meca");
+		setunitdata getnpcid(0),UNPC_CLASS,4064;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4064  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,160,153,4	script	Top BIO	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 BIO");
+		setunitdata getnpcid(0),UNPC_CLASS,4078;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4078  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,151,150,4	script	Top GX	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 GX");
+		setunitdata getnpcid(0),UNPC_CLASS,4065;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4065  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,154,150,4	script	Top SC	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 SC");
+		setunitdata getnpcid(0),UNPC_CLASS,4079;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4079  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,157,150,4	script	Top KAGE	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 KAGE");
+		setunitdata getnpcid(0),UNPC_CLASS,4211;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,1;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4211  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,160,150,4	script	Top OBORO	676,{
+        close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 OBORO");
+		setunitdata getnpcid(0),UNPC_CLASS,4212;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,0;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4212  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+
+prontera,154,147,4	script	Top SE	676,{
+    close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 SE");
+		setunitdata getnpcid(0),UNPC_CLASS,4239;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,0;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4239  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+prontera,157,147,4	script	Top SR	676,{
+    close;
+                    OnClock2359:
+					OnInit:
+		setnpcdisplay(strnpcinfo(3), "Top 1 SR");
+		setunitdata getnpcid(0),UNPC_CLASS,4240;
+		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
+		setunitdata getnpcid(0),UNPC_SEX,0;
+		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
+		setunitdata getnpcid(0),UNPC_CLOTHCOLOR,0;
+		setunitdata getnpcid(0),UNPC_HEADTOP,0;
+		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
+		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4240  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
+		 		.@size = getarraysize( .@name$ );	
+				for ( .@i = 0; .@i < .@size; .@i++ ) {
+					.@sexx = 1;
+					if (.@sex$ == "F")
+						.@sexx = 0;
+				setnpcdisplay(strnpcinfo(3), .@name$);
+				setunitdata getnpcid(0),UNPC_HAIRSTYLE,.@Hair;
+				setunitdata getnpcid(0),UNPC_SEX,.@sexx;
+				setunitdata getnpcid(0),UNPC_HAIRCOLOR,.@hair_color;
+				setunitdata getnpcid(0),UNPC_CLOTHCOLOR,.@clothes_color;
+				setunitdata getnpcid(0),UNPC_HEADTOP,.@head_top;
+				setunitdata getnpcid(0),UNPC_HEADMIDDLE,.@head_mid;
+				setunitdata getnpcid(0),UNPC_HEADBOTTOM,.@head_bottom;
+				setunitdata	getnpcid(0),UNPC_BODY2,.@body;
+			setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
+				}	
+	end;
+}
+
+prontera,151,163,4	script	hall da fama	690,{
+	mes "[ ^4682B4 	Hall da fama ^000000]";
+	mes "A seguir os top jogadores de cada classe, atualizado diariamente.";
+	close;
+	end;
+}

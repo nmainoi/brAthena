@@ -1,0 +1,7 @@
+-	script	Clock_Events	-1,{
+OnClock1600:
+
+OnClock2359:
+//atcommand "@reloadnpc npc\instances\hall_of_fame.txt";
+end;
+}

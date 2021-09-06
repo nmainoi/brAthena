@@ -233,8 +233,8 @@ function	script	F_MECA	{
 	copyarray .@new_array, getarg(0), .@size;
 	for ( ; .@i < getarraysize(.@new_array); .@i++)
 	{	
-		mes getitemslots(.@new_array[.@i]);
-		if (getitemslots(.@new_array[.@i]) != -1)
+
+		if (countitem(.@new_array[.@i]) >= 1)
 			  delitem(.@new_array[.@i],1);
 			  getitem(.@new_array[.@i], 1);
 	}
