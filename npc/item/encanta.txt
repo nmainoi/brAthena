@@ -1,4 +1,4 @@
-prontera,147,169,6	script	encantamentos	620,{
+prontera,170,181,2	script	encantamentos	620,{
 	mes .n$;
     mes "Este NPC encanta:";
     mes " >> ^0000FF Asa de arcanjo caido ^000000";

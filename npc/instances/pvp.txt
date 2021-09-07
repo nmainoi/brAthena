@@ -1,4 +1,4 @@
-prontera,148,190,4	script	Ranking	857,{
+prontera,149,194,4	script	Ranking	857,{
     if (getgmlevel() != 99){
         goto ranking;
     }           
@@ -25,7 +25,7 @@ prontera,148,190,4	script	Ranking	857,{
 	end;
  ranking:
 		        mes .n$;
-                mes " ";
+                mes "========================";
 				query_sql( "SELECT `name`,`pvp_kill`,`pvp_death`,`pvp_kill` -`pvp_death` as KDA FROM `char` WHERE `pvp_kill` > 0 or `pvp_death` > 0 ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 100", .@name$, .@pvp_kill, .@pvp_death, .@KDA );
 				.@size = getarraysize( .@name$ );
 				for ( .@i = 0; .@i < .@size; .@i++ ) {
@@ -38,7 +38,7 @@ prontera,148,190,4	script	Ranking	857,{
          .n$ = "^0000FF [ Ranking PvP ] ^000000";
          end;
 }
-prontera,151,192,5	script	PvP Keeper	676,{
+prontera,153,193,5	script	PvP Keeper	676,{
 	if (select("Entrar no PVP ["+getmapusers(""+$@lista$+"") +"]:Sair") == 1) {
 		warp ""+$@lista$+"",0,0;
 		end;

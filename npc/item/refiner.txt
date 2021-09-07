@@ -1,7 +1,7 @@
-prontera,147,172,6	script	Refiner	600,{
+prontera,167,178,2	script	Refiner	600,{
 switch(select("Refinar:Remover cartas")	){
 case 1: goto encanta;break;
-case 2: goto remove_carta;break;
+case 2: goto remove_carta;break; 
 default:break;}
  encanta:   
 callsub F_ENCHANT,EQI_HEAD_TOP;

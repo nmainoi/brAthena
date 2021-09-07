@@ -1,7 +1,7 @@
-prontera,151,159,4	script	Top RK1	676,{
+prontera,145,170,6	script	Top RK1	676,{
          end;
                     OnClock2359:
-			OnInit:
+			OnInit: 
 		setnpcdisplay(strnpcinfo(3), "Top 1 RK");
 		setunitdata getnpcid(0),UNPC_CLASS,4060;
 		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
@@ -31,9 +31,9 @@ prontera,151,159,4	script	Top RK1	676,{
 								setunitdata	getnpcid(0),UNPC_ROBE,.@robe;
 				}
                 end;
-
+ 
 }
-prontera,154,159,4	script	Top RG2	676,{
+prontera,145,168,6	script	Top RG2	676,{
         end;
                     OnClock2359:
 				OnInit:
@@ -67,7 +67,7 @@ prontera,154,159,4	script	Top RG2	676,{
 				}
                 end;
 }
-prontera,157,159,4	script	Top WL3	676,{
+prontera,145,166,6	script	Top WL3	676,{
            end;
                     OnClock2359:
 					OnInit:
@@ -101,7 +101,7 @@ prontera,157,159,4	script	Top WL3	676,{
 				}
                 end;
 }
-prontera,160,159,4	script	Top SORC4	676,{
+prontera,145,164,6	script	Top SORC4	676,{
           end;
                     OnClock2359:
 					OnInit:
@@ -135,7 +135,7 @@ prontera,160,159,4	script	Top SORC4	676,{
 				}	
 	end;
 }
-prontera,151,156,4	script	Top RANGR4	676,{
+prontera,142,170,6	script	Top RANGR4	676,{
          end;
                     OnClock2359:
 					OnInit:
@@ -168,7 +168,7 @@ prontera,151,156,4	script	Top RANGR4	676,{
 				}	
 	end;
 }
-prontera,154,156,4	script	Top BARDO	676,{
+prontera,142,168,6	script	Top BARDO	676,{
            end;
                     OnClock2359:
 					OnInit:
@@ -201,7 +201,7 @@ prontera,154,156,4	script	Top BARDO	676,{
 				}	
 	end;
 }
-prontera,157,156,4	script	Top MUSA	676,{
+prontera,142,166,6	script	Top MUSA	676,{
           end;
                     OnClock2359:
 					OnInit:
@@ -234,7 +234,7 @@ prontera,157,156,4	script	Top MUSA	676,{
 				}	
 	end;
 }
-prontera,160,156,4	script	Top REBEL	676,{
+prontera,142,164,6	script	Top REBEL	676,{
            end;
                     OnClock2359:
 					OnInit:
@@ -267,7 +267,7 @@ prontera,160,156,4	script	Top REBEL	676,{
 				}	
 	end;
 }
-prontera,151,153,4	script	Top AB	676,{
+prontera,139,170,6	script	Top AB	676,{
            end;
                     OnClock2359:
 					OnInit:
@@ -300,12 +300,12 @@ prontera,151,153,4	script	Top AB	676,{
 				}	
 	end;
 }
-prontera,154,153,4	script	Top SH	676,{
+prontera,139,168,6	script	Top SH	676,{
           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 SH");
-		setunitdata getnpcid(0),UNPC_CLASS,4077;
+		setunitdata getnpcid(0),UNPC_CLASS,4077; 
 		setunitdata getnpcid(0),UNPC_HAIRSTYLE,1;
 		setunitdata getnpcid(0),UNPC_SEX,1;
 		setunitdata getnpcid(0),UNPC_HAIRCOLOR,7;
@@ -333,7 +333,7 @@ prontera,154,153,4	script	Top SH	676,{
 				}	
 	end;
 }
-prontera,157,153,4	script	Top MS	676,{
+prontera,139,166,6	script	Top MS	676,{
            end;
                     OnClock2359:
 					OnInit:
@@ -366,7 +366,7 @@ prontera,157,153,4	script	Top MS	676,{
 				}	
 	end;
 }
-prontera,160,153,4	script	Top BIO	676,{
+prontera,139,164,6	script	Top BIO	676,{
           end;
                     OnClock2359:
 					OnInit:
@@ -399,7 +399,7 @@ prontera,160,153,4	script	Top BIO	676,{
 				}	
 	end;
 }
-prontera,151,150,4	script	Top GX	676,{
+prontera,136,170,6	script	Top GX	676,{
         close;
                     OnClock2359:
 					OnInit:
@@ -432,7 +432,7 @@ prontera,151,150,4	script	Top GX	676,{
 				}	
 	end;
 }
-prontera,154,150,4	script	Top SC	676,{
+prontera,136,168,6	script	Top SC	676,{
            end;
                     OnClock2359:
 					OnInit:
@@ -465,7 +465,7 @@ prontera,154,150,4	script	Top SC	676,{
 				}	
 	end;
 }
-prontera,157,150,4	script	Top KAGE	676,{
+prontera,136,166,6	script	Top KAGE	676,{
           end;
                     OnClock2359:
 					OnInit:
@@ -498,7 +498,7 @@ prontera,157,150,4	script	Top KAGE	676,{
 				}	
 	end;
 }
-prontera,160,150,4	script	Top OBORO	676,{
+prontera,136,164,6	script	Top OBORO	676,{
            end;
                     OnClock2359:
 					OnInit:
@@ -532,7 +532,7 @@ prontera,160,150,4	script	Top OBORO	676,{
 	end;
 }
 
-prontera,154,147,4	script	Top SE	676,{
+prontera,142,162,6	script	Top SE	676,{
        end;
                     OnClock2359:
 					OnInit:
@@ -565,7 +565,7 @@ prontera,154,147,4	script	Top SE	676,{
 				}	
 	end;
 }
-prontera,157,147,4	script	Top SR	676,{
+prontera,139,162,6	script	Top SR	676,{
        end;
                     OnClock2359:
 					OnInit:
@@ -599,7 +599,7 @@ prontera,157,147,4	script	Top SR	676,{
 	end;
 }
 
-prontera,151,163,4	script	hall da fama	690,{
+prontera,147,173,5	script	hall da fama	690,{
 	mes "[ ^4682B4 	Hall da fama ^000000]";
 	mes "A seguir os top jogadores de cada classe, atualizado diariamente.";
 	close;
