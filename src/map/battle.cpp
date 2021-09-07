@@ -4426,8 +4426,10 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 50 * skill_lv;
 			break;
 		case NC_BOOSTKNUCKLE:
-			skillratio += 200 * skill_lv + sstatus->dex / 6; // !TODO: What's the DEX bonus?
-			RE_LVL_DMOD(100);
+			//Dano = {[(Nv. da habilidade × 100) + 200] + DES} × (Nv. de Base ÷ 120]%
+			skillratio += 100 * skill_lv +200 + sstatus->dex ; // !TODO: What's the DEX bonus?
+			RE_LVL_DMOD(120);
+			skillratio = skillratio * 3;
 			break;
 		case NC_PILEBUNKER:
 			skillratio += 200 + 100 * skill_lv + status_get_str(src);
@@ -4438,13 +4440,14 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			RE_LVL_DMOD(100);
 			break;
 		case NC_FLAMELAUNCHER:
-		case NC_COLDSLOWER:
+		//case NC_COLDSLOWER:
 			skillratio += 200 + 300 * skill_lv;
 			RE_LVL_DMOD(150);
 			break;
 		case NC_ARMSCANNON:
 			skillratio += -100 + 400 + 300 * skill_lv;
 			RE_LVL_DMOD(100);
+			skillratio = skillratio * 5;
 			break;
 		case NC_AXEBOOMERANG:
 			skillratio += 150 + 50 * skill_lv;
@@ -7288,6 +7291,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 #endif
 		case GS_FLING:
 			md.damage = (sd ? sd->status.job_level : status_get_lv(src));
+			break;
+		case NC_COLDSLOWER:
+			md.damage = (sd->status.base_level + 300 + (300 * skill_lv)) *23; // Pura gambiarra fi
 			break;
 		case HVAN_EXPLOSION: //[orn]
 			md.damage = (int64)sstatus->max_hp * (50 + 50 * skill_lv) / 100;

@@ -1,5 +1,5 @@
 prontera,147,172,6	script	Refiner	600,{
-switch(select("Encantar itens:Remover cartas")	){
+switch(select("Refinar:Remover cartas")	){
 case 1: goto encanta;break;
 case 2: goto remove_carta;break;
 default:break;}

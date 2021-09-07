@@ -1,5 +1,5 @@
 prontera,151,159,4	script	Top RK1	676,{
-        close;
+         end;
                     OnClock2359:
 			OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 RK");
@@ -34,7 +34,7 @@ prontera,151,159,4	script	Top RK1	676,{
 
 }
 prontera,154,159,4	script	Top RG2	676,{
-        close;
+        end;
                     OnClock2359:
 				OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 RG");
@@ -68,7 +68,7 @@ prontera,154,159,4	script	Top RG2	676,{
                 end;
 }
 prontera,157,159,4	script	Top WL3	676,{
-        close;
+           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 WL");
@@ -102,7 +102,7 @@ prontera,157,159,4	script	Top WL3	676,{
                 end;
 }
 prontera,160,159,4	script	Top SORC4	676,{
-        close;
+          end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 SORC");
@@ -136,7 +136,7 @@ prontera,160,159,4	script	Top SORC4	676,{
 	end;
 }
 prontera,151,156,4	script	Top RANGR4	676,{
-        close;
+         end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 RANGER");
@@ -169,7 +169,7 @@ prontera,151,156,4	script	Top RANGR4	676,{
 	end;
 }
 prontera,154,156,4	script	Top BARDO	676,{
-        close;
+           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 BARDO");
@@ -202,7 +202,7 @@ prontera,154,156,4	script	Top BARDO	676,{
 	end;
 }
 prontera,157,156,4	script	Top MUSA	676,{
-        close;
+          end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 MUSA");
@@ -235,7 +235,7 @@ prontera,157,156,4	script	Top MUSA	676,{
 	end;
 }
 prontera,160,156,4	script	Top REBEL	676,{
-        close;
+           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 REBEL");
@@ -268,7 +268,7 @@ prontera,160,156,4	script	Top REBEL	676,{
 	end;
 }
 prontera,151,153,4	script	Top AB	676,{
-        close;
+           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 AB");
@@ -301,7 +301,7 @@ prontera,151,153,4	script	Top AB	676,{
 	end;
 }
 prontera,154,153,4	script	Top SH	676,{
-        close;
+          end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 SH");
@@ -334,7 +334,7 @@ prontera,154,153,4	script	Top SH	676,{
 	end;
 }
 prontera,157,153,4	script	Top MS	676,{
-        close;
+           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 Meca");
@@ -367,7 +367,7 @@ prontera,157,153,4	script	Top MS	676,{
 	end;
 }
 prontera,160,153,4	script	Top BIO	676,{
-        close;
+          end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 BIO");
@@ -433,7 +433,7 @@ prontera,151,150,4	script	Top GX	676,{
 	end;
 }
 prontera,154,150,4	script	Top SC	676,{
-        close;
+           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 SC");
@@ -466,7 +466,7 @@ prontera,154,150,4	script	Top SC	676,{
 	end;
 }
 prontera,157,150,4	script	Top KAGE	676,{
-        close;
+          end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 KAGE");
@@ -499,7 +499,7 @@ prontera,157,150,4	script	Top KAGE	676,{
 	end;
 }
 prontera,160,150,4	script	Top OBORO	676,{
-        close;
+           end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 OBORO");
@@ -533,7 +533,7 @@ prontera,160,150,4	script	Top OBORO	676,{
 }
 
 prontera,154,147,4	script	Top SE	676,{
-    close;
+       end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 SE");
@@ -566,7 +566,7 @@ prontera,154,147,4	script	Top SE	676,{
 	end;
 }
 prontera,157,147,4	script	Top SR	676,{
-    close;
+       end;
                     OnClock2359:
 					OnInit:
 		setnpcdisplay(strnpcinfo(3), "Top 1 SR");

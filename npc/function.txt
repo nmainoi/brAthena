@@ -48,7 +48,19 @@ function	script	F_GetITEM	{
 			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 	
 		break;
 	case Job_Blacksmith:
-			getitem2 18600,1,1,9,0,4403,0,0,0;equip 18600;	
+						getitem2 18600,1,1,13,0,4403,0,0,0;equip 18600;	
+			getitem2 18603,1,1,0,0,4403,0,0,0;equip 18603;
+			getitem 18670,1;equip 18670;
+			getitem2 15047,1,1,13,0,4302,0,0,0;equip 15047;	
+			getitem2 15047,1,1,13,0,4105,0,0,0;
+			getitem2 16032,1,1,13,0,4499,0,0,0; //
+			getitem2 1228,1,1,13,0,0,0,0,0;equip 1228;  // CK
+			getitem2 1309,1,1,13,0,4497,4497,4497,4497;
+			getitem2 2190,1,1,13,0,4058,0,0,0;equip 2190; // ESCUDO
+			getitem2 2586,1,1,13,0,4133,0,0,0;equip 2586; // capa
+			getitem2 2484,1,1,13,0,4381,0,0,0;equip 2484;// sapato
+			getitem2 2936,1,1,0,0,4486,0,0,0;equip 2936; 
+			getitem2 2936,1,1,0,0,4486,0,0,0; 			
 		break;
 	case Job_Hunter:
 			getitem2 18600,1,1,13,0,4403,0,0,0;equip 18600;	

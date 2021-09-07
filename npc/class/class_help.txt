@@ -1,5 +1,5 @@
 prontera,147,166,6	script	Job Helper	997,{
-    switch(select("Gerente de builds:Copia de skills:Mimetismo")){
+    switch(select("Gerente de builds:Copia de skills:Homunculus")){
     case 1: goto gerenciabuild; end; break;
     default:break;}
     if(BaseJob == Job_Rogue)

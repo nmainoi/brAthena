@@ -21503,9 +21503,12 @@ Body:
     Name: NC_COLDSLOWER
     Description: Cold Slower
     MaxLevel: 3
-    Type: Weapon
+    Type: Misc
     TargetType: Ground
     DamageFlags:
+      IgnoreAtkCard: true
+      IgnoreFlee: true
+      IgnoreDefCard: true
       Splash: true
     Flags:
       TargetTrap: true
