@@ -6267,11 +6267,6 @@ void clif_efst_status_change_sub(struct block_list *tbl, struct block_list *bl, 
 					target = AREA_WOS;
 				}
 				break;
-			case SC_HELLS_PLANT:
-				if( sc && sc->data[type] ){
-					tick = sc->data[type]->val4;
-				}
-				break;
 		}
 
 #if PACKETVER > 20120418

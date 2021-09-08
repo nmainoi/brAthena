@@ -1302,11 +1302,10 @@ void initChangeTables(void)
 	/* Genetic */
 	set_sc( GN_CARTBOOST			, SC_GN_CARTBOOST	, EFST_GN_CARTBOOST			, SCB_SPEED );
 	set_sc( GN_THORNS_TRAP			, SC_THORNSTRAP		, EFST_THORNS_TRAP, SCB_NONE );
-	set_sc( GN_BLOOD_SUCKER			, SC_BLOODSUCKER	, EFST_BLOOD_SUCKER, SCB_NONE );
+	set_sc_with_vfx(GN_BLOOD_SUCKER, SC_BLOODSUCKER, EFST_BLOOD_SUCKER, SCB_NONE);
 	set_sc( GN_SPORE_EXPLOSION		, SC_SPORE_EXPLOSION	, EFST_SPORE_EXPLOSION_DEBUFF, SCB_NONE );
 	set_sc( GN_FIRE_EXPANSION_SMOKE_POWDER	, SC_SMOKEPOWDER	, EFST_FIRE_EXPANSION_SMOKE_POWDER, SCB_FLEE );
 	set_sc( GN_FIRE_EXPANSION_TEAR_GAS	, SC_TEARGAS		, EFST_FIRE_EXPANSION_TEAR_GAS	, SCB_HIT|SCB_FLEE );
-	set_sc_with_vfx( GN_HELLS_PLANT		, SC_HELLS_PLANT	, EFST_HELLS_PLANT_ARMOR	, SCB_NONE );
 	set_sc( GN_MANDRAGORA			, SC_MANDRAGORA		, EFST_MANDRAGORA			, SCB_INT );
 	set_sc_with_vfx( GN_ILLUSIONDOPING	, SC_ILLUSIONDOPING	, EFST_ILLUSIONDOPING		, SCB_HIT );
 
@@ -1986,6 +1985,7 @@ void initChangeTables(void)
 	StatusDisplayType[SC_CURSEDCIRCLE_TARGET] = BL_PC;
 	StatusDisplayType[SC_NETHERWORLD]	  = BL_PC;
 	StatusDisplayType[SC_VOICEOFSIREN]	  = BL_PC;
+	StatusDisplayType[SC_BLOODSUCKER] = BL_PC;
 	StatusDisplayType[SC__SHADOWFORM]	  = BL_PC;
 	StatusDisplayType[SC__MANHOLE]		  = BL_PC;
 	StatusDisplayType[SC_JYUMONJIKIRI]	  = BL_PC;
@@ -11832,6 +11832,10 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			tick_time = status_get_sc_interval(type);
 			val4 = tick - tick_time; // Remaining time
 			break;
+		case SC_BLOODSUCKER:
+			val4 = tick / 1000;
+			tick_time = 1000; // [GodLesZ] tick time
+			break;
 		case SC_SWINGDANCE:
 			val3 = 3 * val1 + val2; // Walk speed and aspd reduction.
 			break;
@@ -12183,8 +12187,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val3 = 30 * val1; // MDEF bonus
 			break;
 		case SC_OVERED_BOOST:
-			val2 = 400 + 40 * val1; // flee bonus
-			val3 = 180 + 2 * val1; // aspd bonus
+			val2 = 300 + 40 * val1; // flee bonus
+			val3 = 179 + 2 * val1; // aspd bonus
 			val4 = 50; // def reduc %
 			break;
 		case SC_GRANITIC_ARMOR:
@@ -13892,6 +13896,15 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				}
 			}
 			break;
+		case SC_BLOODSUCKER:
+			if (sce->val2) {
+				struct block_list* src = map_id2bl(sce->val2);
+				if (src) {
+					struct status_change* sc2 = status_get_sc(src);
+					sc2->bs_counter--;
+				}
+			}
+			break;
 		case SC_TEARGAS:
 			status_change_end(bl,SC_TEARGAS_SOB,INVALID_TIMER);
 			break;
@@ -14814,9 +14827,25 @@ TIMER_FUNC(status_change_timer){
 			return 0;
 		}
 
-	case SC_HELLS_PLANT:
-		if( sce->val4 >= 0 ){
-			skill_castend_damage_id( bl, bl, GN_HELLS_PLANT_ATK, sce->val1, tick, 0 );
+	case SC_BLOODSUCKER:
+		if (--(sce->val4) >= 0) {
+			struct block_list* src = map_id2bl(sce->val2);
+			int damage;
+			if (!src || (src && (status_isdead(src) || src->m != bl->m || distance_bl(src, bl) >= 12)))
+				break;
+			map_freeblock_lock();
+			if (is_infinite_defense(bl, BF_MISC)) // Only does 1 damage to infinte defense type.
+				damage = 1;
+			else
+				damage = 200 + 100 * sce->val1 + status_get_int(src);
+			status_damage(src, bl, damage, 0, clif_damage(bl, bl, tick, status->amotion, status->dmotion + 200, damage, 1, DMG_NORMAL, 0, false), 0, SC_BLOODSUCKER);
+			unit_skillcastcancel(bl, 1);
+			if (sc->data[type]) {
+				sc_timer_next(1000 + tick);
+			}
+			map_freeblock_unlock();
+			status_heal(src, damage * (5 + 5 * sce->val1) / 100, 0, 0); // 5 + 5% per level
+			return 0;
 		}
 		break;
 

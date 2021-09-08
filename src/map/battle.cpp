@@ -667,8 +667,8 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 			// Affected by attacker ATK bonuses
 			if( sd && !nk[NK_IGNOREATKCARD] ) {
 				int32 race2_val = 0;
-
-				for (const auto &raceit : t_race2)
+				int32 race_fix = 0;
+				for (const auto& raceit : t_race2) 
 					race2_val += sd->indexed_bonus.magic_addrace2[raceit];
 				cardfix = cardfix * (100 + sd->indexed_bonus.magic_addrace[tstatus->race] + sd->indexed_bonus.magic_addrace[RC_ALL] + race2_val) / 100;
 				if( !nk[NK_IGNOREELEMENT] ) { // Affected by Element modifier bonuses
@@ -725,6 +725,8 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 						continue;
 					race_fix += it.rate;
 				}
+
+
 				cardfix = cardfix * (100 - race_fix) / 100;
 				cardfix = cardfix * (100 - tsd->indexed_bonus.subclass[sstatus->class_] - tsd->indexed_bonus.subclass[CLASS_ALL]) / 100;
 
@@ -1680,8 +1682,6 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if ((sce = sc->data[SC_BLOODLUST]) && flag&BF_WEAPON && damage > 0 && rnd()%100 < sce->val3)
 			status_heal(src, damage * sce->val4 / 100, 0, 3);
 
-		if ((sce = sc->data[SC_BLOODSUCKER]) && flag & BF_WEAPON && damage > 0 && rnd() % 100 < (2 * sce->val1 - 1))
-			status_heal(src, damage * sce->val1 / 100, 0, 3);
 
 		if (flag&BF_MAGIC && bl->type == BL_PC && sc->data[SC_GVG_GIANT] && sc->data[SC_GVG_GIANT]->val4)
 			damage += damage * sc->data[SC_GVG_GIANT]->val4 / 100;
@@ -4114,9 +4114,9 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 #ifdef RENEWAL
 		case CR_ACIDDEMONSTRATION:
-			skillratio += -100 + 200 * skill_lv + sstatus->int_ + tstatus->vit; // !TODO: Confirm status bonus
-			if (target->type == BL_PC)
-				skillratio /= 2;
+		//	skillratio += -100 + 200 * skill_lv + sstatus->int_ + tstatus->vit; // !TODO: Confirm status bonus
+			skillratio += (sstatus->batk + sstatus->matk_max + sstatus->eatk) * skill_lv * (tstatus->vit/ 10) ;
+			skillratio = skillratio / 100;
 			break;
 #endif
 		case CG_ARROWVULCAN:
@@ -4747,10 +4747,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			RE_LVL_DMOD(100);
 			if (sc && sc->data[SC_BLAST_OPTION])
 				skillratio += (sd ? sd->status.job_level * 5 : 0);
-			break;
-		case GN_HELLS_PLANT_ATK:
-			skillratio += -100 + 100 * skill_lv + sstatus->int_ * (sd ? pc_checkskill(sd, AM_CANNIBALIZE) : 5); // !TODO: Confirm INT and Cannibalize bonus
-			RE_LVL_DMOD(100);
 			break;
 		// Physical Elemantal Spirits Attack Skills
 		case EL_CIRCLE_OF_FIRE:
@@ -6282,6 +6278,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		if (skill_lv == 2)
 			s_ele = ELE_HOLY;
 		break;
+	case GN_FIRE_EXPANSION_ACID:
+		s_ele = ELE_NEUTRAL;
+		break;
 		case NPC_EARTHQUAKE:
 			s_ele = ELE_NEUTRAL;
 			break;
@@ -6317,7 +6316,6 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			//	s_ele = ELE_NEUTRAL;
 			//break;
 	}
-
 	//Set miscellaneous data that needs be filled
 	if(sd) {
 		sd->state.arrow_atk = 0;
@@ -6487,6 +6485,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case WZ_FROSTNOVA:
 						skillratio += -100 + (100 + skill_lv * 10) * 2 / 3;
+						break;
+					case GN_FIRE_EXPANSION_ACID:
+						skillratio += (sstatus->batk + sstatus->matk_max + sstatus->eatk) * skill_lv * (tstatus->vit / 10);
+						skillratio = skillratio / 100;
 						break;
 					case WZ_FIREPILLAR:
 						if (sd && ad.div_ > 0)
@@ -7228,30 +7230,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 					md.damage = 0;
 			}
 			break;
-		case GN_FIRE_EXPANSION_ACID:
-#ifdef RENEWAL
-			// Official Renewal formula [helvetica]
-			// damage = 7 * ((atk + matk)/skill level) * (target vit/100)
-			// skill is a "forced neutral" type skill, it benefits from weapon element but final damage
-			// 	is considered "neutral" for purposes of resistances
-			{
-				struct Damage atk = battle_calc_weapon_attack(src, target, skill_id, skill_lv, 0);
-				struct Damage matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, 0);
-				md.damage = 7 * ((atk.damage/skill_lv + matk.damage/skill_lv) * tstatus->vit / 100 );
 
-				// AD benefits from endow/element but damage is forced back to neutral
-				md.damage = battle_attr_fix(src, target, md.damage, ELE_NEUTRAL, tstatus->def_ele, tstatus->ele_lv);
-			}
-			// Fall through
-#else
-		case CR_ACIDDEMONSTRATION:
-			if(tstatus->vit+sstatus->int_) //crash fix
-				md.damage = (int)((int64)7*tstatus->vit*sstatus->int_*sstatus->int_ / (10*(tstatus->vit+sstatus->int_)));
-			else
-				md.damage = 0;
-			if (tsd) md.damage>>=1;
-#endif
-			break;
 		case NJ_ZENYNAGE:
 		case KO_MUCHANAGE:
 				md.damage = skill_get_zeny(skill_id, skill_lv);
@@ -7317,6 +7296,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			break;
 		case NC_MAGMA_ERUPTION_DOTDAMAGE: // 'Eruption' damage
 			md.damage = 800 + 200 * skill_lv;
+			break;
+		case GN_HELLS_PLANT_ATK:
+			//[{( Hell Plant Skill Level x Casters Base Level ) x 10 } + {( Casters INT x 7 ) / 2 } x { 18 + ( Casters Job Level / 4 )] x ( 5 / ( 10 - Summon Flora Skill Level ))
+			md.damage = skill_lv * status_get_lv(src) * 10 + status_get_int(src) * 7 / 2 * (18 + (sd ? sd->status.job_level : 0) / 4) * 5 / (10 - (sd ? pc_checkskill(sd, AM_CANNIBALIZE) : 0));
 			break;
 		case GN_THORNS_TRAP:
 			md.damage = 100 + 200 * skill_lv + status_get_int(src);
@@ -7563,10 +7546,7 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 			return 0;
 	}
 
-	if (ssc) {
-		if (ssc->data[SC_HELLS_PLANT])
-			return 0;
-	}
+
 
 	if (flag & BF_SHORT) {//Bounces back part of the damage.
 		if ( (skill_get_inf2(skill_id, INF2_ISTRAP) || !status_reflect) && sd && sd->bonus.short_weapon_damage_return ) {
@@ -8429,7 +8409,26 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 				state |= BCT_ENEMY;
 				strip_enemy = 0;
 			} else if (su->group->skill_id == WZ_ICEWALL || (su->group->skill_id == GN_WALLOFTHORN && skill_id != GN_CARTCANNON)) {
+				if (skill_id == GN_DEMONIC_FIRE) {
+						struct skill_unit* su = (struct skill_unit*)target;
+						std::shared_ptr<s_skill_unit_group> sg;
+						struct block_list* src2;
+					if (!su || !su->alive || (sg = su->group) == NULL || !sg || sg->val3 == -1 ||
+						(src2 = map_id2bl(sg->src_id)) == NULL || status_isdead(src2))
+						return 0;
+
+					if (sg->unit_id != UNT_FIREWALL) {
+						int x, y;
+						x = sg->val3 >> 16;
+						y = sg->val3 & 0xffff;
+						skill_unitsetting(src2, su->group->skill_id, su->group->skill_lv, x, y, 1);
+						sg->val3 = -1;
+						sg->limit = DIFF_TICK(gettick(), sg->tick) + 300;
+					}
+					return 0;
+				}
 				switch (skill_id) {
+
 					case RK_DRAGONBREATH:
 					case RK_DRAGONBREATH_WATER:
 					case NC_SELFDESTRUCTION:

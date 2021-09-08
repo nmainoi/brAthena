@@ -3617,7 +3617,6 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 		case EL_HURRICANE:
 		case EL_HURRICANE_ATK:
 		case KO_BAKURETSU:
-		case GN_HELLS_PLANT_ATK:
 		case SU_SV_ROOTTWIST_ATK:
 			dmg.dmotion = clif_skill_damage(src,bl,tick,dmg.amotion,dmg.dmotion,damage,dmg.div_,skill_id,-1,DMG_SPLASH);
 			break;
@@ -3949,6 +3948,7 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 		case NPC_REVERBERATION:
 		case WM_REVERBERATION:
 		case GN_THORNS_TRAP:
+		case GN_HELLS_PLANT:
 		case RL_B_TRAP:
 		case SC_ESCAPE:
 			//Non stackable on themselves and traps (including venom dust which does not has the trap inf2 set)
@@ -4025,6 +4025,7 @@ static int skill_check_unit_range2 (struct block_list *bl, int x, int y, uint16 
 				range = 2;
 				break;
 			case SC_MANHOLE:
+			case GN_HELLS_PLANT:
 				range = 0;
 				break;
 			default: {
@@ -5174,7 +5175,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case GN_SPORE_EXPLOSION:
 	case GN_DEMONIC_FIRE:
 	case GN_FIRE_EXPANSION_ACID:
-	case GN_HELLS_PLANT_ATK:
 	case KO_HAPPOKUNAI:
 	case KO_HUUMARANKA:
 	case KO_MUCHANAGE:
@@ -5574,6 +5574,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case GS_FLING:
 	case NJ_ZENYNAGE:
 	case GN_THORNS_TRAP:
+	case GN_HELLS_PLANT_ATK:
 	case RL_B_TRAP:
 		skill_attack(skill_get_type(skill_id),src,src,bl,skill_id,skill_lv,tick,flag);
 		break;
@@ -7177,7 +7178,25 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		} else
 			clif_skill_fail(sd,skill_id,USESKILL_FAIL,0);
 		break;
+	case GN_BLOOD_SUCKER:
+	{
+		struct status_change* sc = status_get_sc(src);
 
+		if (sc && sc->bs_counter < skill_get_maxcount(skill_id, skill_lv)) {
+			if (tsc && tsc->data[type]) {
+				(sc->bs_counter)--;
+				status_change_end(src, type, INVALID_TIMER); // the first one cancels and the last one will take effect resetting the timer
+			}
+			clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
+			sc_start2(src, bl, type, 100, skill_lv, src->id, skill_get_time(skill_id, skill_lv));
+			(sc->bs_counter)++;
+		}
+		else if (sd) {
+			clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
+			break;
+		}
+	}
+	break;
 	case PR_BENEDICTIO:
 		if (!battle_check_undead(tstatus->race, tstatus->def_ele) && tstatus->race != RC_DEMON)
 			clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src, bl, type, 100, skill_lv, skill_get_time(skill_id, skill_lv)));
@@ -7267,8 +7286,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case SR_CRESCENTELBOW:
 	case SR_LIGHTNINGWALK:
 	case GN_CARTBOOST:
-	case GN_BLOOD_SUCKER:
-	case GN_HELLS_PLANT:
 	case KO_MEIKYOUSISUI:
 	case ALL_ODINS_POWER:
 	case ALL_FULL_THROTTLE:
@@ -12756,6 +12773,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case SO_PSYCHIC_WAVE:
 	case SO_VACUUM_EXTREME:
 	case GN_THORNS_TRAP:
+	case GN_HELLS_PLANT:
 	case SO_EARTHGRAVE:
 	case SO_DIAMONDDUST:
 	case SO_FIRE_INSIGNIA:
@@ -13242,10 +13260,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 		struct unit_data *ud = unit_bl2ud(src);
 
 		if( !ud ) break;
-
-		for (const auto itsu : ud->skillunits) {
+		if (ud == NULL) break;
+			for (const auto itsu : ud->skillunits) {
+				if (itsu == NULL) break;
 			skill_unit *su = itsu->unit;
-			std::shared_ptr<s_skill_unit_group> sg = itsu->unit->group;
+			std::shared_ptr<s_skill_unit_group> sg ;
+			 sg = itsu->unit->group;
 
 			if (itsu->skill_id == GN_DEMONIC_FIRE && distance_xy(x, y, su->bl.x, su->bl.y) < 4) {
 				switch (skill_lv) {
@@ -13732,6 +13752,12 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 	case WZ_QUAGMIRE:	//The target changes to "all" if used in a gvg map. [Skotlex]
 	case AM_DEMONSTRATION:
 		if (battle_config.vs_traps_bctall && (src->type&battle_config.vs_traps_bctall) && map_flag_vs(src->m))
+			target = BCT_ALL;
+		break;
+	case GN_HELLS_PLANT:
+		if (skill_id == GN_HELLS_PLANT && map_getcell(src->m, x, y, CELL_CHKLANDPROTECTOR))
+			return NULL;
+		if (battle_config.vs_traps_bctall && (src->type & battle_config.vs_traps_bctall) && map_flag_vs(src->m))
 			target = BCT_ALL;
 		break;
 	case HT_SKIDTRAP:
@@ -15119,6 +15145,14 @@ int skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t_t
 					sg->unit_id = UNT_USED_TRAPS;
 				}
 			}
+			break;
+		case UNT_HELLS_PLANT:
+			if ((tsc && tsc->data[SC__MANHOLE]) || status_isimmune(bl))
+				break;
+			if (battle_check_target(&unit->bl, bl, BCT_ENEMY) > 0)
+				skill_attack(skill_get_type(GN_HELLS_PLANT_ATK), ss, &unit->bl, bl, GN_HELLS_PLANT_ATK, sg->skill_lv, tick, SCSTART_NONE);
+			if (ss != bl) // The caster is the only one who can step on the Plants without destroying them
+				sg->limit = DIFF_TICK(tick, sg->tick) + 100;
 			break;
 		case UNT_THORNS_TRAP:
 			if( tsc ) {

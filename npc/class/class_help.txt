@@ -22,18 +22,22 @@ bio:
 				case 1:
 					atcommand "@makehomun 6013";
 					callsub	homUP;
+					atcommand "@homevolve "+strcharinfo(0);
 				break;
 				case 2:
 					atcommand "@makehomun 6014";
 					callsub	homUP;
+					atcommand "@homevolve "+strcharinfo(0);
 				break;
 				case 3:
 					atcommand "@makehomun 6015";
 				callsub	homUP;
+				atcommand "@homevolve "+strcharinfo(0);
 				break;
 				case 4:
 					atcommand "@makehomun 6016";
 					callsub	homUP;
+					atcommand "@homevolve "+strcharinfo(0);
 					break;
 				default:
 					break;		
@@ -78,7 +82,6 @@ homUP:
 
 					atcommand "@homlvl 99 "+strcharinfo(0);
 					atcommand "@homfriendly 1000 "+strcharinfo(0);
-					atcommand "@homevolve "+strcharinfo(0);
 					atcommand "@homfriendly 1000 "+strcharinfo(0);
 					atcommand "@homhungry 100 "+strcharinfo(0);
 					return;

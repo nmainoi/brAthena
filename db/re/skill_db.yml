@@ -13750,7 +13750,7 @@ Body:
     Cooldown: 150
     FixedCastTime: 1000
     Requires:
-      SpCost: 50
+      SpCost: 30
       ItemCost:
         - Item: Fire_Bottle
           Amount: 1
@@ -27861,7 +27861,7 @@ Body:
     Description: Wall of Thorns
     MaxLevel: 5
     Type: Weapon
-    TargetType: Attack
+    TargetType: Support
     DamageFlags:
       IgnoreAtkCard: true
     Flags:
@@ -28177,8 +28177,14 @@ Body:
     Name: GN_FIRE_EXPANSION_ACID
     Description: Fire Expansion Acid
     MaxLevel: 10
-    Type: Weapon
+    Type: Magic
     TargetType: Attack
+    DamageFlags:
+      IgnoreFlee: true
+      IgnoreDefense: true 
+    Flags:
+      IgnoreAutoGuard: true
+      IgnoreCicada: true    
     Range: 9
     Hit: Multi_Hit
     HitCount:
@@ -28277,10 +28283,13 @@ Body:
     TargetType: Attack
     DamageFlags:
       IgnoreElement: true
-    Skill:
-      Reproduce: true
+      IgnoreDefCard: true
+    Hit: Single
+    HitCount: 1
+    CopyFlags:
+      Skill:
+        Reproduce: true
     Duration1: 20000
-    FixedCastTime: -1
     Requires:
       SpCost: 1
   - Id: 2492

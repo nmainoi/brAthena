@@ -11,7 +11,7 @@ prontera,145,170,6	script	Top RK1	676,{
 		setunitdata getnpcid(0),UNPC_HEADTOP,0;
 		setunitdata getnpcid(0),UNPC_HEADMIDDLE,0;
 		setunitdata getnpcid(0),UNPC_HEADBOTTOM,0;
-		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4060 and `pvp_kill` > 0 or `pvp_death` > 0 ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
+		query_sql( "SELECT `name`,`hair`,`sex`,`hair_color`,`clothes_color`,`body`,`head_top`,`head_mid`,`head_bottom`,`robe` FROM `char` WHERE `class`=4060  ORDER BY `pvp_kill` - `pvp_death` DESC LIMIT 1",
 		 .@name$, .@hair,.@sex$, .@hair_color, .@clothes_color,.@body,.@head_top,.@head_mid,.@head_bottom,.@robe );
 		 		.@size = getarraysize( .@name$ );	
 				for ( .@i = 0; .@i < .@size; .@i++ ) {
