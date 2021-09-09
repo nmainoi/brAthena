@@ -138526,6 +138526,14 @@ Body:
       if (.@r>=11) {
          bonus2 bAddSize,Size_All,15;
       }
+  - Id: 41704
+    AegisName: Visual CloudRO
+    Name: Visual CloudRO
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 3579     
   - Id: 830003
     AegisName: Adulter_F_Gatling
     Name: Adulter Fides Gatling Gun
