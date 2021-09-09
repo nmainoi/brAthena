@@ -1481,14 +1481,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 		if (sc->data[SC_SOUNDOFDESTRUCTION])
 			damage <<= 1;
-		if (sc->data[SC_DARKCROW] && (flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT) {
-			int bonus = sc->data[SC_DARKCROW]->val2;
 
-			if (status_get_class_(bl) == CLASS_BOSS)
-				bonus /= 2;
-
-			damage += damage * bonus / 100;
-		}
 
 		// Damage reductions
 		// Assumptio increases DEF on RE mode, otherwise gives a reduction on the final damage. [Igniz]
@@ -1615,6 +1608,9 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			damage = i64max(damage, 1);
 		}
 
+		if (sc->data[SC_DARKCROW] && (flag & (BF_SHORT | BF_MAGIC)) == BF_SHORT)
+			damage += damage * sc->data[SC_DARKCROW]->val2 / 100;
+
 		if( (sce=sc->data[SC_MAGMA_FLOW]) && (rnd()%100 <= sce->val2) )
 			skill_castend_damage_id(bl,src,MH_MAGMA_FLOW,sce->val1,gettick(),0);
 
@@ -1731,11 +1727,10 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			status_change_end(src, SC_SHIELDSPELL_REF, INVALID_TIMER);
 		}
 
-		if (sc->data[SC_POISONINGWEAPON] && flag&BF_SHORT && (skill_id == 0 || skill_id == GC_VENOMPRESSURE) && damage > 0) {
-			damage += damage * 10 / 100;
-			if (rnd() % 100 < sc->data[SC_POISONINGWEAPON]->val3)
-				sc_start4(src, bl, (sc_type)sc->data[SC_POISONINGWEAPON]->val2, 100, sc->data[SC_POISONINGWEAPON]->val1, 0, 1, 0, skill_get_time2(GC_POISONINGWEAPON, 1));
-		}
+		if (sc->data[SC_POISONINGWEAPON]
+			&& ((flag & BF_WEAPON) && (!skill_id || skill_id == GC_VENOMPRESSURE)) //check skill type poison_smoke is a unit
+			&& (damage > 0 && rnd() % 100 < sc->data[SC_POISONINGWEAPON]->val3)) //did some damage and chance ok (why no additional effect ??)
+			sc_start2(src, bl, (enum sc_type)sc->data[SC_POISONINGWEAPON]->val2, 100, sc->data[SC_POISONINGWEAPON]->val1, sc->data[SC_POISONINGWEAPON]->val4, skill_get_time2(GC_POISONINGWEAPON, 1));
 
 		if( sc->data[SC__DEADLYINFECT] && (flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT && damage > 0 && rnd()%100 < 30 + 10 * sc->data[SC__DEADLYINFECT]->val1 )
 			status_change_spread(src, bl, 0);
@@ -2392,7 +2387,7 @@ static int battle_range_type(struct block_list *src, struct block_list *target, 
 #endif
 		case NJ_KIRIKAGE:
 			// Cast range mimics NJ_SHADOWJUMP but damage is considered melee
-		case GC_CROSSIMPACT:
+
 			// Cast range is 7 cells and player jumps to target but skill is considered melee
 			return BF_SHORT;
 	}
@@ -2749,11 +2744,12 @@ static int is_attack_piercing(struct Damage* wd, struct block_list *src, struct 
 		struct map_session_data *sd = BL_CAST(BL_PC, src);
 		struct status_data *tstatus = status_get_status_data(target);
 
-		if( skill_id != PA_SACRIFICE && skill_id != CR_GRANDCROSS && skill_id != NPC_GRANDDARKNESS && skill_id != PA_SHIELDCHAIN && skill_id != KO_HAPPOKUNAI
-#ifndef RENEWAL
-			&& !is_attack_critical(wd, src, target, skill_id, skill_lv, false)
-#endif
-		)
+
+		if (skill_id != PA_SACRIFICE && skill_id != CR_GRANDCROSS && skill_id != NPC_GRANDDARKNESS
+			&& skill_id != PA_SHIELDCHAIN && skill_id != KO_HAPPOKUNAI && skill_id != ASC_BREAKER) // Renewal: Soul Breaker no longer gains ice pick effect and ice pick effect gets crit benefit [helvetica]
+
+		if (skill_id != PA_SACRIFICE && skill_id != CR_GRANDCROSS && skill_id != NPC_GRANDDARKNESS
+			&& skill_id != PA_SHIELDCHAIN && skill_id != KO_HAPPOKUNAI && !is_attack_critical(wd, src, target, skill_id, skill_lv, false))
 		{ //Elemental/Racial adjustments
 			if( sd && (sd->right_weapon.def_ratio_atk_ele & (1<<tstatus->def_ele) || sd->right_weapon.def_ratio_atk_ele & (1<<ELE_ALL) ||
 				sd->right_weapon.def_ratio_atk_race & (1<<tstatus->race) || sd->right_weapon.def_ratio_atk_race & (1<<RC_ALL) ||
@@ -2929,10 +2925,7 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 				hitrate += 10 + 4 * skill_lv;
 				break;
 			case SC_FATALMENACE:
-				if (skill_lv < 6)
-					hitrate -= 35 - 5 * skill_lv;
-				else if (skill_lv > 6)
-					hitrate += 5 * skill_lv - 30;
+				hitrate -= 35 - 5 * skill_lv;
 				break;
 			case RL_SLUGSHOT:
 				{
@@ -2994,7 +2987,11 @@ static bool attack_ignores_def(struct Damage* wd, struct block_list *src, struct
 #endif
 	if (sc && sc->data[SC_FUSION])
 		return true;
+#ifdef RENEWAL
+	else if (skill_id != CR_GRANDCROSS && skill_id != NPC_GRANDDARKNESS && skill_id != ASC_BREAKER) // Renewal: Soul Breaker no longer gains ignore DEF from weapon [helvetica]
+#else
 	else if (skill_id != CR_GRANDCROSS && skill_id != NPC_GRANDDARKNESS)
+#endif
 	{	//Ignore Defense?
 		if (sd && (sd->right_weapon.ignore_def_ele & (1<<tstatus->def_ele) || sd->right_weapon.ignore_def_ele & (1<<ELE_ALL) ||
 			sd->right_weapon.ignore_def_race & (1<<tstatus->race) || sd->right_weapon.ignore_def_race & (1<<RC_ALL) ||
@@ -3698,11 +3695,9 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			if (sc && sc->data[SC_KAGEMUSYA])
 				max_rate = sc->data[SC_KAGEMUSYA]->val1 * 10; // Same rate as even levels of TF_DOUBLE
 			else
-#ifdef RENEWAL
-				max_rate = max(7 * skill_lv, sd->bonus.double_rate);
-#else
+
 				max_rate = max(5 * skill_lv, sd->bonus.double_rate);
-#endif
+
 
 			if( rnd()%100 < max_rate ) {
 				wd->div_ = skill_get_num(TF_DOUBLE,skill_lv?skill_lv:1);
@@ -3745,10 +3740,6 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 		if (tsc && (tsc->data[SC_BITE] || tsc->data[SC_ANKLE] || tsc->data[SC_ELECTRICSHOCKER]))
 			wd->div_ = tstatus->size + 2 + ((rnd() % 100 < 50 - tstatus->size * 10) ? 1 : 0);
 		break;
-		case SC_FATALMENACE:
-			if (sd && sd->weapontype1 == W_DAGGER)
-				wd->div_++;
-			break;
 		case RL_QD_SHOT:
 			wd->div_ = 1 + (sd ? sd->status.job_level : 1) / 20 + (tsc && tsc->data[SC_C_MARKER] ? 2 : 0);
 			break;
@@ -4137,13 +4128,10 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				skillratio += 20 * pc_checkskill(sd,AS_POISONREACT);
 			break;
 		case ASC_BREAKER:
-#ifdef RENEWAL
-			skillratio += -100 + 150 * skill_lv + sstatus->str + sstatus->int_; // !TODO: Confirm stat modifier
-			RE_LVL_DMOD(100);
-#else
+
 			// Pre-Renewal: skill ratio for weapon part of damage [helvetica]
 			skillratio += -100 + 100 * skill_lv;
-#endif
+
 			break;
 		case PA_SACRIFICE:
 			skillratio += -10 + 10 * skill_lv;
@@ -4367,8 +4355,8 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 		// case NPC_PHANTOMTHRUST:	// ATK = 100% for all level
 		case GC_CROSSIMPACT:
-			skillratio += -100 + 1400 + 150 * skill_lv;
-			RE_LVL_DMOD(100);
+			skillratio += 1000 + 100 * skill_lv;
+			RE_LVL_DMOD(120);
 			break;
 		case GC_COUNTERSLASH:
 			//ATK [{(Skill Level x 150) + 300} x Caster's Base Level / 120]% + ATK [(AGI x 2) + (Caster's Job Level x 4)]%
@@ -4382,14 +4370,14 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 200;
 			break;
 		case GC_ROLLINGCUTTER:
-			skillratio += -100 + 50 + 80 * skill_lv;
+			skillratio += 50 + 50 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
 		case GC_CROSSRIPPERSLASHER:
-			skillratio += -100 + 80 * skill_lv + (sstatus->agi * 3);
+			skillratio += 300 + 80 * skill_lv;
 			RE_LVL_DMOD(100);
 			if (sc && sc->data[SC_ROLLINGCUTTER])
-				skillratio += sc->data[SC_ROLLINGCUTTER]->val1 * 200;
+				skillratio += sc->data[SC_ROLLINGCUTTER]->val1 * status_get_agi(src);
 			break;
 		case GC_DARKCROW:
 			skillratio += 100 * (skill_lv - 1);
@@ -4471,15 +4459,15 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			RE_LVL_DMOD(100);
 			break;
 		case SC_FATALMENACE:
-			skillratio += 120 * skill_lv + sstatus->agi / 6; // !TODO: What's the AGI bonus?
+			skillratio += 100 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
 		case SC_TRIANGLESHOT:
-			skillratio += -100 + 230 * skill_lv + 3 * sstatus->agi;
-			RE_LVL_DMOD(100);
+			skillratio += 200 + (skill_lv - 1) * status_get_agi(src) / 2;
+			RE_LVL_DMOD(120);
 			break;
 		case SC_FEINTBOMB:
-			skillratio += -100 + (skill_lv + 1) * sstatus->dex / 2 * ((sd) ? sd->status.job_level / 10 : 1);
+			skillratio += -100 + (skill_lv + 1) * status_get_dex(src) / 2 * ((sd) ? sd->status.job_level / 10 : 1);
 			RE_LVL_DMOD(120);
 			break;
 		case LG_CANNONSPEAR:
@@ -5160,10 +5148,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 			ATK_ADDRATE(wd->damage, wd->damage2, sc->data[SC_EXEEDBREAK]->val2);
 			RE_ALLATK_ADDRATE(wd, sc->data[SC_EXEEDBREAK]->val2);
 		}
-		if (sc->data[SC_PYREXIA] && sc->data[SC_PYREXIA]->val3 == 0) {
-			ATK_ADDRATE(wd->damage, wd->damage2, sc->data[SC_PYREXIA]->val2);
-			RE_ALLATK_ADDRATE(wd, sc->data[SC_PYREXIA]->val2);
-		}
+
 
 		if (sc->data[SC_MIRACLE])
 			anger_id = 2; // Always treat all monsters as star flagged monster when in miracle state
@@ -6932,6 +6917,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			}
 		}
 #ifdef RENEWAL
+
 		ad.damage += battle_calc_cardfix(BF_MAGIC, src, target, nk, s_ele, 0, ad.damage, 0, ad.flag);
 #endif
 
@@ -7022,7 +7008,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			}
 		}
 
-		if (!nk[NK_IGNOREELEMENT])
+		if (!nk[NK_IGNOREELEMENT] && skill_id != ASC_BREAKER) // Soul Breaker's magic portion is non-elemental. [Secret]
 			ad.damage = battle_attr_fix(src, target, ad.damage, s_ele, tstatus->def_ele, tstatus->ele_lv);
 
 		//Apply the physical part of the skill's damage. [Skotlex]
@@ -7201,11 +7187,26 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case NPC_EVILLAND:
 			md.damage = skill_calc_heal(src,target,skill_id,skill_lv,false);
 			break;
-#ifndef RENEWAL
 		case ASC_BREAKER:
-			md.damage = 500 + rnd()%500 + 5 * skill_lv * sstatus->int_;
-			nk.set(NK_IGNOREFLEE);
-			nk.set(NK_IGNOREELEMENT); //These two are not properties of the weapon based part.
+		{
+			short totaldef, totalmdef;
+			struct Damage atk, matk;
+
+			atk = battle_calc_weapon_attack(src, target, skill_id, skill_lv, 0);
+			nk.set(NK_IGNOREELEMENT); // atk part takes on weapon element, matk part is non-elemental
+			matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, 0);
+
+			// (atk + matk) * (3 + (.5 * skill level))
+			md.damage = ((30 + (5 * skill_lv)) * (atk.damage + matk.damage)) / 10;
+
+			// modified def reduction, final damage = base damage - (edef + sdef + emdef + smdef)
+			totaldef = tstatus->def2 + (short)status_get_def(target);
+			totalmdef = tstatus->mdef + tstatus->mdef2;
+			md.damage -= totaldef + totalmdef;
+		}
+		break;
+#ifndef RENEWAL
+OREELEMENT); //These two are not properties of the weapon based part.
 			break;
 		case HW_GRAVITATION:
 			md.damage = 200 + 200 * skill_lv;

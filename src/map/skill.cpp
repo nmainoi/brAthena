@@ -859,6 +859,7 @@ bool skill_isNotOk(uint16 skill_id, struct map_session_data *sd)
 			}
 			return false;
 		case AL_TELEPORT:
+		case SC_FATALMENACE:
 		case SC_DIMENSIONDOOR:
 		case ALL_ODINS_RECALL:
 		case WE_CALLALLFAMILY:
@@ -2893,8 +2894,9 @@ short skill_blown(struct block_list* src, struct block_list* target, char count,
 	if (tsc) {
 		if (tsc->data[SC_SU_STOOP]) // Any knockback will cancel it.
 			status_change_end(target, SC_SU_STOOP, INVALID_TIMER);
-		if (tsc->data[SC_ROLLINGCUTTER])
-			status_change_end(target, SC_ROLLINGCUTTER, INVALID_TIMER);
+		if (tsc->data[SC_ROLLINGCUTTER]) {
+			// faz nada
+		}
 		if (tsc->data[SC_SV_ROOTTWIST]) // Shouldn't move.
 			return 0;
 	}
@@ -3789,6 +3791,13 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 			rate = rate + (status_get_lv(src) - status_get_lv(bl));
 			if(rnd()%100 < rate)
 				skill_addtimerskill(src,tick + 800,bl->id,0,0,skill_id,skill_lv,0,flag);
+
+		}
+		else if (skill_id == SC_FATALMENACE) {
+			int16 x = skill_area_temp[4], y = skill_area_temp[5];
+
+			map_search_freecell(NULL, bl->m, &x, &y, 2, 2, 1);
+			skill_addtimerskill(bl, tick + 800, bl->id, x, y, skill_id, skill_lv, 0, flag);
 		}
 	}
 
@@ -4212,7 +4221,7 @@ static TIMER_FUNC(skill_timerskill){
 			break; // Source not on Map
 		if(skl->target_id) {
 			target = map_id2bl(skl->target_id);
-			if( ( skl->skill_id == RG_INTIMIDATE ) && (!target || target->prev == NULL || !check_distance_bl(src,target,AREA_SIZE)) )
+			if( ( skl->skill_id == RG_INTIMIDATE || skl->skill_id == SC_FATALMENACE) && (!target || target->prev == NULL || !check_distance_bl(src,target,AREA_SIZE)) )
 				target = src; //Required since it has to warp.
 
 			if (skl->skill_id == SR_SKYNETBLOW) {
@@ -4364,6 +4373,9 @@ static TIMER_FUNC(skill_timerskill){
 				case WM_REVERBERATION_MELEE:
 				case WM_REVERBERATION_MAGIC:
 					skill_castend_damage_id(src,target,skl->skill_id,skl->skill_lv,tick,skl->flag|SD_LEVEL|SD_ANIMATION);
+					break;
+				case SC_FATALMENACE:
+					unit_warp(src, -1, skl->x, skl->y, CLR_TELEPORT);
 					break;
 				case LG_MOONSLASHER:
 				case SR_WINDMILL:
@@ -4840,7 +4852,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case GS_FULLBUSTER:
 	case NJ_SYURIKEN:
 	case NJ_KUNAI:
-	case ASC_BREAKER:
 	case HFLI_MOON:	//[orn]
 	case HFLI_SBR44:	//[orn]
 	case NPC_BLEEDING:
@@ -4857,6 +4868,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case LG_OVERBRAND_BRANDISH:
 	case NC_MAGMA_ERUPTION:
 	case GC_WEAPONCRUSH:
+	case GC_CROSSIMPACT:
 	case GC_VENOMPRESSURE:
 	case SC_TRIANGLESHOT:
 	case SC_FEINTBOMB:
@@ -5573,6 +5585,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case NPC_SMOKING:
 	case GS_FLING:
 	case NJ_ZENYNAGE:
+	case ASC_BREAKER:
 	case GN_THORNS_TRAP:
 	case GN_HELLS_PLANT_ATK:
 	case RL_B_TRAP:
@@ -5728,17 +5741,10 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		else
 		{
 			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
+			status_change_end(src, SC_ROLLINGCUTTER, INVALID_TIMER);
 		}
 		break;
-	case GC_CROSSIMPACT:
-		if (skill_check_unit_movepos(0, src, bl->x, bl->y, 1, 1)) {
-			skill_blown(src, src, 1, (map_calc_dir(bl, src->x, src->y) + 4) % 8, BLOWN_IGNORE_NO_KNOCKBACK); // Target position is actually one cell next to the target
-			skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
-		} else {
-			if (sd)
-				clif_skill_fail(sd, skill_id, USESKILL_FAIL, 0);
-		}
-		break;
+
 
 	case GC_PHANTOMMENACE:
 		if (flag&1) { // Only Hits Invisible Targets
@@ -6143,11 +6149,18 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		}
 		break;
 	case SC_FATALMENACE:
-		if( flag&1 )
-			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
-		else {
-			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), splash_target(src), src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
-			clif_skill_damage(src,src,tick,status_get_amotion(src),0,-30000,1,skill_id,skill_lv,DMG_SINGLE);
+		if (flag & 1)
+			skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+		else
+		{
+			short x, y;
+			map_search_freecell(src, 0, &x, &y, -1, -1, 0);
+			// Destination area
+			skill_area_temp[4] = x;
+			skill_area_temp[5] = y;
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), splash_target(src), src, skill_id, skill_lv, tick, flag | BCT_ENEMY | 1, skill_castend_damage_id);
+			skill_addtimerskill(src, tick + 800, src->id, x, y, skill_id, skill_lv, 0, flag); // To teleport Self
+			clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skill_id, skill_lv, DMG_SKILL);
 		}
 		break;
 	case LG_PINPOINTATTACK:
@@ -17976,6 +17989,8 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
 			if (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 3 && skill_get_type(skill_id) == BF_MAGIC && skill_get_ele(skill_id, skill_lv) == ELE_WIND)
 				time /= 2; // After Delay of Wind element spells reduced by 50%.
+							if (sc->data[SC_MAGICMUSHROOM] && sc->data[SC_MAGICMUSHROOM]->val3 == 0)
+				time -= time * sc->data[SC_MAGICMUSHROOM]->val2 / 100;
 		}
 	}
 
@@ -21016,6 +21031,7 @@ bool skill_arrow_create(struct map_session_data *sd, t_itemid nameid)
  */
 int skill_poisoningweapon(struct map_session_data *sd, t_itemid nameid)
 {
+
 	nullpo_ret(sd);
 
 	if( !nameid || pc_delitem(sd,pc_search_inventory(sd,nameid),1,0,0,LOG_TYPE_CONSUME) ) {

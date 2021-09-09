@@ -1,0 +1,207 @@
+Index: doc/script_commands.txt
+===================================================================
+--- doc/script_commands.txt	(revision 31505)
++++ doc/script_commands.txt	(working copy)
+@@ -10014,3 +10014,39 @@
+ - Excludes ACHIEVEINFO_LEVEL and ACHIEVEINFO_SCORE.
+ 
+ ---------------------------------------
++
++*gethotkeys({<char_id>});
++
++Gets all the target's current hotkeys. If <char_id> is not specified,
++will attach to the current player.
++Sets the following arrays:
++	@hotkey_type	- Type of data in hotkey, 0 for items and 1 for skills
++	@hotkey_id		- ID of the skill/item
++	@hotkey_lv		- Skill Level/Item Amount
++	@hotkey_pos		- Hotkey position
++
++@hotkey_count - Returns the max hotkey count.
++
++---------------------------------------
++
++*updatehotkey(<type>,<id>,<lv>,<pos>{,<flag>,<char_id>});
++
++Updates a player's hotkey.
++<type>	- 0 for item, 1 for skill
++<id>	- Skill Name/Skill ID/Item ID(will only store skills/items you have)
++<lv>	- Skill Level/Item Amount(will always store item amount player is holding)
++<pos>	- Position of the Hotkey(0 is the first hotkey)
++<flag>	- (Optional)
++			0 = Default
++			1 = Delete duplicate on the same row
++			2 = Delete duplicate on all rows
++<char_id> - (Optional)Target's Character ID. If not specified, will attach to the current player
++
++---------------------------------------
++
++*clearhotkeys({<char_id>});
++
++Clears the target's hotkeys. If <char_id> is not specified,
++will attach to the current player.
++
++---------------------------------------
+Index: src/custom/script.inc
+===================================================================
+--- src/custom/script.inc	(revision 31505)
++++ src/custom/script.inc	(working copy)
+@@ -17,3 +17,145 @@
+ //	script_pushint(st,1);
+ //	return 0;
+ //}
++BUILDIN_FUNC(gethotkeys)
++{
++	TBL_PC *sd;
++	TBL_PC *tsd;
++	int i;
++
++	if( !script_rid2sd(sd) )
++		return SCRIPT_CMD_FAILURE;
++
++	if (!script_charid2sd(2,tsd))
++		return SCRIPT_CMD_FAILURE;
++
++	for(i=0;i<MAX_HOTKEYS;i++){
++		pc_setreg(sd,reference_uid(add_str("@hotkey_type"), i),tsd->status.hotkeys[i].type);
++		pc_setreg(sd,reference_uid(add_str("@hotkey_id"), i),tsd->status.hotkeys[i].id);
++		pc_setreg(sd,reference_uid(add_str("@hotkey_lv"), i),tsd->status.hotkeys[i].lv);
++		pc_setreg(sd,reference_uid(add_str("@hotkey_pos"), i),i);
++	}
++	pc_setreg(sd,add_str("@hotkey_count"),i);
++
++	return SCRIPT_CMD_SUCCESS;
++}
++
++BUILDIN_FUNC(updatehotkey)
++{
++	TBL_PC *sd;
++	int type,id,lv,pos,j, flag = 0;
++	short i;
++	struct script_data *data;
++
++	if (!script_charid2sd(7,sd))
++		return SCRIPT_CMD_FAILURE;
++
++	type = script_getnum(st,2);
++	if(type < 0 || type > 1){
++		clif_displaymessage(sd->fd, "Update Hotkey failed. Invalid type.");
++		return SCRIPT_CMD_FAILURE;
++	}
++	data = script_getdata(st, 3);
++	get_val(st, data); // Convert into value in case of a variable
++	id = ( data_isstring(data) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3) );
++	lv = script_getnum(st,4);
++	pos = script_getnum(st,5);
++	if(pos < 0 || pos >= MAX_HOTKEYS){
++		clif_displaymessage(sd->fd, "Update Hotkey failed. Invalid hotkey position.");
++		return SCRIPT_CMD_FAILURE;
++	}
++	if( script_hasdata(st,6) )
++		flag = script_getnum(st,6);
++
++	if(type == 0 && id > 0){ // item
++		ARR_FIND(0, MAX_INVENTORY, i, sd->inventory.u.items_inventory[i].nameid == id);
++		if(i<MAX_INVENTORY){
++			if(sd->inventory.u.items_inventory[i].amount != lv)
++				lv = sd->inventory.u.items_inventory[i].amount;
++		} else
++			lv = 0;
++	} else if(type == 1 && id > 0){ // skill
++		j = pc_checkskill(sd,id);
++		if(j < lv)
++			lv = j;
++	}
++
++	if(flag == 1){ // Delete duplicate on same row
++		i = 0;
++		if(pos >= 0 && pos <= 8){
++			ARR_FIND(0, 9, i, sd->status.hotkeys[i].type == type && sd->status.hotkeys[i].id == id && sd->status.hotkeys[i].lv == lv);
++			if(i < 9){
++				sd->status.hotkeys[i].type = 0;
++				sd->status.hotkeys[i].id = 0;
++				sd->status.hotkeys[i].lv = 0;
++			}
++		} else if(pos >= 9 && pos <= 17){
++			ARR_FIND(9, 18, i, sd->status.hotkeys[i].type == type && sd->status.hotkeys[i].id == id && sd->status.hotkeys[i].lv == lv);
++			if(i < 18){
++				sd->status.hotkeys[i].type = 0;
++				sd->status.hotkeys[i].id = 0;
++				sd->status.hotkeys[i].lv = 0;
++			}
++		} else if(pos >= 18 && pos <= 26){
++			ARR_FIND(18, 27, i, sd->status.hotkeys[i].type == type && sd->status.hotkeys[i].id == id && sd->status.hotkeys[i].lv == lv);
++			if(i < 27){
++				sd->status.hotkeys[i].type = 0;
++				sd->status.hotkeys[i].id = 0;
++				sd->status.hotkeys[i].lv = 0;
++			}
++		}
++#if PACKETVER >= 20090603
++		else if(pos >= 27 && pos <= 35){
++			ARR_FIND(27, 36, i, sd->status.hotkeys[i].type == type && sd->status.hotkeys[i].id == id && sd->status.hotkeys[i].lv == lv);
++			if(i < 36){
++				sd->status.hotkeys[i].type = 0;
++				sd->status.hotkeys[i].id = 0;
++				sd->status.hotkeys[i].lv = 0;
++			}
++		}
++#endif
++#if PACKETVER >= 20090617
++		else if(pos >= 36 && pos < MAX_HOTKEYS){
++			ARR_FIND(36, MAX_HOTKEYS, i, sd->status.hotkeys[i].type == type && sd->status.hotkeys[i].id == id && sd->status.hotkeys[i].lv == lv);
++			if(i < MAX_HOTKEYS){
++				sd->status.hotkeys[i].type = 0;
++				sd->status.hotkeys[i].id = 0;
++				sd->status.hotkeys[i].lv = 0;
++			}
++		}
++#endif
++	} else if(flag == 2){ // Delete duplicate on all rows
++		for(i = 0; i < MAX_HOTKEYS; i++){
++			if(sd->status.hotkeys[i].type == type && sd->status.hotkeys[i].id == id && sd->status.hotkeys[i].lv == lv){
++				sd->status.hotkeys[i].type = 0;
++				sd->status.hotkeys[i].id = 0;
++				sd->status.hotkeys[i].lv = 0;
++			}
++		}
++	}
++
++	sd->status.hotkeys[pos].type = type;
++	sd->status.hotkeys[pos].id = id;
++	sd->status.hotkeys[pos].lv = lv;
++
++	clif_hotkeys_send(sd);
++
++	return SCRIPT_CMD_SUCCESS;
++}
++
++BUILDIN_FUNC(clearhotkeys)
++{
++	TBL_PC *sd;
++	int i;
++
++	if (!script_charid2sd(2,sd))
++		return SCRIPT_CMD_FAILURE;
++
++	for(i=0;i<MAX_HOTKEYS;i++){
++		sd->status.hotkeys[i].type = 0;
++		sd->status.hotkeys[i].id = 0;
++		sd->status.hotkeys[i].lv = 0;
++	}
++	clif_hotkeys_send(sd);
++	return SCRIPT_CMD_SUCCESS;
++}
+\ No newline at end of file
+Index: src/custom/script_def.inc
+===================================================================
+--- src/custom/script_def.inc	(revision 31505)
++++ src/custom/script_def.inc	(working copy)
+@@ -9,3 +9,6 @@
+  **/
+ 
+ //BUILDIN_DEF(example,""),
++BUILDIN_DEF(gethotkeys,"?"),
++BUILDIN_DEF(updatehotkey,"ivii??"),
++BUILDIN_DEF(clearhotkeys,"?"),
+\ No newline at end of file

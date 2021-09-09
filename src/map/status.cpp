@@ -1841,7 +1841,7 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_DEATHHURT] |= SCB_REGEN;
 	StatusChangeFlagTable[SC_VENOMBLEED] |= SCB_MAXHP;
 	StatusChangeFlagTable[SC_MAGICMUSHROOM] |= SCB_REGEN;
-	StatusChangeFlagTable[SC_PYREXIA] |= SCB_ALL;
+	StatusChangeFlagTable[SC_PYREXIA] |= SCB_HIT | SCB_FLEE;
 	StatusChangeFlagTable[SC_OBLIVIONCURSE] |= SCB_REGEN;
 	StatusChangeFlagTable[SC_BANDING_DEFENCE] |= SCB_SPEED;
 	//StatusChangeFlagTable[SC_SHIELDSPELL_ATK] |= SCB_WATK|SCB_MATK;
@@ -2091,7 +2091,7 @@ void initChangeTables(void)
 #endif
 	StatusChangeStateTable[SC__BLOODYLUST]			|= SCS_NOCAST;
 	StatusChangeStateTable[SC_DEATHBOUND]			|= SCS_NOCAST;
-	StatusChangeStateTable[SC_OBLIVIONCURSE]		|= SCS_NOCAST|SCS_NOCASTCOND;
+	StatusChangeStateTable[SC_OBLIVIONCURSE]		|= SCS_NOCAST;
 	StatusChangeStateTable[SC_WHITEIMPRISON]		|= SCS_NOCAST;
 	StatusChangeStateTable[SC__SHADOWFORM]			|= SCS_NOCAST;
 	StatusChangeStateTable[SC__INVISIBILITY]		|= SCS_NOCAST;
@@ -3809,7 +3809,7 @@ static int status_get_hpbonus(struct block_list *bl, enum e_status_bonus type) {
 				bonus += sc->data[SC_MTF_MHP]->val1;
 
 			//Decreasing
-			if (sc->data[SC_VENOMBLEED] && sc->data[SC_VENOMBLEED]->val3 == 1)
+			if (sc->data[SC_VENOMBLEED])
 				bonus -= 15;
 			if(sc->data[SC_BEYONDOFWARCRY])
 				bonus -= sc->data[SC_BEYONDOFWARCRY]->val3;
@@ -5062,8 +5062,7 @@ int status_calc_pc_sub(struct map_session_data* sd, enum e_status_calc_opt opt)
 			sd->indexed_bonus.subele[ELE_GHOST] += sc->data[SC_SYMPHONYOFLOVER]->val1 * 3;
 			sd->indexed_bonus.subele[ELE_HOLY] += sc->data[SC_SYMPHONYOFLOVER]->val1 * 3;
 		}
-		if (sc->data[SC_PYREXIA] && sc->data[SC_PYREXIA]->val3 == 0)
-			sd->bonus.crit_atk_rate += sc->data[SC_PYREXIA]->val2;
+
 		//if (sc->data[SC_LUXANIMA]) {
 		//	pc_bonus2(sd, SP_ADDSIZE, SZ_ALL, sc->data[SC_LUXANIMA]->val3);
 		//	sd->bonus.crit_atk_rate += sc->data[SC_LUXANIMA]->val3;
@@ -9622,7 +9621,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	}
 
 	// Adjust tick according to status resistances
-	if( !(flag&(SCSTART_NOAVOID|SCSTART_LOADED)) ) {
+	if( !(flag&(SCSTART_NOAVOID|SCSTART_LOADED)) && type != SC_MAGICMUSHROOM) {
 		duration = status_get_sc_def(src, bl, type, rate, duration, flag);
 		if( !duration )
 			return 0;
@@ -9946,14 +9945,11 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	case SC_PYREXIA:
 	case SC_OBLIVIONCURSE:
 	case SC_LEECHESEND:
-		if (val3 == 0) // Don't display icon on self
-			flag |= SCSTART_NOICON;
-		for (int32 i = SC_TOXIN; i <= SC_LEECHESEND; i++) {
-			if (sc->data[i] && sc->data[i]->val3 == 1) // It doesn't stack or even renew on the target
-				return 0;
-			else if (sc->data[i] && sc->data[i]->val3 == 0)
-				status_change_end(bl, static_cast<sc_type>(i), INVALID_TIMER); // End the bonus part on the caster
-		}
+	{ // It doesn't stack or even renew
+		int i = SC_TOXIN;
+		for (; i <= SC_LEECHESEND; i++)
+			if (sc->data[i])	return 0;
+	}
 		break;
 	case SC_SATURDAYNIGHTFEVER:
 		if (sc->data[SC_BERSERK] || sc->data[SC_INSPIRATION])
@@ -11017,7 +11013,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				tick_time = status_get_sc_interval(type);
 				val4 = tick - tick_time; // Remaining time
 			} else // Caster
-				val2 = 10; // After-cast delay % reduction
+				tick_time = status_get_sc_interval(type);
+				val4 = tick - tick_time; // Remaining time
 			break;
 
 		case SC_CONFUSION:

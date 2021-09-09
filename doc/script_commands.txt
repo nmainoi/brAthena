@@ -10651,3 +10651,39 @@ See 'achievementinfo' for valid <type> values.
 - Excludes ACHIEVEINFO_LEVEL and ACHIEVEINFO_SCORE.
 
 ---------------------------------------
+
+*gethotkeys({<char_id>});
+
+Gets all the target's current hotkeys. If <char_id> is not specified,
+will attach to the current player.
+Sets the following arrays:
+	@hotkey_type	- Type of data in hotkey, 0 for items and 1 for skills
+	@hotkey_id		- ID of the skill/item
+	@hotkey_lv		- Skill Level/Item Amount
+	@hotkey_pos		- Hotkey position
+
+@hotkey_count - Returns the max hotkey count.
+
+---------------------------------------
+
+*updatehotkey(<type>,<id>,<lv>,<pos>{,<flag>,<char_id>});
+
+Updates a player's hotkey.
+<type>	- 0 for item, 1 for skill
+<id>	- Skill Name/Skill ID/Item ID(will only store skills/items you have)
+<lv>	- Skill Level/Item Amount(will always store item amount player is holding)
+<pos>	- Position of the Hotkey(0 is the first hotkey)
+<flag>	- (Optional)
+			0 = Default
+			1 = Delete duplicate on the same row
+			2 = Delete duplicate on all rows
+<char_id> - (Optional)Target's Character ID. If not specified, will attach to the current player
+
+---------------------------------------
+
+*clearhotkeys({<char_id>});
+
+Clears the target's hotkeys. If <char_id> is not specified,
+will attach to the current player.
+
+---------------------------------------

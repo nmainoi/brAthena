@@ -12151,11 +12151,13 @@ Body:
   - Id: 12723
     AegisName: Poison_Laughing
     Name: Magic Mushroom
-    Type: Usable
+    Type: Healing
     Buy: 2
     Weight: 0 # 20
     Flags:
       BuyingStore: true
+    Script: |
+      sc_start SC_MAGICMUSHROOM,3600000,0,10,0;
   - Id: 12724
     AegisName: Poison_Fatigue
     Name: Venom Bleed
