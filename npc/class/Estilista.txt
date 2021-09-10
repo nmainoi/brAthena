@@ -1,0 +1,231 @@
+// +-------------------------------------------+
+prontera,145,195,5	script	Estilista	625,{
+OnAtNPC1:
+
+		setarray  .@max[1],553,259,29;		// Number of cloths, haircolors, hairstyles in client
+		setarray  .@blacklist[1],5,500; // NPC will skip any cloth colors in this array.
+		setarray  .@blacklist_hc[0],99; // Hair Color Blacklist
+		setarray  .@blacklist_hs[0],99; // Hair Style Blacklist
+		if ( getlook(LOOK_BODY2) ) {
+			setarray  .@max[1],533,259,29;
+			}
+// Use for palettes that cause errors or just plain look bad.
+// Leave first value at 0 to disable.
+	setarray .@type[1],7,6,1; // DO NOT EDIT
+	set .@style,1;
+	message strcharinfo(0) , .@name$;
+	next;
+	set .@s,select("Cor da roupa",
+	"Cor do cabelo",
+	"Corte de cabelo");
+	message strcharinfo(0) , .@name$;
+	message strcharinfo(0) , "Qual voce gostaria de alterar?";
+	next;
+	menu "Comecar do inicio",L_start,
+	"Escolha onde comecar",-;
+// CHOOSE WHERE TO START =====================================================
+	message strcharinfo(0) , .@name$;
+	message strcharinfo(0) , "ta bom, escolha entre e " +.@max[.@s]+ ".";
+	next;
+	input .@style;
+
+	if (.@style < 0 || .@style > .@max[.@s] ) {
+	message strcharinfo(0) , .@name$;
+	message strcharinfo(0) , "Estilo nao disponivel.";
+	close;
+	}
+	L_start:	
+	setarray @revert[1],getlook(.@type[.@s]),0,0;
+	message strcharinfo(0) ,.@name$;
+		message strcharinfo(0) ,"Ta bom comecando pelo estilo " +.@style+ "^.";
+	next;
+// BEGINNING OF STYLE MENU LOOP ================================================
+	L_menuloop:
+	setlook .@type[.@s],.@style;
+	message strcharinfo(0) , "Esse e o estilo numero " +.@style+ ".";
+	set .@next, .@style + 1;
+	set .@prev, .@style - 1;
+// MAXIMUM MENU
+	if (.@style == .@max[.@s]) {
+	set .@next,1;
+//	message strcharinfo(0),"Limite atingido";
+	}
+// MINIMUM MENU ==============================================================
+	if (.@style == 1) {
+	set .@prev,.@max[.@s];
+//	message strcharinfo(0),"Valor minimo atingido";
+	}
+// PREVIOUS MENU =============================================================
+	if (.@previous) {
+	menu "^FF0000Anterior- " +.@prev+ "^000000",L_prev,
+	"^0000FFNext - " +.@next+ "^000000",L_next,
+	"Va para",L_jump,
+	"Salvar",L_save,
+	"Carregar",L_load;
+	}
+// DEFAULT MENU ==============================================================
+	menu "^0000FFProximo - " +.@next+ "^000000",L_next,
+	"^FF0000Anterior - " +.@prev+ "^000000",L_prev,
+	"Va para",L_jump,
+		"Salvar",L_save,
+	"Carregar",L_load;
+	L_next:
+	set .@previous,0;
+	set .@style, .@next;
+	goto L_menuloop;
+	L_prev:
+	set .@previous,1;
+	set .@style, .@prev;
+	goto L_menuloop;
+	L_jump:
+	next;
+	message strcharinfo(0) , .@name$;
+	message strcharinfo(0) , "Escolha qual estilo deseja";
+	next;
+	input .@style;
+	if (.@style < 0 || .@style > .@max[.@s] ) {
+	message strcharinfo(0) , .@name$;
+	message strcharinfo(0) , "Estilo nao disponivel.";
+		close;
+	}
+	goto L_menuloop;
+	L_save:
+	next;
+	message strcharinfo(0) , .@name$;
+	message strcharinfo(0) , "escolha qual slot voce gostaria de salvar";
+	set .@x, select("Slot 1 - [" +@revert[1]+ "]",
+	"Slot 2 - [" +@revert[2]+ "]",
+	"Slot 3 - [" +@revert[3]+ "]");
+	setarray @revert[.@x], .@style;
+	goto L_menuloop;
+	L_load:
+	next;
+	message strcharinfo(0) , .@name$;
+	message strcharinfo(0) , "Escolha qual slot voce gostaria de carregar";
+	set .@x, select("Slot 1 - [" +@revert[1]+ "]",
+	"Slot 2 - [" +@revert[2]+ "]",
+	"Slot 3 - [" +@revert[3]+ "]");
+	set .@style, @revert[.@x];
+	goto L_menuloop;
+	end;
+	OnInit:
+	// NPC Mode (Bitmask)
+	//	1 - Enable Hairstyle
+	//	2 - Enable Hair Color
+	//	4 - Enable Cloth Color
+	waitingroom "Estilista",0;
+	bindatcmd "estilista",strnpcinfo(3)+"::OnAtNPC1";
+	set .allowed,0; 
+	end;
+	}
+
+
+-	script	OptCmd	-1,{
+
+	OnAtNPC1:
+
+function RestrictClass;
+function HasjROCostume;
+function ChangeAppr;
+function RestrictClass {
+	.@eaj = eaclass();
+	if(.@eaj&EAJ_BASEMASK == EAJ_NOVICE) return 0;
+	if(.@eaj&EAJL_2 && roclass(.@eaj|EAJL_UPPER) != -1){
+		return 1;
+	}
+	return 0;
+}
+
+function HasjROCostume {
+	switch(roclass(eaclass()&EAJ_UPPERMASK|EAJL_THIRD)) {
+		case Job_Guillotine_Cross:
+		case Job_Genetic:
+		case Job_Royal_Guard:
+		case Job_Arch_Bishop:
+		case Job_Mechanic:
+		case Job_Ranger:
+		case Job_Minstrel:
+		case Job_Wanderer:
+		case Job_Warlock:
+		case Job_Sorcerer:
+		case Job_Sura:
+		case Job_Rune_Knight:
+		case Job_Shadow_Chaser:
+			return 1;
+		default:
+			return 0;
+	}
+}
+
+function ChangeAppr {
+
+	switch(getarg(1)){
+		case 0: // Normal Mode
+			setlook LOOK_BODY2,0;
+			changebase getarg(0);
+			set baselook, getarg(0);
+			break;
+		case 1: // jRO Mode
+			if(!HasjROCostume()) return;
+			changebase roclass(eaclass()|EAJL_THIRD);
+			//setlook LOOK_CLOTHES_COLOR,0;
+			setlook LOOK_BODY2,!(getlook(LOOK_BODY2));
+			//atcommand "@bodystyle " + !(getlook(LOOK_BODY2));
+			baselook = 0;
+			break;
+	}
+	mes .n$;
+	close;
+}
+
+	.@TYPE_CHANGEBASE = 0;
+	.@TYPE_SETLOOK = 1;
+	
+	mes .n$;
+	if(!RestrictClass()){
+		mes "Sua classe nao pode usar esta funcao.";
+		close;
+	}
+	mes "Para qual classe deseja mudar a aparencia?";
+/*	if(HasjROCostume()){
+			mes "";
+			mes "Cor de roupa para visual jRO ^FF0000nao^000000 pode ser maior que 4 - sera trocada para 0 ao alterar.";	
+	}*/
+	next;
+	switch(select(jobname(roclass(eaclass()&EAJ_UPPERMASK)),jobname(roclass(eaclass()&EAJ_UPPERMASK|EAJL_UPPER)),jobname(roclass(eaclass()|EAJL_THIRD)),HasjROCostume() ? getlook(LOOK_BODY2) ? "Voltar padrao" : "Roupa jRO" : "")) {
+		case 1:
+			ChangeAppr(roclass(eaclass()&EAJ_UPPERMASK),.@TYPE_CHANGEBASE);
+			break;
+		case 2:
+			ChangeAppr(roclass(eaclass()&EAJ_UPPERMASK|EAJL_UPPER),.@TYPE_CHANGEBASE);
+			break;
+		case 3:
+		if (.@style >= 4){
+			set .@style,0;
+		}
+			ChangeAppr(roclass(eaclass()|EAJL_THIRD),.@TYPE_CHANGEBASE);
+			break;
+		case 4:
+			ChangeAppr(0,.@TYPE_SETLOOK);
+			break;
+	}
+	close;
+		
+OnPCLoginEvent:
+	if(baselook && .dress_perma){
+		changebase baselook;
+	}
+	end;
+OnInit:
+
+	bindatcmd "visual",strnpcinfo(3)+"::OnAtNPC1";
+	set .allowed,0; 
+	.n$ = "[Dress Room]"; // NPC Name
+	.cost_dressroom = 10000; // Cost
+	.dress_perma = 1;
+}
+
+
+
+
+
