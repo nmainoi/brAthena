@@ -532,7 +532,7 @@ prontera,136,164,6	script	Top OBORO	676,{
 	end;
 }
 
-prontera,142,162,6	script	Top SE	676,{
+-	script	Top SE	676,{
        end;
                     OnClock2359:
 					OnInit:
@@ -565,7 +565,7 @@ prontera,142,162,6	script	Top SE	676,{
 				}	
 	end;
 }
-prontera,139,162,6	script	Top SR	676,{
+-	script	Top SR	676,{
        end;
                     OnClock2359:
 					OnInit:

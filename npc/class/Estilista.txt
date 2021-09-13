@@ -1,14 +1,14 @@
 // +-------------------------------------------+
-prontera,145,195,5	script	Estilista	625,{
+prontera,142,180,7	script	Estilista	625,{
 OnAtNPC1:
-
+		if(vip_status(VIP_STATUS_ACTIVE)){
 		setarray  .@max[1],553,259,29;		// Number of cloths, haircolors, hairstyles in client
-		setarray  .@blacklist[1],5,500; // NPC will skip any cloth colors in this array.
-		setarray  .@blacklist_hc[0],99; // Hair Color Blacklist
-		setarray  .@blacklist_hs[0],99; // Hair Style Blacklist
 		if ( getlook(LOOK_BODY2) ) {
 			setarray  .@max[1],533,259,29;
-			}
+			}}else{
+				setlook LOOK_BODY2,0;
+		setarray  .@max[1],3,8,25;		// Number of cloths, haircolors, hairstyles in client
+}
 // Use for palettes that cause errors or just plain look bad.
 // Leave first value at 0 to disable.
 	setarray .@type[1],7,6,1; // DO NOT EDIT
@@ -113,9 +113,8 @@ OnAtNPC1:
 	//	1 - Enable Hairstyle
 	//	2 - Enable Hair Color
 	//	4 - Enable Cloth Color
-	waitingroom "Estilista",0;
 	bindatcmd "estilista",strnpcinfo(3)+"::OnAtNPC1";
-	set .allowed,0; 
+	set .allowed,1; 
 	end;
 	}
 
@@ -123,7 +122,11 @@ OnAtNPC1:
 -	script	OptCmd	-1,{
 
 	OnAtNPC1:
-
+		 if (!vip_status(VIP_STATUS_ACTIVE)) {
+			 setlook LOOK_BODY2,0;
+            message strcharinfo(0),"Seja VIP e desfrute de benefícios exclusivos.";
+			end;
+	}
 function RestrictClass;
 function HasjROCostume;
 function ChangeAppr;

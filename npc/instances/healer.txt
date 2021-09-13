@@ -4,6 +4,11 @@ end;
 }
 -	script	Buff	-1,{
 OnAtNPC:
+		 if (!vip_status(VIP_STATUS_ACTIVE)) {
+			 setlook LOOK_BODY2,0;
+            message strcharinfo(0),"Seja VIP e desfrute de benefícios exclusivos.";
+			end;
+	}
 callfunc "F_BUFF","2";
 	specialeffect2 EF_TEIHIT3;
 	end;
@@ -11,7 +16,7 @@ end;
 	
 OnInit:
 	bindatcmd "buffs",strnpcinfo(3)+"::OnAtNPC";
-	set .allowed,1; 
+	set .allowed,0; 
 	end;
 }
 

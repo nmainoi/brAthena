@@ -12393,7 +12393,7 @@ TIMER_FUNC(skill_castend_id){
 	{	//When Asura fails... (except when it fails from Wall of Fog)
 		//Consume SP/spheres
 		skill_consume_requirement(sd,ud->skill_id, ud->skill_lv,1);
-		status_set_sp(src, 0, 0);
+	//	status_set_sp(src, 0, 0);
 		sc = &sd->sc;
 		if (sc->count)
 		{	//End states
