@@ -32336,7 +32336,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      warp "dali02",117,69;
+      atcommand "@vip +1m "+strcharinfo(0)+"";
   - Id: 14506
     AegisName: Dun_Voucher
     Name: Sky Fortress Ticket

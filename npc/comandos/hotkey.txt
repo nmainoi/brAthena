@@ -1,0 +1,49 @@
+-	script	Elemento	-1,{
+        OnAtNPC1:
+        		 if (!vip_status(VIP_STATUS_ACTIVE)) {
+            message strcharinfo(0),"Seja VIP e desfrute de benefícios exclusivos.";
+			end;
+	}
+    mes "Use @agua,@terra,@fogo,etc.. para uso mais rapido deste comando.";
+  .@e = select("Agua:Terra:Fogo:Vento:Veneno:Sagrado:Sombrio:Fantasma");	
+sc_start .listbuffs2[.@e],180000,1;
+close;
+end;
+        OnAtNPC_AGUA:
+      sc_start .listbuffs2[1],3600000,1; 
+ end;     
+        OnAtNPC_TERRA:
+      sc_start .listbuffs2[2],3600000,1; 
+ end; 
+        OnAtNPC_FOGO:
+      sc_start .listbuffs2[3],3600000,1; 
+ end;
+        OnAtNPC_VENTO:
+      sc_start .listbuffs2[4],3600000,1; 
+ end;    
+        OnAtNPC_VENENO:
+      sc_start .listbuffs2[5],3600000,1; 
+ end;
+         OnAtNPC_SAGRADO:
+      sc_start .listbuffs2[6],3600000,1; 
+ end;
+          OnAtNPC_SOMBRIO:
+      sc_start .listbuffs2[7],3600000,1; 
+ end;
+           OnAtNPC_FANTASMA:
+      sc_start .listbuffs2[8],3600000,1; 
+ end;              
+OnInit:
+	bindatcmd "agua",strnpcinfo(3)+"::OnAtNPC_AGUA";set .allowed,1; 
+    bindatcmd "terra",strnpcinfo(3)+"::OnAtNPC_TERRA";set .allowed,1;
+    bindatcmd "fogo",strnpcinfo(3)+"::OnAtNPC_FOGO";set .allowed,1;
+    bindatcmd "vento",strnpcinfo(3)+"::OnAtNPC_VENTO";set .allowed,1;
+    bindatcmd "veneno",strnpcinfo(3)+"::OnAtNPC_VENENO";set .allowed,1;
+    bindatcmd "sagrado",strnpcinfo(3)+"::OnAtNPC_SAGRADO";set .allowed,1;
+    bindatcmd "sombrio",strnpcinfo(3)+"::OnAtNPC_SOMBRIO";set .allowed,1;
+    bindatcmd "fantasma",strnpcinfo(3)+"::OnAtNPC_FANTASMA";set .allowed,1;
+	bindatcmd "elemento",strnpcinfo(3)+"::OnAtNPC1";
+	set .allowed,0; 
+    setarray    .listbuffs2[1],SC_WATERWEAPON,SC_EARTHWEAPON,SC_FIREWEAPON,SC_WINDWEAPON,SC_ENCPOISON,SC_ASPERSIO,SC_SHADOWWEAPON,SC_GHOSTWEAPON;
+    end;
+}
