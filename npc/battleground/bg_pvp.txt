@@ -16,45 +16,97 @@
 
 -	script	bg_pvp#control	-1,{
 OnInit:
-	.minplayer2start = 1;      // minimum players to start (ex. if 3vs3, set to 3)
-	.eventlasting    = 20*60;  // event duration before auto-reset (20 minutes * seconds)
+	.minplayer2start = 2;      // minimum players to start (ex. if 3vs3, set to 3)
+	.eventlasting    = 20*60;
+// event duration before auto-reset (20 minutes * seconds)
+	setarray .redlist,1;
+	setarray .bluelist,1;
 	setarray .rewarditem[0],   // rewards for the winning team: <item>,<amount>,...
-		501, 10;
-	end;
-OnStart:
-	if ( getwaitingroomstate( 0, .rednpcname$ ) < .minplayer2start || getwaitingroomstate( 0, .bluenpcname$ ) < .minplayer2start )
-		end;
+		7420, 100;
 
+	bindatcmd "joinbg","bg_pvp#control::OnStart",0,99;
+	bindatcmd "leavebg","bg_pvp#control::OnDoLeave",0,99;
+	end;
+OnDoLeave:
+	 if (inarray(.bluelist, getcharid(0)) != -1){
+			deletearray .bluelist[inarray(.bluelist, getcharid(0))],1;
+			message strcharinfo(0),"Voce saiu da fila!";}
+	 else if( inarray(.redlist, getcharid(0)) != -1){
+			deletearray .redlist[inarray(.redlist, getcharid(0))],1;
+			message strcharinfo(0),"Voce saiu da fila!";}
+  	 else
+     		message strcharinfo(0),"Voce nao se encontra em nenhuma fila!";
+end;	
+OnStart:
+if (inarray(.bluelist, getcharid(0)) != -1 || inarray(.redlist, getcharid(0)) != -1){
+ message strcharinfo(0),"Voce ja se encontra na fila!"; 
+	end;}
+
+	.@number = rand(1,2);
+	if(getarraysize(.redlist) > getarraysize(.bluelist)){
+			.@number = 2;
+	}else if(getarraysize(.redlist) < getarraysize(.bluelist)){
+			.@number = 1;
+	}
+if(.@number == 1){
+	setarray .redlist[getarraysize(.redlist)],getcharid(0);
+	  message strcharinfo(0),"Voce entrou na fila!"; 
+}else{
+	setarray .bluelist[getarraysize(.bluelist)],getcharid(0); 
+	 message strcharinfo(0),"Voce entrou na fila!"; 
+}
+
+	if (getarraysize(.redlist) < .minplayer2start ||  getarraysize(.bluelist) < .minplayer2start  )
+	end;
+/*	if ( getwaitingroomstate( 0, .rednpcname$ ) < .minplayer2start || getwaitingroomstate( 0, .bluenpcname$ ) < .minplayer2start )
+		end;*/
+		if ($@start == 0){
+			$@start = 1;
+			announce "A Batalha campal ira começar em 30 segundos",bc_blue|bc_all;
+			sleep 10000;
+			announce "A Batalha campal ira começar em 20 segundos",bc_blue|bc_all;
+			sleep 10000;
+			announce "A Batalha campal ira começar em 10 segundos",bc_blue|bc_all;
+			sleep 10000;
+		}else end;
+
+if($@lastoneDM == 1)
+goto OnWoeEventBG;
 	// create Battleground and teams
-	.red = waitingroom2bg( "guild_vs3", 13,50, strnpcinfo(0)+"::OnRedQuit", strnpcinfo(0)+"::OnRedDead", .rednpcname$ );
-	.blue = waitingroom2bg( "guild_vs3", 86,50, strnpcinfo(0)+"::OnBlueQuit", strnpcinfo(0)+"::OnBlueDead", .bluenpcname$ );
-	delwaitingroom .rednpcname$;
-	delwaitingroom .bluenpcname$;
-	bg_warp .red, "guild_vs3", 13,50;
-	bg_warp .blue, "guild_vs3", 86,50;
-	.red_score = .blue_score = .minplayer2start;
-	bg_updatescore "guild_vs3", .red_score, .blue_score;
+	.red = joinbg_player( "bat_c01", 50,131,.redlist, strnpcinfo(0)+"::OnRedQuit", strnpcinfo(0)+"::OnRedDead");
+	.blue = joinbg_player( "bat_c01", 149,52,.bluelist, strnpcinfo(0)+"::OnBlueQuit", strnpcinfo(0)+"::OnBlueDead");
+	bg_warp .red, "bat_c01", 50,131;
+	bg_warp .blue, "bat_c01", 149,52;
+	.red_score = getarraysize(.redlist)-1;
+	.blue_score = getarraysize(.bluelist)-1;
+	bg_updatescore "bat_c01", .red_score, .blue_score;
 
 	// match duration
 	sleep .eventlasting * 1000;
 
 	// end match, destroy Battleground, reset NPCs
 	if ( .red_score > .blue_score ) {
-		mapannounce "guild_vs3", "- Red Team is victorious! -", bc_map;
+		mapannounce "bat_c01", "- Red Team is victorious! -", bc_map;
 		callsub L_Reward, .red;
 	}
 	else if ( .blue_score > .red_score ) {
-		mapannounce "guild_vs3", "- Blue Team is victorious! -", bc_map;
+		mapannounce "bat_c01", "- Blue Team is victorious! -", bc_map;
 		callsub L_Reward, .blue;
 	}
 	else
-		mapannounce "guild_vs3", "- The match has ended in a draw! -", bc_map;
+		mapannounce "bat_c01", "- The match has ended in a draw! -", bc_map;
 	bg_warp .red, "prontera",152,178;
 	bg_warp .blue, "prontera",154,178;
 	bg_destroy .red;
 	bg_destroy .blue;
-	donpcevent .rednpcname$ +"::OnStart";
-	donpcevent .bluenpcname$ +"::OnStart";
+	deletearray .redlist,getarraysize(.redlist);
+	deletearray .bluelist,getarraysize(.bluelist);
+	setarray .bluelist, 1;
+	setarray .redlist, 1;
+	$@start = 0;
+	$@lastoneDM = 1;
+	//donpcevent .rednpcname$ +"::OnStart"; limpar as array
+	//donpcevent .bluenpcname$ +"::OnStart";
 	end;
 
 L_Reward:
@@ -68,12 +120,12 @@ OnRedDead:  callsub L_Dead, .red_score;
 OnBlueDead: callsub L_Dead, .blue_score;
 L_Dead:
 	set getarg(0), getarg(0) -1;
-	bg_updatescore "guild_vs3", .red_score, .blue_score;
+	bg_updatescore "bat_c01", .red_score, .blue_score;
 	bg_leave;
 	if ( !getarg(0) )
 		awake strnpcinfo(0);
 	sleep2 1250;
-	percentheal 100,100;
+	callfunc "F_BUFF","1";
 	end;
 
 // "OnQuit" event
@@ -81,41 +133,116 @@ OnRedQuit:  callsub L_Quit, .red_score;
 OnBlueQuit: callsub L_Quit, .blue_score;
 L_Quit:
 	set getarg(0), getarg(0) -1;
-	bg_updatescore "guild_vs3", .red_score, .blue_score;
-	percentheal 100, 100;
+	bg_updatescore "bat_c01", .red_score, .blue_score;
+	callfunc "F_BUFF","1";
 	if ( !getarg(0) )
 		awake strnpcinfo(0);
 	end;
-}
-/*
-prontera,152,178,5	script	Red Team#bg_pvp	733,{
+
+OnWoeEventBG:	
+	.red = joinbg_player( "-", 0,0, .redlist,strnpcinfo(0)+"::OnRedQuit1", strnpcinfo(0)+"::OnRedDead1");
+	.blue = joinbg_player( "-", 0,0,.bluelist, strnpcinfo(0)+"::OnBlueQuit1", strnpcinfo(0)+"::OnBlueDead1");
+	setwall "bat_b01", 323,222, 6, 0, 0, "bg_woe_town_blue";
+	setwall "bat_b01", 300,222, 8, 0, 0, "bg_woe_town_blue2";
+	setwall "bat_b01", 99,70, 8, 0, 0, "bg_woe_town_red";
+	setwall "bat_b01", 76,71, 8, 0, 0, "bg_woe_town_red2";
+	bg_warp .red, "bat_b01", 88,75;
+	bg_warp .blue, "bat_b01", 311,225;
+
+
+	// delay before match begins
+	sleep 6000;
+	mapannounce "bat_b01", "The rules are simple. The first team to break the opponent's Emperium wins!", bc_map;
+	sleep 3000;
+	for ( .@i = 5; .@i > 0; --.@i ) {
+		mapannounce "bat_b01", "["+ .@i +"]", bc_map;
+		sleep 1000;
+	}
+	mapannounce "bat_b01", "Start!", bc_map;
+
+	// spawn Emperiums
+	bg_monster .red,"bat_b01",62,149, "--ja--",1915, strnpcinfo(3)+"::OnRedDown1";
+	bg_monster .blue,"bat_b01",328,149, "--ja--",1914, strnpcinfo(3)+"::OnBlueDown1";
+	delwall "bg_woe_town_blue2";
+	delwall "bg_woe_town_blue";
+	delwall "bg_woe_town_red";
+	delwall "bg_woe_town_red2";
+
+	// match duration
+	sleep .eventlasting * 1000;
+
+	// end match, destroy Battleground, reset NPCs
+	killmonster "bat_b01", strnpcinfo(3)+"::OnRedDown1";
+	killmonster "bat_b01", strnpcinfo(3)+"::OnBlueDown1";
+	if ( .winside ) {
+		mapannounce "bat_b01", "- "+( (.winside == .red)? "Red" : "Blue" )+" Team is victorious! -", bc_map;
+		bg_get_data .winside, 1;
+		for ( .@i = 0; .@i < $@arenamemberscount; ++.@i )
+			getitem .rewarditem[0], .rewarditem[1], $@arenamembers[.@i];
+	} else
+		mapannounce "bat_b01", "- The match has ended in a draw! -", bc_map;
+	sleep 5000;
+	bg_warp .red, "prontera", 155,182;
+	bg_warp .blue, "prontera", 158,182;
+	bg_destroy .red;
+	bg_destroy .blue;
+	.winside = 0;
+	$@lastoneDM = 0;
+	$@start = 0;
+	deletearray .redlist,getarraysize(.redlist);
+	deletearray .bluelist,getarraysize(.bluelist);
+	setarray .bluelist, 1;
+	setarray .redlist, 1;	
 	end;
-OnInit:
-	sleep 1;
-	set getvariableofnpc( .rednpcname$, "bg_pvp#control" ), strnpcinfo(0);
-OnStart:
-	waitingroom "Red Team", getvariableofnpc( .minplayer2start, "bg_pvp#control" ) +1, "bg_pvp#control::OnStart", getvariableofnpc( .minplayer2start, "bg_pvp#control" );
+
+// Emperium destroyed
+OnRedDown1:  callsub L_EmpDown, "Red", .blue;
+OnBlueDown1: callsub L_EmpDown, "Blue", .red;
+L_EmpDown:
+	mapannounce "bat_b01", strcharinfo(0) +" has destroyed "+ getarg(0) +" Team's Emperium.", bc_map;
+	.winside = getarg(1);
+	awake strnpcinfo(0);
 	end;
+
+// "OnDeath" event
+OnRedDead1:  callsub L_Dead1, 88,75;
+OnBlueDead1: callsub L_Dead1, 311,225;
+L_Dead1:
+	warp "bat_b01", getarg(0), getarg(1);
+	callfunc "F_BUFF","1";
+	end;
+
+// "OnQuit" event
+OnRedQuit1:  callsub L_Quit1, .red, "Red",.blue;
+OnBlueQuit1: callsub L_Quit1, .blue, "Blue",.red;
+L_Quit1:
+	callfunc "F_BUFF","1";
+	if ( !bg_get_data( getarg(0), 0 ) )
+		mapannounce "bat_b01", "All "+ getarg(1) +" team members have quit!", bc_map, 0xff3333;
+		.winside= getarg(2);
+		awake strnpcinfo(0);
+	end;	
 }
 
-prontera,154,178,5	script	Blue Team#bg_pvp	734,{
-	end;
-OnInit:
-	sleep 1;
-	set getvariableofnpc( .bluenpcname$, "bg_pvp#control" ), strnpcinfo(0);
-OnStart:
-	waitingroom "Blue Team", getvariableofnpc( .minplayer2start, "bg_pvp#control" ) +1, "bg_pvp#control::OnStart", getvariableofnpc( .minplayer2start, "bg_pvp#control" );
-	end;
-}
-*/
-guild_vs3	mapflag	gvg	off
-guild_vs3	mapflag	battleground	2
-guild_vs3	mapflag	nosave	SavePoint
-guild_vs3	mapflag	nowarp
-guild_vs3	mapflag	nowarpto
-guild_vs3	mapflag	noteleport
-guild_vs3	mapflag	nomemo
-guild_vs3	mapflag	nopenalty
-guild_vs3	mapflag	nobranch
-guild_vs3	mapflag	noicewall
-guild_vs3	mapflag	hidemobhpbar
+bat_c01	mapflag	gvg	off
+bat_c01	mapflag	battleground	2
+bat_c01	mapflag	nosave	SavePoint
+bat_c01	mapflag	nowarp
+bat_c01	mapflag	nowarpto
+bat_c01	mapflag	noteleport
+bat_c01	mapflag	nomemo
+bat_c01	mapflag	nopenalty
+bat_c01	mapflag	nobranch
+bat_c01	mapflag	noicewall
+bat_c01	mapflag	hidemobhpbar
+
+bat_b01	mapflag	battleground
+bat_b01	mapflag	nosave	SavePoint
+bat_b01	mapflag	nowarp
+bat_b01	mapflag	nowarpto
+bat_b01	mapflag	noteleport
+bat_b01	mapflag	nomemo
+bat_b01	mapflag	nopenalty
+bat_b01	mapflag	nobranch
+bat_b01	mapflag	noicewall
+bat_b01	mapflag	hidemobhpbar

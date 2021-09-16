@@ -20255,6 +20255,111 @@ BUILDIN_FUNC(showevent)
 /*==========================================
  * BattleGround System
  *------------------------------------------*/
+BUILDIN_FUNC(joinbg_player)
+{
+	struct script_data* data;
+	const char* name;
+	int id, i, array_size;
+	struct map_session_data* sd = NULL;
+	struct reg_db* ref = NULL;
+	const char* map_name;
+	int mapindex = 0, bg_id;
+	unsigned char  c = 0;
+	struct s_battleground_team team;
+	data = script_getdata(st, 5);
+	if (!data_isreference(data))
+	{
+		ShowError("buildin_inarray: not a variable\n");
+		script_reportdata(data);
+		st->state = END;
+		return SCRIPT_CMD_FAILURE;
+	}
+	name = reference_getname(data);
+	ref = reference_getref(data);
+
+	if (not_server_variable(*name) && !script_rid2sd(sd))
+		return SCRIPT_CMD_FAILURE;
+
+	array_size = script_array_highest_key(st, sd, name, ref) - 1;
+
+	if (array_size < 0)
+	{
+		script_pushint(st, -1);
+		return SCRIPT_CMD_SUCCESS;
+	}
+
+	if (array_size > SCRIPT_MAX_ARRAYSIZE)
+	{
+		ShowError("buildin_inarray: The array is too large.\n");
+		script_reportdata(data);
+		st->state = END;
+		return SCRIPT_CMD_FAILURE;
+	}
+
+
+	map_name = script_getstr(st, 2);
+	if (strcmp(map_name, "-") != 0 && (mapindex = mapindex_name2id(map_name)) == 0)
+	{ // Invalid Map
+		script_pushint(st, 0);
+		return SCRIPT_CMD_SUCCESS;
+	}
+
+	team.warp_x = script_getnum(st, 3);
+	team.warp_y = script_getnum(st, 4);
+	if (script_hasdata(st, 6)) {
+		team.quit_event = script_getstr(st, 6); // Logout Event
+		check_event(st, team.quit_event.c_str());
+	}
+	else
+		team.quit_event = "";
+	if (script_hasdata(st, 7)) {
+		team.death_event = script_getstr(st, 7); // Die Event
+		check_event(st, team.death_event.c_str());
+	}
+	else
+		team.death_event = "";
+	ref = reference_getref(data);
+	if ((bg_id = bg_create(mapindex, &team)) == 0)
+	{ // Creation failed
+		script_pushint(st, 0);
+		return SCRIPT_CMD_SUCCESS;
+	}
+	id = reference_getid(data);
+
+	if (is_string_variable(name)) {
+		const char* value = script_getstr(st, 5);
+
+		for (i = 0; i <= array_size; ++i) {
+			const char* temp = get_val2_str(st, reference_uid(id, i), ref);
+			struct map_session_data* sd;
+			if (!strcmp(temp, value)) {
+				// Remove stack entry from get_val2_str
+				if (map_charid2sd((int)temp) != NULL && bg_team_join(bg_id, sd, false)) {
+					mapreg_setreg(reference_uid(add_str("$@arenamembers"), c), sd->bl.id);
+					++c;
+				}
+			}
+
+		}
+	}
+	else {
+		int64 value = script_getnum64(st, 5);
+
+		for (i = 0; i <= array_size; ++i) {
+			int64 temp = get_val2_num(st, reference_uid(id, i), ref);
+			sd = map_charid2sd(temp);
+		if (map_charid2sd(temp) != NULL && bg_team_join(bg_id, sd, false)) {
+			mapreg_setreg(reference_uid(add_str("$@arenamembers"), c), sd->bl.id);
+			++c;
+		}
+		}
+	}
+
+
+	mapreg_setreg(add_str("$@arenamembersnum"), c);
+	script_pushint(st, bg_id);
+	return SCRIPT_CMD_SUCCESS;
+}
 BUILDIN_FUNC(waitingroom2bg)
 {
 	struct npc_data *nd;
@@ -22570,6 +22675,9 @@ BUILDIN_FUNC(vip_status) {
 
 	switch(type) {
 		case VIP_STATUS_ACTIVE: // Get VIP status.
+			if (sd->group_pos = 99) 
+				script_pushint(st, 1);
+			else
 			script_pushint(st, pc_isvip(sd));
 			break;
 		case VIP_STATUS_EXPIRE: // Get VIP expire date.
@@ -25831,6 +25939,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(agitend2,""),
 	BUILDIN_DEF(agitcheck2,""),
 	// BattleGround
+	BUILDIN_DEF(joinbg_player, "siir??"),
 	BUILDIN_DEF(waitingroom2bg,"sii???"),
 	BUILDIN_DEF(waitingroom2bg_single,"i????"),
 	BUILDIN_DEF(bg_team_setxy,"iii"),

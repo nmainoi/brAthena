@@ -8,7 +8,7 @@
 //= 1.1 Use up to date battleground script commands [AnnieRuru]
 //= 1.2 Fix player can be kill multiple times within 250ms time frame [AnnieRuru]
 //============================================================
-
+/*
 -	script	bg_emp#control	-1,{
 OnInit:
 	.minplayer2start = 1;      // minimum players to start (ex. if 3vs3, set to 3)
@@ -115,7 +115,7 @@ OnStart:
 	waitingroom "Blue Team", getvariableofnpc( .minplayer2start, "bg_emp#control" ) +1, "bg_emp#control::OnStart", getvariableofnpc( .minplayer2start, "bg_emp#control" );
 	end;
 }
-*/
+*
 bat_a01	mapflag	battleground
 bat_a01	mapflag	nosave	SavePoint
 bat_a01	mapflag	nowarp
@@ -126,3 +126,4 @@ bat_a01	mapflag	nopenalty
 bat_a01	mapflag	nobranch
 bat_a01	mapflag	noicewall
 bat_a01	mapflag	hidemobhpbar
+*/
