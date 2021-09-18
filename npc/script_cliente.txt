@@ -1,81 +1,121 @@
 -	script	house_manager	-1,{
-		Oninit:
+	Oninit:
 		//Nome Npc
 		.@n$ = "nome_npc";
 		//Nivel de gm requirido para usar o npc		
-		.setgmlvl = 1; 
-		//Numero de casas que podem ser locadas
+		.setgmlvl = 0; 
+		//Numero de casas que podem ser locadas por jogador
 		.houses = 1;
 		//Nome do Comando
 		.@command$ = "casa";
-		//Linkadas por conta ou por personagem?
-			/* 
-                0 conta 
-                1 personagem
-            */
-		.per_char = 1;
-		//Preco sera zeny, itens ou cash?
-			/*
-			zeny = 1
-			itens = 2
-			cash = 3
-			*/
-		.price = 1 
-		//Zeny price, 1 = 10kk / 10 = 100kk / 100 = 1b / * 100000000
-			/* Fazer de acordo com o house_list */
-		setarray .zenyprice[0],100,100;
-		//Iten price, id,quantida,id,quantidad
-		setarray .itemprice[0],510,10,510,15;
-		//Cash price 1= 1k / * 1000
-		setarray .cashprice[0],10,10,;
-		//Lista de casas a serem alugadas
-		.house_list[0],"payon","izlude";
-		//------------- fim configuração
-
+		//Comando warp
+		.@command2$ = "GotoCasa";
+		//Preco em kk //* 1000000
+		.zeny = 100;
+		.zeny = .zeny * 1000000;
+		//mapa
+		.mapa$ = "byako";
+		.quantidade_mapa = 20;
+		.x = 150; .y = 150;
+		//Id do item rent
+		.item = 12622;
+		//------------- Fim config
 		bindatcmd	.@command$,strnpcinfo(0)+ "::OnUse";
-		set .allowed,0; 
-		.n$ = "[ ^4682B4" + .@n$ + "^000000 ]" ;
+		bindatcmd	.@command2$,strnpcinfo(0)+ "::OnWARP";
+		set .allowed,.setgmlvl; 
 		end;
-            .@size = getarraysize( .house_list );
-            for( .@i = 0; .@i < .@size; .@i++ ){
-                 .MenuM$ = .MenuM$ + .house_list[.@i] +":";
-            }
+
+
 	OnUse:
+	if (getarraysize(.maplist) >0)
+	deletearray .maplist,getarraysize(.maplist);
+		query_sql("Select `Map` from `House_system` where `locado`= 1", .@name$);
+		mes " " + .@name$;
+		for (.@i = 0; .@i <.quantidade_mapa ;.@i++ ) {
+			if (inarray(.@name$, .mapa$ + .@i) == -1){;
+			setarray .maplist$[getarraysize(.maplist$)],.mapa$ + .@i;
+			}
+		}
 		mes .n$;
 		mes "Olá, sou o gerente de casas";
 		mes "o que deseja fazer hoje?";
-		switch(select("Alugar uma casa:Transferir casa:Renovar alugel:Ir até a casa")){
-			case 1: callsub OnAluga; break;
-
-			default: end;break;
+		switch(select( " Alugar uma casa: Renovar alugel: Ir até a casa", ( getgmlevel() >= 99 ) ? " Limpar tabela(testes)":"")){
+				case 1: goto OnAluga; break; //aluga 
+				case 2: goto OnRenova; break;
+				case 3: goto OnWARP; break;
+				case 4:
+						query_sql("TRUNCATE TABLE house_system;");
+						mes "Tabela limpa";
+						close;
+				 break;
+				default: end; break;
 		}
+	end;
+
+	OnWARP:
+	  query_sql("Select `Map`,`X`,`Y` from `House_system` where `DATA_FIN` <> CURDATE() and `ID`=" + getcharid(0), .@name2$,.@x1,.@y1);
+	 .@size = getarraysize(.@name2$);
+	  if(.@size>0)
+		warp ""+.@name2$+"",.@x1,.@y1;
+		else
+		 mes "Este personagem não ja possui casa alugada!";
+		  close;
+	end;
+
+	OnRenova:
+		  query_sql("Select `Map` from `House_system` where `id`=" + getcharid(0), .@name2$);
+	  if(getarraysize(.@name2$) <= 0){
+		  mes "Este personagem não ja possui casa alugada!";
+		  close;
+		  end;
+	  }
+	mes .n$;
+	mes	"Deseja Renovar por " + .zeny /1000000  + "kk ?";
+	if(select("sim") != 1)
 		end;
-	
+	if (zeny < .zeny ){
+	mes "Voce não possui o valor necessario!";
+	close;end;
+	}
+	zeny = zeny - .zeny;
+	.@mapa_ser_locado$ = .maplist$[0];
+		query_sql("UPDATE House_system SET DATA_FIN = DATE_ADD(DATA_FIN, INTERVAL "+ 1 +" MONTH) WHERE id = "+ getcharid(0) +";");
+		mes .n$;
+		mes "Casa renovada com sucesso!";
+		close;
+	end;
+
+
+
 
 	OnAluga:
-		.@i = select( .MenuM$ ) - 1;		
-		switch(.price){
-			case 1:
-			if(select("Deseja Alugar " + .house_list[.@i] + " por: " .zenyprice[.@i]  "kk ?" ) ==1);
-			callsub, .@house_list, .zenyprice[.@i],100000000;
-			break;
-			case 2:
-			case 3:
-			default: Mes "Erro de configuração, avise a staff" close; break;
-		}
+	  query_sql("Select `Map` from `House_system` where `ID`=" + getcharid(0), .@name2$);
+
+	if(getarraysize(.@name2$)>0){
+		  mes "Este personagem ja possui casa alugada!";
+		  close;
+		  end;
+	  }
+	  if(getarraysize(.maplist$) == 0){
+	  	  mes "todas as casas ja foram locadas";
+		  close; end;}
+	mes .n$;
+	mes	"Deseja Alugar " + .mapa$  + " por " + .zeny / 1000000 + "kk ?";
+	if(select("sim") != 1)
 		end;
-	OnFinaliza:
-	.@casa$ = getarg(0);
-	.@valor = getarg(1);
-	.@quantidade = getarg(2);
-    //verificar se tem casa locada
-    //verificar se tem requisito de dinheiro
-    //pegar id do boneco
-    // retirar o dinheiro
-    // fazer upadte na tabela char
-    // fazer update no banco geral
+	if (zeny < .zeny ){
+	mes "Voce não possui o valor necessario!";
+	close;end;
+	}
+
+	.@DATA_INI$ = gettimestr("%Y-%m/%d %H:%M:%S",21);
+	.@DATA_FIN$ = .@DATA_INI$;
+	zeny = zeny - .zeny;
+	.@mapa_ser_locado$ = .maplist$[0];
+		query_sql("INSERT INTO House_system (Map,ID,DATA_INI,DATA_FIN,X,Y,Locado) VALUES('" + .maplist$[0] + "','"+ getcharid(0) +"','"+ .@DATA_INI$ +"','" + .@DATA_FIN$ + "','" + .x + "', '" + .y + "','1');");
+		query_sql("UPDATE House_system SET DATA_FIN = DATE_ADD(DATA_FIN, INTERVAL "+ 30 +" DAY) WHERE id = "+ getcharid(0) +";");
+		mes .n$;
+		mes "Casa locada com sucesso!";
+		close;
 		end;
-		
-		
-}
-//junk
+}	

@@ -20326,23 +20326,7 @@ BUILDIN_FUNC(joinbg_player)
 	}
 	id = reference_getid(data);
 
-	if (is_string_variable(name)) {
-		const char* value = script_getstr(st, 5);
 
-		for (i = 0; i <= array_size; ++i) {
-			const char* temp = get_val2_str(st, reference_uid(id, i), ref);
-			struct map_session_data* sd;
-			if (!strcmp(temp, value)) {
-				// Remove stack entry from get_val2_str
-				if (map_charid2sd((int)temp) != NULL && bg_team_join(bg_id, sd, false)) {
-					mapreg_setreg(reference_uid(add_str("$@arenamembers"), c), sd->bl.id);
-					++c;
-				}
-			}
-
-		}
-	}
-	else {
 		int64 value = script_getnum64(st, 5);
 
 		for (i = 0; i <= array_size; ++i) {
@@ -20353,7 +20337,7 @@ BUILDIN_FUNC(joinbg_player)
 			++c;
 		}
 		}
-	}
+	
 
 
 	mapreg_setreg(add_str("$@arenamembersnum"), c);

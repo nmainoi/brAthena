@@ -1,4 +1,8 @@
 prontera,158,193,4	script	Job Master	918,{
+    if( Class != 0 ){
+         message strcharinfo(0),"Você ja escolheu sua classe!"; 
+        close;
+    }
     if (sex == 1) {
     .@i = select( .MenuM$ ) - 1;
     	if( select( "Change to "+jobname( .JobListM[.@i] )+"?:Cancel" ) == 1 ){

@@ -160,7 +160,7 @@ end;
 gerenciabuild:
 function ManageBuild;
 
-mes "Selecione seus servi?os";
+mes "Selecione seus serviços";
 next;
 switch( select( ( .BMMode & 1 )?"^FF0000Salvar & Switch builds^000000":"",
 				( .BMMode & 2 )?"^0000FFResetar Status^000000":"",	

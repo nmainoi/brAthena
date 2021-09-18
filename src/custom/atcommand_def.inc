@@ -7,5 +7,5 @@
  * Format:
  *	ACMD_DEF(command_name),
  **/
-
+ACMD_DEFR(battlestats, ATCMD_NOCONSOLE|ATCMD_NOAUTOTRADE),
 //ACMD_DEF(newcommand),
