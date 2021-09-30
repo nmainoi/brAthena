@@ -1,7 +1,7 @@
--	script	Clock_Events	-1,{
-OnClock1600:
-
-OnClock2359:
-//atcommand "@reloadnpc npc\instances\hall_of_fame.txt";
+-	script	Clock_Events	-1,{/*
+OnPCLoginEvent:/*
+    query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = '" + getcharid(3)+ "'",##ip$);
+    //mes ##ip$;
+    close;*/
 end;
 }

@@ -16,30 +16,52 @@
 
 -	script	bg_pvp#control	-1,{
 OnInit:
-	.minplayer2start = 2;      // minimum players to start (ex. if 3vs3, set to 3)
-	.eventlasting    = 20*60;
-// event duration before auto-reset (20 minutes * seconds)
+	.minplayer2start = 2;      // minimo de jogadores para jogar (total de cada time)
+	.eventlasting    = 20*60; // tempo ate auto reset (20 minutes * seconds)
+	.@command1$ = "joinbg"; // comando para entrar na fila
+	.@command2$ = "leavebg"; // comando para sair
+	//happy our ativado?
+	// 0 nao, 1 sim
+	.happy = 1;	
+	// inicio
+	.init_HO = 19;
+	.fin_HO = 23;
 	setarray .redlist,1;
 	setarray .bluelist,1;
-	setarray .rewarditem[0],   // rewards for the winning team: <item>,<amount>,...
+	// recompensas
+	setarray .rewarditem[0],   // organizado por <item>,<quantidade>
 		7420, 100;
-
-	bindatcmd "joinbg","bg_pvp#control::OnStart",0,99;
-	bindatcmd "leavebg","bg_pvp#control::OnDoLeave",0,99;
+	// na derrota
+	setarray .rewarditem2[0],   
+		7420, 50;
+	// vitoria na happy our
+	setarray .rewarditemHO[0],   // rewards for the winning team: <item>,<amount>,...
+		7420, 200;
+	// Derrota
+	setarray .rewarditemHO2[0],   // rewards for the winning team: <item>,<amount>,...
+		7420, 100;
+	bindatcmd .@command1$,"bg_pvp#control::OnStart",0,99;
+	bindatcmd .@command2$,"bg_pvp#control::OnDoLeave",0,99;
 	end;
 OnDoLeave:
 	 if (inarray(.bluelist, getcharid(0)) != -1){
 			deletearray .bluelist[inarray(.bluelist, getcharid(0))],1;
-			message strcharinfo(0),"Voce saiu da fila!";}
+			message strcharinfo(0),"Você saiu da fila!";}
 	 else if( inarray(.redlist, getcharid(0)) != -1){
 			deletearray .redlist[inarray(.redlist, getcharid(0))],1;
-			message strcharinfo(0),"Voce saiu da fila!";}
+			message strcharinfo(0),"Você saiu da fila!";}
   	 else
-     		message strcharinfo(0),"Voce nao se encontra em nenhuma fila!";
+     		message strcharinfo(0),"Você não se encontra em nenhuma fila!";
 end;	
 OnStart:
+.@dual = F_VerificaDualIP();
+if(.@dual > 0){
+	mes "Não é possivel jogar o campo de batalha com mais de um personagem logado.";
+	close;
+}
+
 if (inarray(.bluelist, getcharid(0)) != -1 || inarray(.redlist, getcharid(0)) != -1){
- message strcharinfo(0),"Voce ja se encontra na fila!"; 
+ message strcharinfo(0),"Você já se encontra na fila!"; 
 	end;}
 
 	.@number = rand(1,2);
@@ -50,10 +72,12 @@ if (inarray(.bluelist, getcharid(0)) != -1 || inarray(.redlist, getcharid(0)) !=
 	}
 if(.@number == 1){
 	setarray .redlist[getarraysize(.redlist)],getcharid(0);
-	  message strcharinfo(0),"Voce entrou na fila!"; 
+	  message strcharinfo(0),"Você entrou na fila!"; 
+	  announce "O jogador [" + strcharinfo(0)  + "] entrou no campo de batalha!" ,bc_all,0x00FF00;
 }else{
 	setarray .bluelist[getarraysize(.bluelist)],getcharid(0); 
-	 message strcharinfo(0),"Voce entrou na fila!"; 
+	  message strcharinfo(0),"Você entrou na fila!"; 
+	  announce "O jogador [" + strcharinfo(0)  + "] entrou no campo de batalha!" ,bc_all,0x00FF00;
 }
 
 	if (getarraysize(.redlist) < .minplayer2start ||  getarraysize(.bluelist) < .minplayer2start  )
@@ -110,9 +134,15 @@ goto OnWoeEventBG;
 	end;
 
 L_Reward:
+//win side
 	bg_get_data getarg(0), 1;
-	for ( .@i = 0; .@i < $@arenamemberscount; ++.@i )
+	for ( .@i = 0; .@i < $@arenamemberscount; ++.@i ){
+	if (.happy == 1 && gettime(DT_HOUR) >=.init_HO  && gettime(DT_HOUR) <=.fin_HO )	
+		getitem .rewarditemHO[0], .rewarditemHO[1], $@arenamembers[.@i];
+		else
 		getitem .rewarditem[0], .rewarditem[1], $@arenamembers[.@i];
+		}
+		//lose side
 	return;
 
 // "OnDeath" event
@@ -122,6 +152,10 @@ L_Dead:
 	set getarg(0), getarg(0) -1;
 	bg_updatescore "bat_c01", .red_score, .blue_score;
 	bg_leave;
+				if (.happy == 1 && gettime(DT_HOUR) >=.init_HO  && gettime(DT_HOUR) <=.fin_HO )	
+		getitem .rewarditemHO2[0], .rewarditemHO2[1];
+				else
+		getitem .rewarditem2[0], .rewarditem2[1];
 	if ( !getarg(0) )
 		awake strnpcinfo(0);
 	sleep2 1250;
@@ -177,8 +211,21 @@ OnWoeEventBG:
 	if ( .winside ) {
 		mapannounce "bat_b01", "- "+( (.winside == .red)? "Red" : "Blue" )+" Team is victorious! -", bc_map;
 		bg_get_data .winside, 1;
-		for ( .@i = 0; .@i < $@arenamemberscount; ++.@i )
-			getitem .rewarditem[0], .rewarditem[1], $@arenamembers[.@i];
+	for ( .@i = 0; .@i < $@arenamemberscount; ++.@i ){
+	if (.happy == 1 && gettime(DT_HOUR) >=.init_HO  && gettime(DT_HOUR) <=.fin_HO )	
+		getitem .rewarditemHO[0], .rewarditemHO[1], $@arenamembers[.@i];
+		else
+		getitem .rewarditem[0], .rewarditem[1], $@arenamembers[.@i];
+		}
+
+		if (.loseside){
+			bg_get_data .loseside, 1;
+		for ( .@i = 0; .@i < $@arenamemberscount; ++.@i ){
+			if (.happy == 1 && gettime(DT_HOUR) >=.init_HO  && gettime(DT_HOUR) <=.fin_HO )	
+		getitem .rewarditemHO2[0], .rewarditemHO2[1], $@arenamembers[.@i];
+				else
+		getitem .rewarditem2[0], .rewarditem2[1], $@arenamembers[.@i];}
+			}
 	} else
 		mapannounce "bat_b01", "- The match has ended in a draw! -", bc_map;
 	sleep 5000;
@@ -196,11 +243,12 @@ OnWoeEventBG:
 	end;
 
 // Emperium destroyed
-OnRedDown1:  callsub L_EmpDown, "Red", .blue;
-OnBlueDown1: callsub L_EmpDown, "Blue", .red;
+OnRedDown1:  callsub L_EmpDown, "Red", .blue,.red;
+OnBlueDown1: callsub L_EmpDown, "Blue", .red,.blue;
 L_EmpDown:
 	mapannounce "bat_b01", strcharinfo(0) +" has destroyed "+ getarg(0) +" Team's Emperium.", bc_map;
 	.winside = getarg(1);
+	.loseside = getarg(2);
 	awake strnpcinfo(0);
 	end;
 

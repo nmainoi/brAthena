@@ -20254,19 +20254,20 @@ BUILDIN_FUNC(showevent)
 
 /*==========================================
  * BattleGround System
- *------------------------------------------*/
+ *------------------------------------------*/ // manu
 BUILDIN_FUNC(joinbg_player)
 {
-	struct script_data* data;
 	const char* name;
-	int id, i, array_size;
-	struct map_session_data* sd = NULL;
-	struct reg_db* ref = NULL;
 	const char* map_name;
-	int mapindex = 0, bg_id;
 	unsigned char  c = 0;
-	struct s_battleground_team team;
+	int id, i, array_size;
+	int mapindex = 0, bg_id;
+	struct script_data* data;
+	struct reg_db* ref = NULL;
 	data = script_getdata(st, 5);
+	struct s_battleground_team team;
+	struct map_session_data* sd = NULL;
+
 	if (!data_isreference(data))
 	{
 		ShowError("buildin_inarray: not a variable\n");
@@ -20581,7 +20582,13 @@ BUILDIN_FUNC(bg_monster)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+
+
+
 BUILDIN_FUNC(bg_monster_set_team)
+
+
+
 {
 	struct mob_data *md;
 	struct block_list *mbl;
@@ -22659,9 +22666,6 @@ BUILDIN_FUNC(vip_status) {
 
 	switch(type) {
 		case VIP_STATUS_ACTIVE: // Get VIP status.
-			if (sd->group_pos = 99) 
-				script_pushint(st, 1);
-			else
 			script_pushint(st, pc_isvip(sd));
 			break;
 		case VIP_STATUS_EXPIRE: // Get VIP expire date.

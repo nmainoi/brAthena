@@ -545,3 +545,248 @@ for( .@i = 0; .@i < .enchant_type_size; .@i++ ){
 }
 end;
 }
+//v 1.2
+prontera,139,164,4	script	Goldberg#0	878,{
+function ordinal_suffix;
+function f_itm_menu;
+set .npc$, "["+strnpcinfo(1)+"]"; //NPC Name
+
+
+		mes .npc$;
+		mes "Olá!";
+		mes "Eu posso encantar ou remover encantamentos";
+		mes "de seus itens acessórios RWC 2012!"; next;
+
+					mes .npc$;
+					mes "Qual item acessório RWC você gostaria de encantar?"; next;
+					f_itm_menu();
+					goto L_Slots;
+
+	if(!compare(.slot$,""+@eq_id)) {
+		mes .npc$;
+		mes "Esse item não pode ser Slotado.";
+		close;
+	}
+	while(.@i++<=4)
+		setd(".@o_crd"+.@i, getequipcardid(@eq_loc,.@i-1));
+	mes .npc$;
+	mes "Tem certeza que deseja continuar?";
+	mes "^FF0000Existe um "+.pert+"% chance que";
+	mes "o processo de alocação irá falhar e";
+	mes "seu item vai quebrar.^000000"; next;
+	if(select("Sim:Não")&2) goto L_Exit;
+	if(rand(100)>=.pert) {
+		delitem2 @eq_id, 1, 1, @eq_rf, 0, .@o_crd1, .@o_crd2, .@o_crd3, .@o_crd4;
+		getitem2 (@eq_id+1), 1, 1, @eq_rf, 0, 0, .@o_crd2, .@o_crd3, .@o_crd4;
+		misceffect 101;
+		sleep2 1300;
+		misceffect .efet;
+		mes .npc$;
+		mes "Perfection!!";
+		emotion ET_BEST1,0;
+		equip @eq_id;
+	} else {
+		delitem2 @eq_id, 1, 1, @eq_rf, 0, .@o_crd1, .@o_crd2, .@o_crd3, .@o_crd4;
+		misceffect 101;
+		sleep2 1300;
+		misceffect .afet;
+		mes .npc$;
+		mes "The metal was too weak and the drill went right through... I'm Sorry!";
+		emotion ET_CRY1,0;
+	}
+	close;
+	
+L_Slots:
+	set .@menu$, ""; set .@a, 0;
+	while(set(.@a,.@a+1)<=4) {
+		setd(".@o_crd"+.@a, getequipcardid(@eq_loc,.@a-1));
+		if(getequipcardid(@eq_loc,.@a-1))
+			set .@menu$, .@menu$+ ordinal_suffix(.@a)+" Slot - [^a92435"+getitemname(getequipcardid(@eq_loc,.@a-1))+"^000000]:";
+		else if(getitemslots(@eq_id)-.@a>=0)
+			set .@menu$, .@menu$+ ordinal_suffix(.@a)+" Slot - [Carta]:";
+		else
+			set .@menu$, .@menu$+ ordinal_suffix(.@a)+" Slot - [^30ad25"+((getd(".@crd"+.@a))?"^800080"+getd(".@typ"+.@a+"$"):"Empty")+"^000000]:";
+	} set .@menu$, .@menu$+"[^0000FFEnchant!^000000]";
+
+	mes .npc$;
+	mes "Selecione um slot.";
+	mes "Escolher '^0000FFEncantamento^000000' quando você acabar!";	next;
+	set .@menu, select(.@menu$)-1;
+	if(getequipcardid(@eq_loc,.@menu)&&getitemslots(@eq_id)-(.@menu+1)<0) {
+		if(.remv) {
+			mes .npc$;
+			mes "Você gostaria que eu removesse este encantamento?"; next;
+			if(select("Yes:No")&2) goto L_Exit;
+			delitem2 @eq_id, 1, 1, @eq_rf, 0, .@o_crd1, .@o_crd2, .@o_crd3, .@o_crd4;
+			setd(".@o_crd"+(.@menu+1), 0);
+			getitem2 @eq_id, 1, 1, @eq_rf, 0, .@o_crd1, .@o_crd2, .@o_crd3, .@o_crd4;
+			equip @eq_id;
+			goto L_Slots;
+		} else {
+			mes .npc$;
+			mes "Desculpe, não posso fazer nada com este slot sem um "+getitemname(.cure)+"."; next;
+			goto L_Slots;
+		}
+	} else if(getitemslots(@eq_id)-(.@menu+1)>=0) {
+		mes .npc$;
+		mes "Eu não posso fazer nada com slots de Carta!"; next;
+		goto L_Slots;
+	}
+	
+	if((.@menu+1)>4) {
+		if(!(.@crd1+.@crd2+.@crd3+.@crd4)) {
+			mes .npc$;
+			mes "Você não fez nada!";
+			next;
+			goto L_Slots;
+		}
+		mes .npc$;
+		mes "Tem certeza que deseja continuar?";
+		mes "^FF0000Existe um "+.perc+"% chance que";
+		mes "o encantamento irá falhar e";
+		mes "seu item vai quebrar.^000000"; next;
+		if(select("Sim:Não")&2) goto L_Exit;
+		if(rand(100)>=.perc) {
+			delitem2 @eq_id, 1, 1, @eq_rf, 0, .@o_crd1, .@o_crd2, .@o_crd3, .@o_crd4;
+			getitem2 @eq_id, 1, 1, @eq_rf, 0, .@crd1, .@crd2, .@crd3, .@crd4;
+			misceffect 101;
+			sleep2 1300;
+			misceffect .efet;
+			mes .npc$;
+			mes "Uau, esse é um item forte!";
+			equip @eq_id;
+		} else {
+			delitem2 @eq_id, 1, 1, @eq_rf, 0, .@o_crd1, .@o_crd2, .@o_crd3, .@o_crd4;
+			misceffect 101;
+			sleep2 1300;
+			misceffect .afet;
+			mes .npc$;
+			mes "Sinto muito, o item não foi capaz de suportar o encantamento e quebrou!";
+		}
+		close;
+	}
+	
+	set(.@g$,"");
+	if(@eq_id!=2966&&.@menu>1&&@eq_id!=2967) {
+		set(.@g$,"1");
+	} else if(.@menu>1) set(.@g$,"0");
+	
+	select(getd(".menu"+.@g$+(.@menu+1)+"$"));
+	set .itm,	((.@menu==1&&@menu>.t_len)?.itm04[rand(getarraysize(.itm04))]:4700+(((@menu-1)*10)+rand(.limi)));
+	setd(".@crd"+(.@menu+1),getd(".itm"+.@g$+((.@menu>1)?@menu+"["+rand(getarraysize(getd(".itm"+.@g$+@menu)))+"]":"")));
+	setd(".@typ"+(.@menu+1)+"$",getd(".ary"+.@g$+(.@menu+1)+"$["+(@menu-1)+"]"));
+	goto L_Slots;
+	
+L_RMV:
+	while(.@i++<=4)
+		setd(".@o_crd"+.@i, getequipcardid(@eq_loc,.@i-1));
+	if(!((getitemslots(@eq_id)?0:.@o_crd1)+.@o_crd2+.@o_crd3+.@o_crd4)) {
+		mes .npc$;
+		mes "Não há nada que eu possa remover nesse acessório.";
+		close;
+	}
+	mes .npc$;
+	mes "Tem certeza que deseja remover seus encantamentos?";
+	mes "^FF0000Esta opção não afetará seu slot de carta.^000000"; next;
+	if(select("Sim:Não")&2) goto L_Exit;
+	misceffect 103;
+	//delitem(.cure,1);
+	delitem2 @eq_id, 1, 1, @eq_rf, 0, .@o_crd1, .@o_crd2, .@o_crd3, .@o_crd4;
+	getitem2 @eq_id, 1, 1, @eq_rf, 0, (getitemslots(@eq_id)?.@o_crd1:0), 0, 0, 0;
+	mes .npc$;
+	mes "Seus encantos foram removidos!";
+	close;
+	
+L_Exit:
+	mes .npc$;
+	mes .message$[rand(getarraysize(.message$))];
+	close;
+	
+	function	ordinal_suffix	{
+		set(.@i,getarg(0));
+		set(.@j,.@i%10);
+		if (.@j == 1 && .@i != 11)
+			return .@i + "st";
+		if (.@j == 2 && .@i != 12)
+			return .@i + "nd";
+		if (.@j == 3 && .@i != 13)
+			return .@i + "rd";
+		return .@i + "th";
+	}
+
+	function	f_itm_menu	{	
+		while(set(.@a,.@a+1)<=.e_len) {
+			if(compare(.e_itl$[.@a-1],""+getequipid(.e_loc$[.@a-1])))
+				set .@menu$, .@menu$+.eqp$[.@a-1]+"- [^0000FF"+getitemname(getequipid(.e_loc$[.@a-1]))+"^000000]:";
+			else set .@menu$, .@menu$+"^adb4be"+.eqp$[.@a-1]+"- [Empty]^000000:";
+		}
+		set @menu, select(.@menu$)-1;
+		set @eq_loc, .e_loc$[@menu];
+		set @eq_id, getequipid(@eq_loc);
+		set @eq_rf, getequiprefinerycnt(@eq_loc);
+		
+		if(!compare(.e_itm$,""+@eq_id )) {
+			mes .npc$;
+			mes "Desculpe, não reconheço esse equipamento.";
+			close;
+		}
+	} return;
+	
+//NPC Constants
+	OnInit:
+		//=-=-=-=-=-=-=Configuration=-=-=-=-=-=-=
+		set      .perc  ,    0; //enchantment fail percent
+		set      .pert  ,    0; //slotting fail percent
+		set      .efet  ,    154; //Success Effect Number
+		set      .afet  ,    155; //Fail Effect Number
+		set      .remv  ,    0; //Allows the NPC to remove enchantments without Item. (1=On/0=Off)
+		set      .cure  ,    6665; //Item used to remove enchantments
+		//set      .cure  ,    0; //Item used to remove enchantments
+		set      .limi  ,    3; //Limit for status orb enchantments.
+		setarray .message$,     //List of random closing messages.
+			"Maybe next time then.",
+			"Alright, thanks anyway!",
+			"Alright maybe next time then.",
+			"Uhm, ok- See you around then.",
+			"Wise choice, although you'll probably"+
+			"never get anywhere with that attitude.";
+			
+		set .slot$, "2967|2969"; //Items that can be slotted.
+		
+		setarray .ary1$, "Força(STR)", "Inteligencia(INT)", "Destreza(DEX)", "Agilidade(AGI)", "Vitalidade(VIT)", "Sorte(LUK)";
+		copyarray .ary2$[0],.ary1$[0],128;
+		set .t_len, getarraysize(.ary2$);
+		set .ary2$[.t_len], "Health Points";
+
+		setarray .ary03$, "Espirito do Lutador", "Poder de Ataque(ATK%)", "Vida Maxima(MHP%)", "Pontos de Vida";
+		setarray .itm01  ,	4809, 4809, 4809; //Fighting Spirit
+		setarray .itm02  ,	4767, 4767, 4767; //ATK(%)
+		setarray .itm03  ,	4867, 4867, 4867; //MHP
+		setarray .itm04  ,	4797, 4797, 4797; //HP
+		copyarray .ary04$[0],.ary03$[0],128;
+
+		setarray .ary13$, "Ataque Magico(MATK%)", "Tempo de Conjuração & Dano(Spell)", "Pontos de mana(SP)";
+		setarray .itm11  ,	4806, 4806, 4806; //MATK(%)
+		setarray .itm12  ,	4813, 4813, 4813; //Spell
+		setarray .itm13  ,	4871, 4871, 4871; //SP
+		copyarray .ary14$[0],.ary13$[0],128;
+
+		setarray .eqp$  ,    "Accessory1", "Accessory2"; //Menu3
+		set      .e_len ,    getarraysize(.eqp$);
+		//setarray .e_itl$,    "2967";
+		//setarray .e_itl2$,   "2969";
+		setarray .e_itl$,    2967,2969; //Equip Items
+		setarray .e_loc$,    EQI_ACC_L,EQI_ACC_R; //Equip Locations
+		set      .e_itm$,    implode(.e_itl$,",");
+		set      .menu1$,    implode(.ary1$,":");
+		set      .menu2$,    .menu1$+":"+.ary03$[3];
+		set      .menu03$,   implode(.ary03$,":");
+		set      .menu04$,   .menu03$;
+		set      .menu13$,   implode(.ary13$,":");
+		set      .menu14$,   .menu13$;
+		//=-=-=-=-=-=-=-=-Skorm-=-=-=-=-=-=-=-=-=
+}
+
+prontera,147,61,5	duplicate(Goldberg#0)	Driller#1	87
+
+prontera,147,63,5	duplicate(Goldberg#0)	Goldentheifberg#3	87

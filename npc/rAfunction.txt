@@ -118,6 +118,16 @@ function	script	F_IsEquipCardHack	{
 	}
 	return 0;
 }
+function	script	F_VerificaDualIP	{
+		if(getgmlevel()>= 99)
+			return 0;
+	query_sql("SELECT login.account_id FROM login LEFT JOIN `char` ON login.account_id=`char`.account_id " + 
+	          "WHERE login.last_ip=(SELECT last_ip FROM login WHERE account_id="+getcharid(3)+") " + 
+	          "AND `char`.online=1 AND login.account_id!="+getcharid(3), .@account_id);
+			 .@i = getarraysize(.@account_id);
+			 return .@i;
+	}
+
 function	script	F_getpositionname	{
 	switch( getarg(0,999) ) {
 		case EQI_ACC_L:		return "Acessorio 1";

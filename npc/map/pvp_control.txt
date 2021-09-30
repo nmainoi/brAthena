@@ -8,9 +8,9 @@ pvp_y_1-5	mapflag	pvp
 		warp "prontera",156,191;
 	end;
 OnPCKillEvent:
-		if ( getcharid(3) != killedrid && strcharinfo(3) != $@lista$ )
+		if ( getcharid(3) != killedrid || strcharinfo(3) != $@lista$ )
 		end;
-		if (gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) <= 23 ) {
+		if (gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) <= 22 ) {
 			if (getgmlevel() >= 1 && #value != 4)
 			#value = 4;
 
@@ -31,6 +31,7 @@ OnPCKillEvent:
 
 	query_sql( "UPDATE `char` SET `pvp_kill` = `pvp_kill` + 1 WHERE `char_id` = "+getcharid(0)+" LIMIT 1" );
 	message strcharinfo(0),"Voce eliminou " + rid2name(killedrid);
+	announce "O jogador [" + strcharinfo(0)  + "] eliminou o jogador [" + rid2name(killedrid) + "]" ,bc_all,0x800000;
 
 		if (#kill <= 60) {
 		getitem(7420,#value);
@@ -40,12 +41,14 @@ OnPCKillEvent:
 		#kill += 1;
 end;		
 	OnPCDieEvent: // eaclass({<job number>,<char_id>}) // CPC_CHAR convertpcinfo(<account_id>,<type>)
-		if ( getcharid(3) != killerrid && strcharinfo(3) != $@lista$ )
+		if ( getcharid(3) != killerrid || strcharinfo(3) != $@lista$ )
 		end;
 			query_sql( "UPDATE `char` SET `pvp_death` = `pvp_death` + 1 WHERE `char_id` = "+getcharid(0)+" LIMIT 1" );
-			message strcharinfo(0),	rid2name(killerrid) + " Eliminou voce";
-			dispbottom "Voce ira renascer em 3 segundos";
-			sleep2 3000;
+		//	message strcharinfo(0),	rid2name(killerrid) + " Eliminou voce";
+		for (.@i = 0;.@i > 5 ;.@i++ ) {
+			dispbottom "Voce ira renascer em " + .@i + " segundos";
+			sleep2 1000;
+		}
 			if (strcharinfo(3) == $@lista$) {
 				warp strcharinfo(3),0,0;
 			}
