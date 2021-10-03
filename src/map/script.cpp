@@ -11466,6 +11466,13 @@ BUILDIN_FUNC(detachnpctimer)
  * it checks if there is a player attached to the current script. [Skotlex]
  * If no, returns 0, if yes, returns the account_id of the attached player.
  *------------------------------------------*/
+
+
+/*==========================================
+ * To avoid "player not attached" script errors, this function is provided,
+ * it checks if there is a player attached to the current script. [Skotlex]
+ * If no, returns 0, if yes, returns the account_id of the attached player.
+ *------------------------------------------*/
 BUILDIN_FUNC(playerattached)
 {
 	if(st->rid == 0 || map_id2sd(st->rid) == NULL)

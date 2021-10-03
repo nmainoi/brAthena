@@ -704,7 +704,7 @@ int chclif_parse_reqtoconnect(int fd, struct char_session_data* sd,uint32 ipl){
 	else {
 		struct auth_node* node;
 		DBMap *auth_db = char_get_authdb();
-
+		//TODO
 		uint32 account_id = RFIFOL(fd,2);
 		uint32 login_id1 = RFIFOL(fd,6);
 		uint32 login_id2 = RFIFOL(fd,10);

@@ -1202,23 +1202,23 @@ void pc_setequipindex(struct map_session_data *sd)
 	pc_calcweapontype(sd);
 }
 
-//static int pc_isAllowedCardOn(struct map_session_data *sd,int s,int eqindex,int flag)
-//{
-//	int i;
-//	struct item *item = &sd->inventory.u.items_inventory[eqindex];
-//	struct item_data *data;
-//
-//	//Crafted/made/hatched items.
-//	if (itemdb_isspecial(item->card[0]))
-//		return 1;
-//
-//	/* scan for enchant armor gems */
-//	if( item->card[MAX_SLOTS - 1] && s < MAX_SLOTS - 1 )
-//		s = MAX_SLOTS - 1;
-//
-//	ARR_FIND( 0, s, i, item->card[i] && (data = itemdb_exists(item->card[i])) != NULL && data->flag.no_equip&flag );
-//	return( i < s ) ? 0 : 1;
-//}
+static int pc_isAllowedCardOn(struct map_session_data *sd,int s,int eqindex,int flag)
+{
+	int i;
+	struct item *item = &sd->inventory.u.items_inventory[eqindex];
+	struct item_data *data;
+
+	//Crafted/made/hatched items.
+	if (itemdb_isspecial(item->card[0]))
+		return 1;
+
+	/* scan for enchant armor gems */
+	if( item->card[MAX_SLOTS - 1] && s < MAX_SLOTS - 1 )
+		s = MAX_SLOTS - 1;
+
+	ARR_FIND( 0, s, i, item->card[i] && (data = itemdb_exists(item->card[i])) != NULL && data->flag.no_equip&flag );
+	return( i < s ) ? 0 : 1;
+}
 
 
 /**

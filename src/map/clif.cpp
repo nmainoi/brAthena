@@ -6396,7 +6396,7 @@ void clif_broadcast(struct block_list* bl, const char* mes, int len, int type, e
 	}else{
 		strncpy( p->message, mes, len );
 	}
-
+	
 	clif_send( p, p->PacketLength, bl, target );
 }
 
@@ -6441,8 +6441,8 @@ void clif_broadcast2(struct block_list* bl, const char* mes, int len, unsigned l
 	p->fontColor = fontColor;
 	p->fontType = fontType;
 	p->fontSize = fontSize;
-	p->fontAlign = fontAlign;
-	p->fontY = fontY;
+	p->fontAlign = fontAlign + 5;
+	p->fontY = fontY + 5;
 	strncpy( p->message, mes, len );
 
 	clif_send( p, p->PacketLength, bl, target );
@@ -22019,7 +22019,7 @@ static int clif_parse(int fd)
 #ifdef PACKET_OBFUSCATION
 	int cmd2;
 #endif
-
+	//TODO
 	//TODO apply delays or disconnect based on packet throughput [FlavioJS]
 	// Note: "click masters" can do 80+ clicks in 10 seconds
 

@@ -54,7 +54,7 @@ OnDoLeave:
      		message strcharinfo(0),"Você não se encontra em nenhuma fila!";
 end;	
 OnStart:
-.@dual = F_VerificaDualIP();
+.@dual = 0;//F_VerificaDualIP();
 if(.@dual > 0){
 	mes "Não é possivel jogar o campo de batalha com mais de um personagem logado.";
 	close;
