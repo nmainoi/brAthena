@@ -8,7 +8,7 @@ pvp_y_1-5	mapflag	pvp
 		warp "prontera",156,191;
 	end;
 OnPCKillEvent:
-		if ( getcharid(3) != killedrid || strcharinfo(3) != $@lista$ )
+		if ( getcharid(3) == killedrid || strcharinfo(3) != $@lista$ )
 		end;
 		if (gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) <= 22 ) {
 			if (getgmlevel() >= 1 && #value != 4)
@@ -41,7 +41,7 @@ OnPCKillEvent:
 		#kill += 1;
 end;		
 	OnPCDieEvent: // eaclass({<job number>,<char_id>}) // CPC_CHAR convertpcinfo(<account_id>,<type>)
-		if ( getcharid(3) != killerrid || strcharinfo(3) != $@lista$ )
+		if ( getcharid(3) == killerrid || strcharinfo(3) != $@lista$ )
 		end;
 			query_sql( "UPDATE `char` SET `pvp_death` = `pvp_death` + 1 WHERE `char_id` = "+getcharid(0)+" LIMIT 1" );
 		//	message strcharinfo(0),	rid2name(killerrid) + " Eliminou voce";

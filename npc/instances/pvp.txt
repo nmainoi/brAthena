@@ -39,15 +39,15 @@ prontera,149,194,4	script	Ranking	857,{
          end;
 }
 prontera,153,193,5	script	PvP Keeper	676,{
-	switch((select("Entrar no PVP ["+getmapusers(""+$@lista$+"") +"]:Arena 1v1 e 2v2:Sair"))	){
+	switch((select("Entrar no PVP ["+getmapusers(""+$@lista$+"") +"]:Sair"))	){
 	case 1:
 		warp ""+$@lista$+"",0,0;
 		 announce "O jogador [" + strcharinfo(0)  + "] entrou na arena PvP!" ,bc_all,0x170db3;
 		end;
-	case 2:goto arena1v1; break;
+//	case 2:goto arena1v1; break;
 
 	default:break;}
-end;
+end;/*
 arena1v1:
 	mes .n$;
 	mes .linha$;
@@ -248,7 +248,7 @@ OnInit:
 		// Numero de membros do 2v2(por equipe)
 		.membros = 2;
 		// Fim config		
-end;
+end;*/
 }
 -	script	Sair	-1,{
 		warp "prontera",152,178;
