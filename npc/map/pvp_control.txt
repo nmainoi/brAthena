@@ -31,7 +31,8 @@ OnPCKillEvent:
 
 	query_sql( "UPDATE `char` SET `pvp_kill` = `pvp_kill` + 1 WHERE `char_id` = "+getcharid(0)+" LIMIT 1" );
 	message strcharinfo(0),"Voce eliminou " + rid2name(killedrid);
-	announce "O jogador [" + strcharinfo(0)  + "] eliminou o jogador [" + rid2name(killedrid) + "]" ,bc_all,0x800000;
+	//^0000FF [ Ranking PvP ] ^000000
+	announce "O jogador [" + strcharinfo(0)  + "] eliminou o jogador [" + rid2name(killedrid) + "]" ,bc_all,0xe0d666;
 
 		if (#kill <= 60) {
 		getitem(7420,#value);

@@ -5,7 +5,8 @@ prontera,170,181,2	script	Encantandor	702,{
 		mes " • [^0000ffMeio^000000]";
 		mes " • [^b8860bAnél/colar RWC^000000]";
 		mes " • [^4b0082Asas de Arcanjo caído^000000]";
-		mes " • [^080000Armas Malangdo^000000]";		
+		mes " • [^080000Armas Malangdo^000000]";
+		mes " • [^0000ffBotas Temporais^000000]";		
 		mes " ";
 		next;
 		mes .n$;		
@@ -64,8 +65,11 @@ end;
 						mes .n$;
 						mes "Sucesso!";
 		}
+									
+		autoequip .@equip_id,1;					
 		delequip .@ekp;
 		getitem2 .@equip_id,1,1,.@equip_refine,0,.number1,.number2,.number3,.number4;
+		autoequip .@equip_id,0;
 end;
 
 F_Menu_enchant:	
@@ -105,7 +109,7 @@ F_Menu_enchant:
 		 copyarray .@enchant_atqdist1,.FallEnchant_atqdist,getarraysize(.FallEnchant_atqdist);
 
 		 copyarray .@enchant_hp2,.FallEnchant_hp2,getarraysize(.FallEnchant_hp2);
-		 copyarray .@enchant_hpt1,.FallEnchant_hp,getarraysize(.FallEnchant_hp);
+		 copyarray .@enchant_hp1,.FallEnchant_hp,getarraysize(.FallEnchant_hp);
 
 		 copyarray .@enchant_sp2,.FallEnchant_sp2,getarraysize(.FallEnchant_sp2);
 		 copyarray .@enchant_sp1,.FallEnchant_sp,getarraysize(.FallEnchant_sp);
@@ -128,13 +132,32 @@ F_Menu_enchant:
 		 copyarray .@item_slots,.Malangdo_slots, getarraysize(.Malangdo_slots);
 
 	} 
+	if(inarray(.temporal_list, .@eqip) >= 0){
+				 copyarray .@enchant_atq2,.Maenchant_atq,getarraysize(.Maenchant_atq);
+				
+		 copyarray .@enchat_atqm2,.Tenchat_atqm,getarraysize(.Tenchat_atqm);
+
+		 copyarray .@echant_atqcritc2,.Techant_atqcritc,getarraysize(.Techant_atqcritc);
+
+		 copyarray .@enchant_atqdist2,.Maenchant_atqdist,getarraysize(.Maenchant_atqdist);
+
+		 .price = .temporal_quant;
+		 copyarray .@item_slots,.temporal_slots, getarraysize(.temporal_slots);
+	}
 	
 				volta:
 			.@menu2$ = "";
 			set .@menu2$,.@menu2$ + "^FF0000Encantar^000000" +":";
 			set .@menu2$,.@menu2$ + "Sair" + ":";
+			mes getarraysize(.@item_slots);	
 		for (.@i =0; .@i<getarraysize(.@item_slots) ;.@i++ ) {
-			set .@menu2$,.@menu2$ + "Slot Número - [^a92435"+ .@item_slots[.@i] +"^000000]" +":";	
+			.@SLOT = .@item_slots[.@i];
+			switch(.@SLOT){
+			case 2:if(.number2 > 0) .@nome$ = getitemname(.number2); break;
+			case 3:if(.number3 > 0)	.@nome$ = getitemname(.number3); break;
+			case 4:if(.number4 > 0)	.@nome$ = getitemname(.number4); break;
+			default:break;}
+			set .@menu2$,.@menu2$ + "Slot - [^a92435"+ .@SLOT +"^000000] ^0000ff" + .@nome$ +"^000000:";	
 		}
 		set .@part2, select(.@menu2$) ;
 		if(.@part2 == 1)
@@ -167,14 +190,14 @@ F_Menu_enchant:
 		for (.@i = 0;.@i < getarraysize(.@echant_atqcritc1) ;.@i++ ) 
 		setarray .@echant_atqcritc_1$[getarraysize(.@echant_atqcritc_1$)],getitemname(.@echant_atqcritc1[.@i]);
 		//DISTATQ
-		for (.@i = 0;.@i < getarraysize(.@enchant_atqdist) ;.@i++ ) 
+		for (.@i = 0;.@i < getarraysize(.@enchant_atqdist1) ;.@i++ ) 
 		setarray .@enchant_atqdist_1$[getarraysize(.@enchant_atqdist_1$)],getitemname(.@enchant_atqdist1[.@i]);
 		//hp
-		for (.@i = 0;.@i < getarraysize(.@enchant_hp) ;.@i++ ) 
-		setarray .@enchant_hp_1$[getarraysize(.@enchant_hp_1$)],getitemname(.@FallEnchant_hp1[.@i]);
+		for (.@i = 0;.@i < getarraysize(.@enchant_hp1) ;.@i++ ) 
+		setarray .@enchant_hp_1$[getarraysize(.@enchant_hp_1$)],getitemname(.@enchant_hp1[.@i]);
 		//sp
-		for (.@i = 0;.@i < getarraysize(.@enchant_sp) ;.@i++ ) 
-		setarray .@enchant_sp_1$[getarraysize(.@enchant_sp_1$)],getitemname(.@FallEnchant_sp1[.@i]);
+		for (.@i = 0;.@i < getarraysize(.@enchant_sp1) ;.@i++ ) 
+		setarray .@enchant_sp_1$[getarraysize(.@enchant_sp_1$)],getitemname(.@enchant_sp1[.@i]);
 		//			
 		.@strrr$ = "";
 		if(getarraysize(.@enchant_atq1)>= 1)
@@ -185,9 +208,9 @@ F_Menu_enchant:
 		.@strrr$ = .@strrr$  + "^ffa07aAtaque Crítico^000000:";
 		if(getarraysize(.@enchant_atqdist1)>= 1)
 		.@strrr$ = .@strrr$  + "^b8860bAtaque a distância^000000:";
-		if(getarraysize(.@FallEnchant_hp1)>= 1)
+		if(getarraysize(.@enchant_hp1)>= 1)
 		.@strrr$ = .@strrr$  + "^FF0000HP Max000000:";
-		if(getarraysize(.@FallEnchant_sp1)>= 1)
+		if(getarraysize(.@enchant_sp1)>= 1)
 		.@strrr$ = .@strrr$  + "^87ceebSP Max^000000:";		
 
 	switch(select(.@strrr$)) {
@@ -255,11 +278,11 @@ F_Menu_enchant:
 		for (.@i = 0;.@i < getarraysize(.@enchant_atqdist2) ;.@i++ ) 
 		setarray .@enchant_atqdist_2$[getarraysize(.@enchant_atqdist_2$)],getitemname(.@enchant_atqdist2[.@i]);
 		//hp
-		for (.@i = 0;.@i < getarraysize(.@enchant_hp) ;.@i++ ) 
-		setarray .@enchant_hp_2$[getarraysize(.@enchant_hp_2$)],getitemname(.@FallEnchant_hp2[.@i]);
+		for (.@i = 0;.@i < getarraysize(.@enchant_hp2) ;.@i++ ) 
+		setarray .@enchant_hp_2$[getarraysize(.@enchant_hp_2$)],getitemname(.@enchant_hp2[.@i]);
 		//sp
-		for (.@i = 0;.@i < getarraysize(.@enchant_sp) ;.@i++ ) 
-		setarray .@enchant_sp_2$[getarraysize(.@enchant_sp_2$)],getitemname(.@FallEnchant_sp2[.@i]);
+		for (.@i = 0;.@i < getarraysize(.@enchant_sp2) ;.@i++ ) 
+		setarray .@enchant_sp_2$[getarraysize(.@enchant_sp_2$)],getitemname(.@enchant_sp2[.@i]);
 		//			
 		//	
 		.@strrr$ = "";
@@ -271,9 +294,9 @@ F_Menu_enchant:
 		.@strrr$ = .@strrr$  + "^ffa07aAtaque Crítico^000000:";
 		if(getarraysize(.@enchant_atqdist2)>= 1)
 		.@strrr$ = .@strrr$  + "^b8860bAtaque a distância^000000:";
-		if(getarraysize(.@Enchant_hp2)>= 1)
+		if(getarraysize(.@enchant_hp2)>= 1)
 		.@strrr$ = .@strrr$  + "^FF0000HP Max000000:";
-		if(getarraysize(.@FallEnchant_sp)>= 1)
+		if(getarraysize(.@enchant_sp2)>= 1)
 		.@strrr$ = .@strrr$  + "^87ceebSP Max^000000:";	
 
 	switch(select(.@strrr$)) {
@@ -414,7 +437,7 @@ end;
 	.quant_Malangdo = 0;
 	setarray .Malangdo_slots[0],4,3;	
 	//
-	setarray .Malangdo_lista[0],1224,1225,1227,1229,1232,1233,1235,1236,1237,1240,1241,1242,1244,13047,13061,13046,1223,1228,1234,1230,13062,1271,1263,1270,1285,1268,1269,1265,1261,1266,28010,1291,1305,1311,1364,1365,1385,1367,1368,1387,1369,1363,1376,1377,1366,1370,1371,1131,1133,1134,1135,13400,1136,1138,1139,1140,1141,1148,13421,13431,1137,1130,1132,13412,13413,1164,1166,1167,1168,1170,1171,1176,1178,1180,1181,1182,1188,1189,1196,1165,1169,1179,1175,1185,1186,21018,1420,1413,1414,1416,1418,1433,1415,1421,1422,1466,1467,1468,1469,1470,1471,1474,1476,1477,1478,1479,1480,1481,1484,1616,1629,1631,1643,1654,1636,1637,1473,2004,2005,2001,2000,1524,1525,1527,1539,1541,16000,16001,16010,1523,1538,1526,1528,1540,1557,1558,1559,1561,1562,1565,1813,1814,1815,1816,1830,1719,1722,1724,1725,1727,1737,1740,1741,1745,18103,1720,1913,1918,1920,1922,1926,1930,1962,1963,1964,1969,1970,1972,1973,1974,1976,1979,1984,1985;
+	setarray .Malangdo_lista[0],13069,13070,18570,1290,1435,1490,1392,1393,18109,18110,18111,1659,16017,1584,2161,2160,15044,2852,1224,1225,1227,1229,1232,1233,1235,1236,1237,1240,1241,1242,1244,13047,13061,13046,1223,1228,1234,1230,13062,1271,1263,1270,1285,1268,1269,1265,1261,1266,28010,1291,1305,1311,1364,1365,1385,1367,1368,1387,1369,1363,1376,1377,1366,1370,1371,1131,1133,1134,1135,13400,1136,1138,1139,1140,1141,1148,13421,13431,1137,1130,1132,13412,13413,1164,1166,1167,1168,1170,1171,1176,1178,1180,1181,1182,1188,1189,1196,1165,1169,1179,1175,1185,1186,21018,1420,1413,1414,1416,1418,1433,1415,1421,1422,1466,1467,1468,1469,1470,1471,1474,1476,1477,1478,1479,1480,1481,1484,1616,1629,1631,1643,1654,1636,1637,1473,2004,2005,2001,2000,1524,1525,1527,1539,1541,16000,16001,16010,1523,1538,1526,1528,1540,1557,1558,1559,1561,1562,1565,1813,1814,1815,1816,1830,1719,1722,1724,1725,1727,1737,1740,1741,1745,18103,1720,1913,1918,1920,1922,1926,1930,1962,1963,1964,1969,1970,1972,1973,1974,1976,1979,1984,1985;
 	//
 	setarray .Maenchant_atq[0],4823,4866,4705,4745;
 	//
@@ -426,6 +449,24 @@ end;
 	//
 	for (.@i = 0;.@i<getarraysize(.Malangdo_lista);.@i++ ) {
 			setarray .main_list[getarraysize(.main_list)],.Malangdo_lista[.@i];
+	}
+		// Elmos ------------>
+	.temporal_quant = 10000;
+
+	setarray .temporal_slots[0],4;
+	//
+	setarray .temporal_list[0],22110,22111,22112,22113,22114,22115,22116;
+	//
+	setarray .Tenchant_atq[0],4822;
+	//
+	setarray .Tenchat_atqm[0],4826;
+	//
+	setarray .Techant_atqcritc[0],4866,4755;
+	// 
+	setarray .Tenchant_atqdist[0],4835;
+	//
+	for (.@i = 0;.@i<getarraysize(.temporal_list);.@i++ ) {
+			setarray .main_list[getarraysize(.main_list)],.temporal_list[.@i];
 	}
 	//	
 }

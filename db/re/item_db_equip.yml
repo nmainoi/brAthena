@@ -23138,6 +23138,7 @@ Body:
     Type: Armor
     Weight: 200
     Defense: 5
+    Slots: 1
     Jobs:
       Alchemist: true
       Assassin: true
@@ -96628,9 +96629,6 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 25
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96648,9 +96646,6 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 25
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96671,9 +96666,6 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 20
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96694,9 +96686,6 @@ Body:
     Weight: 600
     Defense: 25
     Slots: 1
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96739,9 +96728,6 @@ Body:
     Weight: 600
     Defense: 25
     Slots: 1
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96761,9 +96747,6 @@ Body:
     Weight: 600
     Defense: 25
     Slots: 1
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99

@@ -50239,3 +50239,14 @@ Body:
     EquipLevelMin:  1 #180
     Script: |
       itemheal rand(2730,2750),0;
+  - Id: 7776
+    AegisName: Max_Weight_Up_Scroll
+    Name: Gym Pass
+    Type: Usable
+    Flags:
+      NoConsume: true    
+    Buy: 10
+    Weight: 0 # 2
+    EquipLevelMin:  1 #180
+    Script: |
+       callfunc "MisterPeso";      
