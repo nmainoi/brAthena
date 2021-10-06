@@ -59,7 +59,10 @@ if(.@dual > 0){
 	mes "Não é possivel jogar o campo de batalha com mais de um personagem logado.";
 	close;
 }
-
+if ($@start == 2){
+	 message strcharinfo(0),"Partida em andamento, aguarde."; 	
+	end;
+}
 if (inarray(.bluelist, getcharid(0)) != -1 || inarray(.redlist, getcharid(0)) != -1){
  message strcharinfo(0),"Você já se encontra na fila!"; 
 	end;}
@@ -92,6 +95,7 @@ if(.@number == 1){
 			sleep 10000;
 			announce "A Batalha campal ira começar em 10 segundos",bc_blue|bc_all;
 			sleep 10000;
+			$@start = 2;
 		}else end;
 
 if($@lastoneDM == 1)

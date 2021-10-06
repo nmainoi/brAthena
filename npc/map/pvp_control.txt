@@ -2,6 +2,12 @@ pvp_y_1-1	mapflag	pvp
 pvp_y_1-2	mapflag	pvp
 pvp_y_1-4	mapflag	pvp
 pvp_y_1-5	mapflag	pvp
+-	script	LOGIN	-1,{
+OnPCLogoutEvent:
+	if (strcharinfo(3) !="prontera")
+		warp "prontera",156,191;
+	end;
+}
 -	script	PvP_Events	-1,{
 	OnPCLogoutEvent:
 	if (strcharinfo(3) == $@lista$)
