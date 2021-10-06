@@ -94,6 +94,14 @@ F_Menu_enchant:
 
 		 .price = .quant_RWC;
 		 copyarray .@item_slots,.acc_slots, getarraysize(.acc_slots);
+}	
+	 if( inarray(.CRWC_list, .@eqip) >= 0 ){  //MEIO
+
+		 copyarray .@enchant_atq2,.ColarEnchant_atq2,getarraysize(.ColarEnchant_atq2);
+		 copyarray .@enchant_atq1,.ColarEnchant_atq1,getarraysize(.ColarEnchant_atq1);
+
+		 .price = .quant_RWC;
+		 copyarray .@item_slots,.acc_slots, getarraysize(.acc_slots);
 }		
 	 if(inarray(.fallen_list,.@eqip) >= 0){
 		copyarray .@enchant_atq2,.FallEnchant_atq2,getarraysize(.FallEnchant_atq2);
@@ -149,9 +157,9 @@ F_Menu_enchant:
 			.@menu2$ = "";
 			set .@menu2$,.@menu2$ + "^FF0000Encantar^000000" +":";
 			set .@menu2$,.@menu2$ + "Sair" + ":";
-			mes getarraysize(.@item_slots);	
 		for (.@i =0; .@i<getarraysize(.@item_slots) ;.@i++ ) {
 			.@SLOT = .@item_slots[.@i];
+			.@nome$ = "";
 			switch(.@SLOT){
 			case 2:if(.number2 > 0) .@nome$ = getitemname(.number2); break;
 			case 3:if(.number3 > 0)	.@nome$ = getitemname(.number3); break;
@@ -403,8 +411,8 @@ end;
 	setarray .AnelEnchant_atq2[0],4809,4767,4797,4867;
 	setarray .AnelEnchant_atq1[0],4702,4732,4712,4722,4752;
 	// COLAR RWC
-	setarray .CRWC_list[0],2968;
-	setarray .main_list[getarraysize(.main_list)],2968;
+	setarray .CRWC_list[0],2969;
+	setarray .main_list[getarraysize(.main_list)],2969;
 	//
 	setarray .ColarEnchant_atq2[0],4813,4806,4871;
 	setarray .ColarEnchant_atq1[0],4702,4732,4712,4722,4752,4867;

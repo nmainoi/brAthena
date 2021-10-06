@@ -10576,13 +10576,6 @@ Body:
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
-    Script: |
-      if (getiteminfo(getequipid(EQI_HAND_R), ITEMINFO_VIEW) == W_BOW) {
-         bonus2 bSkillAtk,"RA_ARROWSTORM",50;
-         bonus bCriticalLong,25+10*(getequiprefinerycnt(EQI_HAND_R)/4);
-         bonus bHit,5;
-         bonus3 bAutoSpell,"HT_PHANTASMIC",1,100;
-      }
   - Id: 4552
     AegisName: Manny_Card
     Name: Manny Card

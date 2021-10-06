@@ -4636,7 +4636,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE)
 				skillratio += -100 + 800 * skill_lv;
 			else
-				skillratio += -100 + 500 * skill_lv;
+				skillratio += -100 + 350 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
 		case SR_SKYNETBLOW:
@@ -6775,14 +6775,14 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						if (sc && sc->data[SC_CURSED_SOIL_OPTION])
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
-						skillratio += skillratio * 3;
+						
 						break;
 					case SO_DIAMONDDUST: // !TODO: Confirm formula
 						skillratio += -100 + 200 * ((sd) ? pc_checkskill(sd, SA_FROSTWEAPON) : 0) + sstatus->int_  * skill_lv;
 						RE_LVL_DMOD(100);
 						if( sc && sc->data[SC_COOLER_OPTION] )
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
-						skillratio += skillratio * 3;
+						
 						break;
 					case SO_POISON_BUSTER:
 						skillratio += -100 + 1000 + 300 * skill_lv + sstatus->int_ / 6; // !TODO: Confirm INT bonus
@@ -6801,7 +6801,6 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if (sc && (sc->data[SC_HEATER_OPTION] || sc->data[SC_COOLER_OPTION] ||
 							sc->data[SC_BLAST_OPTION] || sc->data[SC_CURSED_SOIL_OPTION]))
 							skillratio += 20;
-						skillratio += skillratio *3;
 						break;
 					case SO_CLOUD_KILL:
 						skillratio += -100 + 40 * skill_lv;

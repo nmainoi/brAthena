@@ -36048,16 +36048,6 @@ Body:
     Type: Armor
     Locations:
       Both_Accessory: true
-    Script: |
-      skill "BS_MAXIMIZE",5;
-      skill "BS_WEAPONPERFECT",5;
-      skill "WL_RECOGNIZEDSPELL",5;
-      skill "ECL_SNOWFLIP",1;
-      skill "ECL_PEONYMAMY",1;
-      skill "ECL_SADAGUI",1;
-      skill "ECL_SEQUOIADUST",1;
-      bonus2 bSkillCooldown,"WL_RECOGNIZEDSPELL",-180000;
-      bonus bDelayrate,-100;
   - Id: 2905
     AegisName: Super_Ora_Ora
     Name: Super Ora Ora
@@ -53193,7 +53183,7 @@ Body:
     Refineable: true
     View: 1409
     Script: |
-      bonus2 bSkillAtk,"PA_SACRIFICE",BaseLevel*2;
+      bonus2 bSkillAtk,"PA_SACRIFICE",BaseLevel*3/2;
       bonus2 bSkillVariableCast,"PA_PRESSURE",-2000;
       bonus2 bSkillVariableCast,"CR_DEVOTION",-2000;
       if (BaseLevel > 149) {
