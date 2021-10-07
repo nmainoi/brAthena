@@ -5018,7 +5018,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 	//The following are applied on top of current damage and are stackable.
 	if (sc) {
 #ifdef RENEWAL
-		if (sc->data[SC_WATK_ELEMENT] && skill_id != ASC_METEORASSAULT)
+		if (sc->data[SC_WATK_ELEMENT] && skill_id != ASC_METEORASSAULT && skill_id != RK_DRAGONBREATH && skill_id != RK_DRAGONBREATH_WATER)
 			ATK_ADDRATE(wd->weaponAtk, wd->weaponAtk2, sc->data[SC_WATK_ELEMENT]->val2);
 		if (sc->data[SC_DRUMBATTLE])
 			ATK_ADD(wd->equipAtk, wd->equipAtk2, sc->data[SC_DRUMBATTLE]->val2);
@@ -5910,6 +5910,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		wd.dmg_lv = ATK_LUCKY;
 		if(wd.div_ < 0)
 			wd.div_ *= -1;
+		if (sc->data[SC_CRUSHSTRIKE])
+			status_change_end(src, SC_CRUSHSTRIKE, INVALID_TIMER);
 		return wd;
 	}
 

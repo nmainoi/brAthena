@@ -10346,7 +10346,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case WL_WHITEIMPRISON:
-		if( (src == bl || battle_check_target(src, bl, BCT_ENEMY)>0) && status_get_class_(bl) != CLASS_BOSS && !status_isimmune(bl) ) // Should not work with Bosses.
+		if( (src == bl || battle_check_target(src, bl, BCT_ENEMY)>0) && status_get_class_(bl) != CLASS_BOSS && !status_isimmune(bl)) // Should not work with Bosses.
 		{
 			int rate = ( sd? sd->status.job_level : 50 ) / 4;
 
@@ -10357,11 +10357,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			if( sd )
 				skill_blockpc_start(sd,skill_id,4000);
 
-			if( !(tsc && tsc->data[type]) ){
-				i = sc_start2(src,bl,type,rate,skill_lv,src->id,(src == bl)?5000:(bl->type == BL_PC)?skill_get_time(skill_id,skill_lv):skill_get_time2(skill_id, skill_lv));
-				clif_skill_nodamage(src,bl,skill_id,skill_lv,i);
-				if( !i )
+			if(tsc->data[SC_REFRESH]) {
+				clif_skill_nodamage(src, bl, skill_id, skill_lv, 2);
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+			}
+			 if (!(tsc && tsc->data[type]) && !(tsc->data[SC_REFRESH])) 
+			{
+				i = sc_start2(src, bl, type, rate, skill_lv, src->id, (src == bl) ? 5000 : (bl->type == BL_PC) ? skill_get_time(skill_id, skill_lv) : skill_get_time2(skill_id, skill_lv));
+					clif_skill_nodamage(src, bl, skill_id, skill_lv, i);
+					if (!i )
+						clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
 			}
 		}else
 		if( sd )

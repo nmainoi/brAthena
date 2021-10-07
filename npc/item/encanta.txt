@@ -1,4 +1,5 @@
 prontera,170,181,2	script	Encantandor	702,{
+		disable_items;
 		mes .n$;
 		mes .linha$;
 		mes "Olá posso encantar certos itens de:";

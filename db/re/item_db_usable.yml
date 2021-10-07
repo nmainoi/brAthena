@@ -12365,6 +12365,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
+      sc_end SC_STONEHARDSKIN;
       if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
          unitskilluseid getcharid(3),"RK_STONEHARDSKIN",1;
   - Id: 12734

@@ -18144,6 +18144,7 @@ Body:
     DamageFlags:
       Splash: true
       IgnoreFlee: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9
@@ -23918,6 +23919,7 @@ Body:
     CopyFlags:
       Skill:
         Reproduce: true
+    Cooldown: 200
     Duration1: 5000
     Requires:
       SpCost:
@@ -23960,7 +23962,6 @@ Body:
     CopyFlags:
       Skill:
         Reproduce: true
-    AfterCastActDelay: 500
     Requires:
       SpCost:
         - Level: 1
@@ -24037,6 +24038,7 @@ Body:
     Hit: Multi_Hit
     HitCount: -2
     Element: Weapon
+    Cooldown: 200
     Duration1:
       - Level: 1
         Time: 500
@@ -24073,7 +24075,7 @@ Body:
       IgnoreFlee: true
     Flags:
       TargetTrap: true
-    Range: 3
+    Range: 2
     Hit: Single
     HitCount: 1
     Element: Weapon
@@ -31738,7 +31740,9 @@ Body:
     TargetType: Ground
     DamageFlags:
       Splash: true
+      IgnoreAtkCard: true
       IgnoreFlee: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9

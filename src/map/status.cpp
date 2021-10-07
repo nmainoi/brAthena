@@ -2867,8 +2867,10 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 #ifdef RENEWAL
 				|| (sc->data[SC_ENSEMBLEFATIGUE] && skill_id != CG_SPECIALSINGER)
 #endif
-			))
-				return false;
+				)) {
+				if(skill_id != 2013)
+					return false;
+			}
 
 			// Skill blocking.
 			if (
