@@ -454,7 +454,7 @@ end;
 	//
 	setarray .Maechant_atqcritc[0],4864,4712;
 	// 
-	setarray .Maenchant_atqdist[0],4837,4735,4755;
+	setarray .Maenchant_atqdist[0],4837,4735,4755,4725;
 	//
 	for (.@i = 0;.@i<getarraysize(.Malangdo_lista);.@i++ ) {
 			setarray .main_list[getarraysize(.main_list)],.Malangdo_lista[.@i];
