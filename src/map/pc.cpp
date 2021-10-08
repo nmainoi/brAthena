@@ -10915,7 +10915,7 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 		clif_changelook(&sd->bl,LOOK_WEAPON,sd->status.weapon);
 		if( !battle_config.dancing_weaponswitch_fix )
 			status_change_end(&sd->bl, SC_DANCING, INVALID_TIMER); // Unequipping => stop dancing.
-		if (sd->sc.data[SC_CRUSHSTRIKE])
+		if (sd && sd->sc.data[SC_CRUSHSTRIKE])
 			status_change_end(&sd->bl, SC_CRUSHSTRIKE, INVALID_TIMER);
 #ifdef RENEWAL
 		if (battle_config.switch_remove_edp&2) {

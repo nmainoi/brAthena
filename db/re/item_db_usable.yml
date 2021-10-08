@@ -1141,6 +1141,7 @@ Body:
       Override: 100
       Sitting: true
     Script: |
+      sc_end SC_VOICEOFSIREN;
       itemskill "SM_SELFPROVOKE",1;
   - Id: 607
     AegisName: Yggdrasilberry

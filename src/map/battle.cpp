@@ -5910,7 +5910,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		wd.dmg_lv = ATK_LUCKY;
 		if(wd.div_ < 0)
 			wd.div_ *= -1;
-		if (sc->data[SC_CRUSHSTRIKE])
+		if (sc && sc->data[SC_CRUSHSTRIKE])
 			status_change_end(src, SC_CRUSHSTRIKE, INVALID_TIMER);
 		return wd;
 	}
@@ -5935,7 +5935,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 	// check if we're landing a hit
 	if (!is_attack_hitting(&wd, src, target, skill_id, skill_lv, true)) {
 		wd.dmg_lv = ATK_FLEE;
-		if (sc->data[SC_CRUSHSTRIKE])
+		if (sc && sc->data[SC_CRUSHSTRIKE])
 			status_change_end(src, SC_CRUSHSTRIKE, INVALID_TIMER);
 	}
 	else if(!(infdef = is_infinite_defense(target, wd.flag))) { //no need for math against plants
