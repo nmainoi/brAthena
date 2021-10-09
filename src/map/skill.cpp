@@ -10351,7 +10351,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			int rate = ( sd? sd->status.job_level : 50 ) / 4;
 
 			if( src == bl ) rate = 100; // Success Chance: On self, 100%
-			else if(bl->type == BL_PC) rate += 20 + 10 * skill_lv; // On Players, (20 + 10 * Skill Level) %
+			else if (bl->type == BL_PC) {
+				struct status_data* status, * status_src;
+				status = status_get_status_data(bl);
+				rate += 20 + 10 * skill_lv - (status->str * 2 / 100); // On Players, (20 + 10 * Skill Level) %
+			}
 			else rate += 40 + 10 * skill_lv; // On Monsters, (40 + 10 * Skill Level) %
 
 			if( sd )

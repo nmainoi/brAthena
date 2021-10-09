@@ -9187,8 +9187,9 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 		case SC_WHITEIMPRISON:
 			if( tick == 5000 ) // 100% on caster
 				break;
-			if( bl->type == BL_PC )
-				tick_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10;
+			if (bl->type == BL_PC)
+				tick_def2 = (status->vit + status->luk)*10;
+				//tick_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10;
 			else
 				tick_def2 = (status->vit + status->luk)*50;
 			break;
@@ -9720,7 +9721,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		break;
 	// Fall through
 	case SC_WHITEIMPRISON:
-		if (sc->opt1)
+		if (!sc->data[SC_BURNING] && sc->opt1 )
 			return 0; //Cannot override other OPT1 status changes [Skotlex]
 		break;
 	case SC_SIGNUMCRUCIS:
@@ -10391,7 +10392,6 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		break;
 	case SC_WHITEIMPRISON:
 		status_change_end(bl, SC_BURNING, INVALID_TIMER);
-		status_change_end(bl, SC_FREEZING, INVALID_TIMER);
 		status_change_end(bl, SC_FREEZE, INVALID_TIMER);
 		status_change_end(bl, SC_STONE, INVALID_TIMER);
 		break;

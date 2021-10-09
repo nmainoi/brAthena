@@ -1,6 +1,7 @@
 prontera,153,184,5	script	cashfree	702,{
     if( #CASHPOINTS < 200000){
     set #CASHPOINTS,200000; dispbottom "You gained [ 200000 Cash Points ]. Enjoy!";}
+    end;
     OnInit:
       waitingroom "Free Cash",0;
     end;

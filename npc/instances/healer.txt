@@ -9,6 +9,11 @@ OnAtNPC:
             message strcharinfo(0),"Seja VIP e desfrute de benefícios exclusivos.";
 			end;
 	}
+	if ( HEALCD + 10 > gettimetick(2) ) {
+        dispbottom "Você precisa esperar por " + ( HEALCD + 10 - gettimetick(2) ) + " segundos.";
+        end;
+    }
+    HEALCD = gettimetick(2);
 callfunc "F_BUFF","2";
 	specialeffect2 EF_TEIHIT3;
 	end;

@@ -35,18 +35,18 @@ end;
 		.@equip_id =  getequipid(.@ekp);
 		.@equip_refine =getequiprefinerycnt(.@ekp);
 		///
-		.number1 = getequipcardid(.@ekp ,0);
-		.number2 = getequipcardid(.@ekp ,1);
-		.number3 = getequipcardid(.@ekp ,2);
-		.number4 = getequipcardid(.@ekp ,3);
-		.number1bk = getequipcardid(.@ekp ,0);
-		.number2bk = getequipcardid(.@ekp ,1);
-		.number3bk = getequipcardid(.@ekp ,2);
-		.number4bk = getequipcardid(.@ekp ,3);
+		#number1 = getequipcardid(.@ekp ,0);
+		#number2 = getequipcardid(.@ekp ,1);
+		#number3 = getequipcardid(.@ekp ,2);
+		#number4 = getequipcardid(.@ekp ,3);
+		#number1bk = getequipcardid(.@ekp ,0);
+		#number2bk = getequipcardid(.@ekp ,1);
+		#number3bk = getequipcardid(.@ekp ,2);
+		#number4bk = getequipcardid(.@ekp ,3);
 		///
 		.item_preco = 0;
 		callsub F_Menu_enchant,.@equip_id;
-		if(.number1 == .number1bk && .number2 == .number2bk && .number3 == .number3bk && .number4 == .number4bk   ){
+		if(#number1 == #number1bk && #number2 == #number2bk && #number3 == #number3bk && #number4 == #number4bk   ){
 			mes .n$;
 			mes "Voce não mudou nada!";
 			close;
@@ -69,7 +69,7 @@ end;
 									
 		autoequip .@equip_id,1;					
 		delequip .@ekp;
-		getitem2 .@equip_id,1,1,.@equip_refine,0,.number1,.number2,.number3,.number4;
+		getitem2 .@equip_id,1,1,.@equip_refine,0,#number1,#number2,#number3,#number4;
 		autoequip .@equip_id,0;
 end;
 
@@ -162,9 +162,9 @@ F_Menu_enchant:
 			.@SLOT = .@item_slots[.@i];
 			.@nome$ = "";
 			switch(.@SLOT){
-			case 2:if(.number2 > 0) .@nome$ = getitemname(.number2); break;
-			case 3:if(.number3 > 0)	.@nome$ = getitemname(.number3); break;
-			case 4:if(.number4 > 0)	.@nome$ = getitemname(.number4); break;
+			case 2:if(#number2 > 0) .@nome$ = getitemname(#number2); break;
+			case 3:if(#number3 > 0)	.@nome$ = getitemname(#number3); break;
+			case 4:if(#number4 > 0)	.@nome$ = getitemname(#number4); break;
 			default:break;}
 			set .@menu2$,.@menu2$ + "Slot - [^a92435"+ .@SLOT +"^000000] ^0000ff" + .@nome$ +"^000000:";	
 		}
@@ -371,9 +371,9 @@ end;
 	.@card = getarg(0);
 	.@slot = getarg(1);
 	switch(.@slot){
-	case 2: .number2 = .@card ; break;
-	case 3: .number3 = .@card ; break;
-	case 4: .number4 = .@card ; break;
+	case 2: #number2 = .@card ; break;
+	case 3: #number3 = .@card ; break;
+	case 4: #number4 = .@card ; break;
 	default:break;}
 
 return 1;
