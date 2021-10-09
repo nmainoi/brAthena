@@ -9,18 +9,21 @@ OnAtNPC:
             message strcharinfo(0),"Seja VIP e desfrute de benefícios exclusivos.";
 			end;
 	}
-	if ( HEALCD + 10 > gettimetick(2) ) {
-        dispbottom "Você precisa esperar por " + ( HEALCD + 10 - gettimetick(2) ) + " segundos.";
-        end;
-    }
-    HEALCD = gettimetick(2);
+set .@timer, gettimetick(2)-q_timer;
+set .@wait, 60-.@timer;
+if(.@timer < 60)
+{
+message strcharinfo(0),"Aguarde " +.@wait+" segundos.";
+close;
+}
+set q_timer, gettimetick(2);
 callfunc "F_BUFF","2";
-	specialeffect2 EF_TEIHIT3;
-	end;
+	specialeffect2 EF_TEIHIT3;	
 end;
 	
 OnInit:
 	bindatcmd "buffs",strnpcinfo(3)+"::OnAtNPC";
+	bindatcmd "buff",strnpcinfo(3)+"::OnAtNPC";
 	set .allowed,0; 
 	end;
 }
