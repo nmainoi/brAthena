@@ -1771,6 +1771,8 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 		break;
 	case NC_POWERSWING:
 		sc_start(src,bl, SC_STUN, 10, skill_lv, skill_get_time(skill_id, skill_lv));
+		if (rnd() % 100 < 5 * skill_lv)
+			skill_castend_damage_id(src, bl, NC_AXEBOOMERANG, ((sd) ? pc_checkskill(sd, NC_AXEBOOMERANG) : skill_get_max(NC_AXEBOOMERANG)), tick, 1);
 		break;
 	case GC_WEAPONCRUSH:
 		skill_castend_nodamage_id(src,bl,skill_id,skill_lv,tick,BCT_ENEMY);
@@ -1867,10 +1869,12 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 					break;
 				case ITEMID_BANANA_BOMB:
 					{
-						uint16 duration = (battle_config.banana_bomb_duration ? battle_config.banana_bomb_duration : 1000 * sd->status.job_level / 4);
-
-						sc_start(src,bl, SC_BANANA_BOMB_SITDOWN, status_get_lv(src) + sd->status.job_level + sstatus->dex / 6 - status_get_lv(bl) - tstatus->agi / 4 - tstatus->luk / 5, skill_lv, duration);
-						sc_start(src,bl, SC_BANANA_BOMB, 100, skill_lv, 30000);
+						uint16 duration = 14000;
+						int num = rnd() % 100;
+						if (num <= 30) {
+							sc_start(src, bl, SC_BANANA_BOMB_SITDOWN, status_get_lv(src) + sd->status.job_level + sstatus->dex / 6 - status_get_lv(bl) - tstatus->agi / 4 - tstatus->luk / 5, skill_lv, duration);
+							sc_start(src, bl, SC_BANANA_BOMB, 100, skill_lv, 30000);
+						}
 						break;
 					}
 			}
@@ -3817,6 +3821,9 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 		switch( skill_id ) {
 		case SR_TIGERCANNON:
 			status_zap(bl, 0, damage * 10 / 100);
+			break;
+		case WM_METALICSOUND:
+			status_zap(bl, 0, damage * 100 / (100 * (110 - ((sd) ? pc_checkskill(sd, WM_LESSON) : skill_get_max(WM_LESSON)) * 10)));
 			break;
 			case GC_VENOMPRESSURE: {
 					struct status_change *ssc = status_get_sc(src);
@@ -8059,15 +8066,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case BD_ADAPTATION:
-#ifdef RENEWAL
-		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		sc_start(src, bl, type, 100, skill_lv, skill_get_time(skill_id, skill_lv));
-#else
 		if(tsc && tsc->data[SC_DANCING]){
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			status_change_end(bl, SC_DANCING, INVALID_TIMER);
 		}
-#endif
 		break;
 
 	case BA_FROSTJOKER:

@@ -27,7 +27,15 @@ OnInit:
 	set .allowed,0; 
 	end;
 }
-
+-	script	Mado	-1,{
+	OnAtNPC:
+	callfunc "F_MADO";
+end;
+OnInit:
+	bindatcmd "mado",strnpcinfo(3)+"::OnAtNPC";
+	set .allowed,0; 
+	end;
+}
 // Duplicates
 //============================================================
 prontera,162,194,4	duplicate(Healer)	Healer#prt	677

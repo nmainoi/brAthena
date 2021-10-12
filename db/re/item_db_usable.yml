@@ -12366,9 +12366,12 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      sc_end SC_STONEHARDSKIN;
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      
+      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT){
          unitskilluseid getcharid(3),"RK_STONEHARDSKIN",1;
+        // sc_end SC_STONEHARDSKIN;
+        // sc_start SC_STONEHARDSKIN,180000,0;
+          }
   - Id: 12734
     AegisName: Runstone_Quality
     Name: Luxurious Rune

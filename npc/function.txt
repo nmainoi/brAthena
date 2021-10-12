@@ -293,7 +293,7 @@ if ((eaclass()&EAJ_THIRDMASK)==EAJ_GENETIC){
 callfunc "F_CONSU_ESPE", .@items2; 
 }
 if ((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC){
-	setarray .@items2,6145,6146,6147,18000,18001,18003,18004;
+	setarray .@items2,6145,6146,6147,18000,18001,18003,18004,615,612,999,998,7054,6360,6361,6362,6363,6186,12394;
 	setarray .@items3,1549,2139,6147,2800,2801,2802,2804,2805,2806,2808,2807;
 callfunc "F_MECA", .@items3; 
 callfunc "F_CONSU_ESPE", .@items2; 
@@ -335,6 +335,13 @@ function	script	F_MECA	{
 	}
 	return;
 end;
+}
+function	script	F_MADO	{
+	switch(select("Carrinho:Meca")	){
+	case 1: modo = 1; setmadogear(0);break;
+	case 2: modo = 2;setcart(0); break;
+	default:break;}
+	end;
 }
 function	script	F_BUFF	{
 		set .@str$, getarg(0);
@@ -415,8 +422,8 @@ function	script	F_BUFF	{
 					} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124)) {
 									getitem 6124,1; //Wolf's_Flute
 					} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC) && !checkcart() && getskilllv("MC_PUSHCART")) {
-						if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) {
-							if(select(" ~ Cart: ~ Mado")==1) setcart;
+						if ( getskilllv("NC_MADOLICENCE")) {
+							if(modo==1) setcart;
 							else setmadogear;
 						} else setcart;
 					} else if (!checkcart() && getskilllv("MC_PUSHCART")) setcart;
@@ -424,7 +431,7 @@ function	script	F_BUFF	{
 					else if (!checkriding() && !checkdragon() && getskilllv("KN_RIDING")) {
 						if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) setdragon;
 						else setriding;
-					} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
+					} 
 					else {
 						
 					}

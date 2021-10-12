@@ -13527,6 +13527,9 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
+    flags:
+      IgnoreAutoGuard: true
+      IgnoreCicada: true
     Range: -2
     Hit: Single
     HitCount: 1
@@ -21318,7 +21321,7 @@ Body:
     Unit:
       Id: Firingtrap
       Range: 1
-      Interval: 1000
+      Interval: 50
       Target: Enemy
       Flag:
         NoReiteration: true
@@ -21956,6 +21959,8 @@ Body:
       NoDamage: true
     Flags:
       AllowOnMado: true
+      PartyOnly: true
+      GuildOnly: true
     Hit: Single
     HitCount: 1
     Duration1:
@@ -24517,6 +24522,9 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
+    DamageFlags:
+      IgnoreElement: false
+      IgnoreFlee: true
     Range:
       - Level: 1
         Size: 1
@@ -24540,7 +24548,8 @@ Body:
         Size: 7
     Hit: Multi_Hit
     HitCount: -7
-    Element: Weapon
+    Element: Neutral
+    Cooldown: 200
     CopyFlags:
       Skill:
         Reproduce: true
@@ -25228,7 +25237,7 @@ Body:
         Count: -3	
       - Level: 5	
         Count: -4
-    Element: Weapon
+    Element: Neutral
     CopyFlags:
       Skill:
         Reproduce: true
@@ -28241,6 +28250,7 @@ Body:
     CopyFlags:
       Skill:
         Reproduce: true
+    CastTime: 2500
     AfterCastActDelay: 500
     Duration1:
       - Level: 1
@@ -30725,6 +30735,7 @@ Body:
       SplashSplit: true
       IgnoreElement: true
       IgnoreFlee: true
+      ignoreDefCard: true
     Range: 11
     Hit: Multi_Hit
     HitCount: -10

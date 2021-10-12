@@ -6168,7 +6168,6 @@ void status_calc_bl_(struct block_list* bl, enum scb_flag flag, enum e_status_ca
 
 	if (bl->type == BL_PC) {
 		struct map_session_data *sd = BL_CAST(BL_PC, bl);
-
 		if (sd->delayed_damage != 0) {
 			if (opt&SCO_FORCE)
 				sd->state.hold_recalc = false; // Clear and move on
@@ -6361,9 +6360,11 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 	if(!sc || !sc->count)
 		return cap_value(str,0,USHRT_MAX);
 
-	if(sc->data[SC_HARMONIZE]) {
+	if(sc->data[SC_HARMONIZE] ) {
+		struct status_data* status = status_get_status_data(bl);
+		str = status->str;
 		str -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(str,0,USHRT_MAX);
+		return (unsigned short)cap_value(str,0, USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		str += sc->data[SC_INCALLSTATUS]->val1;
@@ -6446,8 +6447,10 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		return cap_value(agi,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
+		struct status_data* status = status_get_status_data(bl);
+		agi = status->agi;
 		agi -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(agi,0,USHRT_MAX);
+		return (unsigned short)cap_value(agi,0, USHRT_MAX);
 	}
 	if(sc->data[SC_CONCENTRATE] && !sc->data[SC_QUAGMIRE])
 		agi += (agi-sc->data[SC_CONCENTRATE]->val3)*sc->data[SC_CONCENTRATE]->val2/100;
@@ -6528,8 +6531,10 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 		return cap_value(vit,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
+		struct status_data* status = status_get_status_data(bl);
+		vit = status->vit;
 		vit -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(vit,0,USHRT_MAX);
+		return (unsigned short)cap_value(vit,0, USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		vit += sc->data[SC_INCALLSTATUS]->val1;
@@ -6600,8 +6605,10 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 		return cap_value(int_,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
+		struct status_data* status = status_get_status_data(bl);
+		int_ = status->int_;
 		int_ -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(int_,0,USHRT_MAX);
+		return (unsigned short)cap_value(int_,0, USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		int_ += sc->data[SC_INCALLSTATUS]->val1;
@@ -6687,8 +6694,10 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		return cap_value(dex,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
+		struct status_data* status = status_get_status_data(bl);
+		dex = status->dex;
 		dex -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(dex,0,USHRT_MAX);
+		return (unsigned short)cap_value(dex,0, USHRT_MAX);
 	}
 	if(sc->data[SC_CONCENTRATE] && !sc->data[SC_QUAGMIRE])
 		dex += (dex-sc->data[SC_CONCENTRATE]->val4)*sc->data[SC_CONCENTRATE]->val2/100;
@@ -6771,8 +6780,10 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		return cap_value(luk,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
+		struct status_data* status = status_get_status_data(bl);
+		luk = status->luk;
 		luk -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(luk,0,USHRT_MAX);
+		return (unsigned short)cap_value(luk,0, USHRT_MAX);
 	}
 	if(sc->data[SC_CURSE])
 		return 0;
@@ -7354,7 +7365,7 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 	if(sc->data[SC_PARALYSE] && sc->data[SC_PARALYSE]->val3 == 1)
 		flee -= flee * 10 / 100;
 	if(sc->data[SC_INFRAREDSCAN])
-		flee -= flee * 30 / 100;
+		flee -= flee * 20 / 100;
 	if( sc->data[SC__LAZINESS] )
 		flee -= flee * sc->data[SC__LAZINESS]->val3 / 100;
 	if( sc->data[SC_GLOOMYDAY] )
@@ -10089,6 +10100,9 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH)
 			status_change_end(bl, SC_SPIRIT, INVALID_TIMER);
 		break;
+	case SC_STONEHARDSKIN:
+		status_change_end(bl, SC_STONEHARDSKIN, INVALID_TIMER);
+		break;
 	case SC_QUAGMIRE:
 		status_change_end(bl, SC_LOUD, INVALID_TIMER);
 		status_change_end(bl, SC_CONCENTRATE, INVALID_TIMER);
@@ -10306,7 +10320,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		if (type != SC_MOONLITSERENADE) status_change_end(bl, SC_MOONLITSERENADE, INVALID_TIMER);
 		if (type != SC_RUSHWINDMILL) status_change_end(bl, SC_RUSHWINDMILL, INVALID_TIMER);
 		if (type != SC_ECHOSONG) status_change_end(bl, SC_ECHOSONG, INVALID_TIMER);
-		if (type != SC_HARMONIZE) status_change_end(bl, SC_HARMONIZE, INVALID_TIMER);
+		status_change_end(bl, SC_HARMONIZE, INVALID_TIMER); //tem que tirar saporra sempre
 		break;
 	case SC_VOICEOFSIREN:
 	case SC_DEEPSLEEP:
@@ -11617,6 +11631,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_STONEHARDSKIN:
 			if (!status_charge(bl, status->hp / 5, 0)) // 20% of HP
 				return 0;
+			//if(sc && sc->data[SC_STONEHARDSKIN])
+			//status_change_end(bl, SC_STONEHARDSKIN, INVALID_TIMER);
 			if (sd)
 				val1 = sd->status.job_level * pc_checkskill(sd, RK_RUNEMASTERY) / 4; // DEF/MDEF Increase
 			break;

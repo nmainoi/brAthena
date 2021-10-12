@@ -2712,6 +2712,7 @@ struct status_change {
 #endif
 	unsigned char bs_counter;
 	struct status_change_entry *data[SC_MAX];
+
 };
 
 /// Statuses that are cancelled/disabled while on Madogear
