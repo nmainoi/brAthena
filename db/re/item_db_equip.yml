@@ -63457,6 +63457,7 @@ Body:
     EquipLevelMin: 1 # 60
     Refineable: true
     Script: |
+      bonus bUnbreakableArmor;
       bonus bMdef,3;
       bonus2 bSubEle,Ele_Neutral,7;
       bonus bMaxHPrate,5;
@@ -96555,9 +96556,6 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 25
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96576,9 +96574,6 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 20
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96598,9 +96593,6 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 25
-    Jobs:
-      KagerouOboro: true
-      Rebellion: true
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99
@@ -96619,6 +96611,7 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 25
+    Slots: 1
     Locations:
       Shoes: true
     EquipLevelMin: 1 # 99

@@ -19796,6 +19796,7 @@ Body:
     DamageFlags:
       NoDamage: true
     Flags:
+      AllowWhenHidden: true
       IgnoreKagehumi: true
       IgnoreWugBite: true
     Hit: Single
@@ -22704,6 +22705,8 @@ Body:
     HitCount: 1
     CastCancel: true
     CastTime: 2000
+    AfterCastActDelay: 2000
+    Cooldown: 1000
     Duration1:
       - Level: 1
         Time: 10000
@@ -22736,6 +22739,8 @@ Body:
     HitCount: 1
     CastCancel: true
     CastTime: 2000
+    AfterCastActDelay: 2000
+    Cooldown: 1000
     Duration1:
       - Level: 1
         Time: 10000
@@ -22768,6 +22773,8 @@ Body:
     HitCount: 1
     CastCancel: true
     CastTime: 2000
+    AfterCastActDelay: 2000
+    Cooldown: 1000
     Duration1:
       - Level: 1
         Time: 10000
@@ -22800,6 +22807,8 @@ Body:
     HitCount: 1
     CastCancel: true
     CastTime: 2000
+    AfterCastActDelay: 2000
+    Cooldown: 1000
     Duration1:
       - Level: 1
         Time: 10000
@@ -22832,6 +22841,8 @@ Body:
     HitCount: 1
     CastCancel: true
     CastTime: 2000
+    AfterCastActDelay: 2000
+    Cooldown: 1000
     Duration1:
       - Level: 1
         Time: 10000
@@ -22864,6 +22875,8 @@ Body:
     HitCount: 1
     CastCancel: true
     CastTime: 2000
+    AfterCastActDelay: 2000
+    Cooldown: 1000
     Duration1:
       - Level: 1
         Time: 10000
@@ -28263,13 +28276,12 @@ Body:
         Time: 35000
       - Level: 5
         Time: 42000
-    FixedCastTime: -1
     Requires:
       SpCost:
         - Level: 1
           Amount: 40
         - Level: 2
-          Amount: 45
+          Amount: 45  
         - Level: 3
           Amount: 50
         - Level: 4

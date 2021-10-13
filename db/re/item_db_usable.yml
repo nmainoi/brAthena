@@ -1861,8 +1861,6 @@ Body:
          sc_start SC_DPOISON,60000,0;
          sc_start SC_ASPDPOTION3,60000,9;
       }
-      else
-         percentheal -100,-100;
   - Id: 679
     AegisName: Gold_Pill
     Name: Pilule
@@ -8706,6 +8704,8 @@ Body:
     Type: Usable
     Buy: 20
     Weight: 0 # 10
+    Delay:
+      Duration: 10000
     Flags:
       BuyingStore: true
     Script: |

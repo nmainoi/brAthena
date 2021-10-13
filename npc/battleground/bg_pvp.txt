@@ -42,6 +42,12 @@ OnInit:
 		7420, 100;
 	bindatcmd .@command1$,"bg_pvp#control::OnStart",0,99;
 	bindatcmd .@command2$,"bg_pvp#control::OnDoLeave",0,99;
+	//
+
+		setwall "bat_c01", 139,52,11, 0, 0, "bg_woe_town_blue12";
+	setwall "bat_c01", 149,62, 10, 2, 0, "bg_woe_town_blue22";
+	setwall "bat_c01", 60,121, 11, 0, 0, "bg_woe_town_red12";
+	setwall "bat_c01", 59,121, 10, 2, 0, "bg_woe_town_red22";
 	end;
 OnDoLeave:
 	 if (inarray(.bluelist, getcharid(0)) != -1){
@@ -102,9 +108,9 @@ if($@lastoneDM == 1)
 goto OnWoeEventBG;
 	// create Battleground and teams
 	.red = joinbg_player( "bat_c01", 50,131,.redlist, strnpcinfo(0)+"::OnRedQuit", strnpcinfo(0)+"::OnRedDead");
-	.blue = joinbg_player( "bat_c01", 149,52,.bluelist, strnpcinfo(0)+"::OnBlueQuit", strnpcinfo(0)+"::OnBlueDead");
+	.blue = joinbg_player( "bat_c01", 133,68,.bluelist, strnpcinfo(0)+"::OnBlueQuit", strnpcinfo(0)+"::OnBlueDead");
 	bg_warp .red, "bat_c01", 50,131;
-	bg_warp .blue, "bat_c01", 149,52;
+	bg_warp .blue, "bat_c01", 133,68;
 	.red_score = getarraysize(.redlist)-1;
 	.blue_score = getarraysize(.bluelist)-1;
 	bg_updatescore "bat_c01", .red_score, .blue_score;
@@ -114,15 +120,16 @@ goto OnWoeEventBG;
 
 	// end match, destroy Battleground, reset NPCs
 	if ( .red_score > .blue_score ) {
-		mapannounce "bat_c01", "- Red Team is victorious! -", bc_map;
-		callsub L_Reward, .red;
+		mapannounce "bat_c01", "- Time vermelho venceu! -", bc_map;
+		callsub L_Reward, .red,.blue;
 	}
 	else if ( .blue_score > .red_score ) {
-		mapannounce "bat_c01", "- Blue Team is victorious! -", bc_map;
-		callsub L_Reward, .blue;
+		mapannounce "bat_c01", "- Time azul venceu! -", bc_map;
+		callsub L_Reward, .blue, .red;
 	}
 	else
-		mapannounce "bat_c01", "- The match has ended in a draw! -", bc_map;
+		mapannounce "bat_c01", "- Empate! -", bc_map;
+	sleep 5000;
 	bg_warp .red, "prontera",152,178;
 	bg_warp .blue, "prontera",154,178;
 	bg_destroy .red;
@@ -146,6 +153,13 @@ L_Reward:
 		else
 		getitem .rewarditem[0], .rewarditem[1], $@arenamembers[.@i];
 		}
+		bg_get_data getarg(1),0;
+	for ( .@i = 0; .@i < $@arenamemberscount; ++.@i ){
+	if (.happy == 1 && gettime(DT_HOUR) >=.init_HO  && gettime(DT_HOUR) <=.fin_HO )	
+		getitem .rewarditemHO2[0], .rewarditemHO2[1], $@arenamembers[.@i];
+		else
+		getitem .rewarditem2[0], .rewarditem2[1], $@arenamembers[.@i];
+		}	
 		//lose side
 	return;
 
@@ -155,7 +169,7 @@ OnBlueDead: callsub L_Dead, .blue_score;
 L_Dead:
 	set getarg(0), getarg(0) -1;
 	bg_updatescore "bat_c01", .red_score, .blue_score;
-	bg_leave;
+/*	bg_leave;
 				if (.happy == 1 && gettime(DT_HOUR) >=.init_HO  && gettime(DT_HOUR) <=.fin_HO )	
 		getitem .rewarditemHO2[0], .rewarditemHO2[1];
 				else
@@ -163,7 +177,9 @@ L_Dead:
 	if ( !getarg(0) )
 		awake strnpcinfo(0);
 	sleep2 1250;
-	callfunc "F_BUFF","1";
+	callfunc "F_BUFF","1";*/
+		if ( !getarg(0) )
+		awake strnpcinfo(0);
 	end;
 
 // "OnQuit" event

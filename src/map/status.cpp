@@ -2939,7 +2939,7 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 						return false; // Works against insect and demon but not against bosses
 					if (tsc->data[SC__FEINTBOMB] && (is_boss || is_detect))
 						return false; // Works against all
-					if ((tsc->data[SC_CAMOUFLAGE] || tsc->data[SC_STEALTHFIELD] || tsc->data[SC_SUHIDE]) && !(is_boss || is_detect) && (!skill_id || (!flag && src)))
+					if (( tsc->data[SC_STEALTHFIELD] || tsc->data[SC_SUHIDE]) && !(is_boss || is_detect) && (!skill_id || (!flag && src)))
 						return false; // Insect, demon, and boss can detect
 				}
 			}
@@ -6361,10 +6361,8 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		return cap_value(str,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE] ) {
-		struct status_data* status = status_get_status_data(bl);
-		str = status->str;
 		str -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(str,0, USHRT_MAX);
+		//return (unsigned short)cap_value(str,0, USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		str += sc->data[SC_INCALLSTATUS]->val1;
@@ -6447,10 +6445,8 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		return cap_value(agi,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
-		struct status_data* status = status_get_status_data(bl);
-		agi = status->agi;
 		agi -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(agi,0, USHRT_MAX);
+		//return (unsigned short)cap_value(agi,0, USHRT_MAX);
 	}
 	if(sc->data[SC_CONCENTRATE] && !sc->data[SC_QUAGMIRE])
 		agi += (agi-sc->data[SC_CONCENTRATE]->val3)*sc->data[SC_CONCENTRATE]->val2/100;
@@ -6531,10 +6527,10 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 		return cap_value(vit,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
-		struct status_data* status = status_get_status_data(bl);
-		vit = status->vit;
+		//struct status_data* status = status_get_status_data(bl);
+		//vit = status->vit;
 		vit -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(vit,0, USHRT_MAX);
+		//return (unsigned short)cap_value(vit,0, USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		vit += sc->data[SC_INCALLSTATUS]->val1;
@@ -6605,10 +6601,10 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 		return cap_value(int_,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
-		struct status_data* status = status_get_status_data(bl);
-		int_ = status->int_;
+	//	struct status_data* status = status_get_status_data(bl);
+		//int_ = status->int_;
 		int_ -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(int_,0, USHRT_MAX);
+		//return (unsigned short)cap_value(int_,0, USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		int_ += sc->data[SC_INCALLSTATUS]->val1;
@@ -6694,10 +6690,10 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		return cap_value(dex,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
-		struct status_data* status = status_get_status_data(bl);
-		dex = status->dex;
+	//	struct status_data* status = status_get_status_data(bl);
+	//	dex = status->dex;
 		dex -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(dex,0, USHRT_MAX);
+		//return (unsigned short)cap_value(dex,0, USHRT_MAX);
 	}
 	if(sc->data[SC_CONCENTRATE] && !sc->data[SC_QUAGMIRE])
 		dex += (dex-sc->data[SC_CONCENTRATE]->val4)*sc->data[SC_CONCENTRATE]->val2/100;
@@ -6780,10 +6776,10 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		return cap_value(luk,0,USHRT_MAX);
 
 	if(sc->data[SC_HARMONIZE]) {
-		struct status_data* status = status_get_status_data(bl);
-		luk = status->luk;
+	//	struct status_data* status = status_get_status_data(bl);
+	//	luk = status->luk;
 		luk -= sc->data[SC_HARMONIZE]->val2;
-		return (unsigned short)cap_value(luk,0, USHRT_MAX);
+	//	return (unsigned short)cap_value(luk,0, USHRT_MAX);
 	}
 	if(sc->data[SC_CURSE])
 		return 0;
@@ -9779,6 +9775,9 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		if (sc->data[SC_QUAGMIRE])
 			return 0;
 	break;
+	case SC_CLOAKINGEXCEED:
+		status_change_end(bl, SC_HIDING, INVALID_TIMER);
+		break;
 	case SC_CLOAKING:
 		// Avoid cloaking with no wall and low skill level. [Skotlex]
 		// Due to the cloaking card, we have to check the wall versus to known
@@ -9786,6 +9785,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		// if (sd && val1 < 3 && skill_check_cloaking(bl,NULL))
 		if( sd && pc_checkskill(sd, AS_CLOAKING) < 3 && !skill_check_cloaking(bl,NULL) )
 			return 0;
+		if(sc->data[SC_HIDING])
+			status_change_end(src, SC_HIDING, INVALID_TIMER);
 	break;
 	case SC_NEWMOON:
  		if (sc->data[SC_BITE])
@@ -10309,6 +10310,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		status_change_end(bl, SC_ASPDPOTION2, INVALID_TIMER);
 		status_change_end(bl, SC_ASPDPOTION3, INVALID_TIMER);
 		break;
+	
 	case SC_SWINGDANCE:
 	case SC_SYMPHONYOFLOVER:
 	case SC_MOONLITSERENADE:

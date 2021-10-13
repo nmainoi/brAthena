@@ -580,7 +580,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15187,7 +15187,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15201,7 +15201,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15221,7 +15221,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15323,7 +15323,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15345,7 +15345,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15359,7 +15359,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15373,7 +15373,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15413,7 +15413,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15427,7 +15427,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15441,7 +15441,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15455,7 +15455,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15469,7 +15469,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15483,7 +15483,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15496,7 +15496,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15516,7 +15516,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15530,7 +15530,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15544,7 +15544,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15557,7 +15557,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15571,7 +15571,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15585,7 +15585,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15613,7 +15613,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15628,7 +15628,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15679,7 +15679,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15794,7 +15794,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15814,7 +15814,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15828,7 +15828,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15842,7 +15842,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15856,7 +15856,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15894,7 +15894,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15913,7 +15913,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15927,7 +15927,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -15993,7 +15993,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16060,7 +16060,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16074,7 +16074,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16088,7 +16088,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16198,7 +16198,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16212,7 +16212,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16226,7 +16226,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16253,7 +16253,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16268,7 +16268,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16291,7 +16291,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16306,7 +16306,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16321,7 +16321,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16335,7 +16335,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16370,7 +16370,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16399,7 +16399,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16414,7 +16414,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16429,7 +16429,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16444,7 +16444,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16473,7 +16473,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16488,7 +16488,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16503,7 +16503,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16518,7 +16518,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16533,7 +16533,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16606,7 +16606,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16619,7 +16619,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16633,7 +16633,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16646,7 +16646,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16659,7 +16659,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16673,7 +16673,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16687,7 +16687,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -16705,7 +16705,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17217,7 +17217,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17230,7 +17230,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17243,7 +17243,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17325,7 +17325,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17339,7 +17339,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17514,7 +17514,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17528,7 +17528,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17788,7 +17788,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17802,7 +17802,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17816,7 +17816,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17830,7 +17830,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17843,7 +17843,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17856,7 +17856,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17870,7 +17870,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17884,7 +17884,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17898,7 +17898,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17912,7 +17912,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17926,7 +17926,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17940,7 +17940,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -17954,7 +17954,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18076,7 +18076,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18098,7 +18098,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18112,7 +18112,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18160,7 +18160,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18174,7 +18174,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18188,7 +18188,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18441,7 +18441,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18459,7 +18459,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18473,7 +18473,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18487,7 +18487,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18501,7 +18501,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18515,7 +18515,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18529,7 +18529,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18543,7 +18543,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18557,7 +18557,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18571,7 +18571,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18585,7 +18585,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18600,7 +18600,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18614,7 +18614,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18628,7 +18628,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18739,7 +18739,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18789,7 +18789,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18803,7 +18803,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18817,7 +18817,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18831,7 +18831,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18845,7 +18845,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18859,7 +18859,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18873,7 +18873,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18887,7 +18887,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18902,7 +18902,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18917,7 +18917,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18969,7 +18969,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18983,7 +18983,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -18997,7 +18997,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19011,7 +19011,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19026,7 +19026,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19040,7 +19040,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19108,7 +19108,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19122,7 +19122,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19157,7 +19157,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19170,7 +19170,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19230,7 +19230,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19244,7 +19244,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19259,7 +19259,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19273,7 +19273,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19287,7 +19287,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19301,7 +19301,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19314,7 +19314,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19328,7 +19328,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19342,7 +19342,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19356,7 +19356,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19370,7 +19370,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19384,7 +19384,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19399,7 +19399,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19455,7 +19455,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19503,7 +19503,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19517,7 +19517,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19531,7 +19531,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19545,7 +19545,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19559,7 +19559,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19573,7 +19573,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19587,7 +19587,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19663,7 +19663,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19764,7 +19764,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19907,7 +19907,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19920,7 +19920,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19933,7 +19933,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19958,7 +19958,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19971,7 +19971,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19984,7 +19984,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -19997,7 +19997,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20212,7 +20212,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20235,7 +20235,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20248,7 +20248,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20261,7 +20261,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20288,7 +20288,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20301,7 +20301,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20314,7 +20314,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20327,7 +20327,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20340,7 +20340,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20353,7 +20353,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20366,7 +20366,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20390,7 +20390,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20404,7 +20404,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20418,7 +20418,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20432,7 +20432,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20446,7 +20446,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20500,7 +20500,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20514,7 +20514,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20538,7 +20538,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20551,7 +20551,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20607,7 +20607,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20927,7 +20927,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20940,7 +20940,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20953,7 +20953,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -20966,7 +20966,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21028,7 +21028,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21042,7 +21042,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21071,7 +21071,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21106,7 +21106,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21122,7 +21122,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21138,7 +21138,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21154,7 +21154,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21248,7 +21248,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21264,7 +21264,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21280,7 +21280,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21296,7 +21296,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21312,7 +21312,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21328,7 +21328,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21344,7 +21344,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21360,7 +21360,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21376,7 +21376,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21396,7 +21396,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21410,7 +21410,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21424,7 +21424,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21441,7 +21441,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21455,7 +21455,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21506,7 +21506,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21520,7 +21520,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21535,7 +21535,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21550,7 +21550,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21565,7 +21565,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21579,7 +21579,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21598,7 +21598,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21675,7 +21675,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21689,7 +21689,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21704,7 +21704,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21719,7 +21719,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21779,7 +21779,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21800,7 +21800,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21815,7 +21815,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21848,7 +21848,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21861,7 +21861,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21874,7 +21874,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -21887,7 +21887,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22005,7 +22005,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22019,7 +22019,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22033,7 +22033,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22047,7 +22047,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22061,7 +22061,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22075,7 +22075,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22268,7 +22268,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22283,7 +22283,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22298,7 +22298,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22312,7 +22312,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22367,7 +22367,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22381,7 +22381,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22395,7 +22395,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22448,7 +22448,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22462,7 +22462,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22476,7 +22476,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22490,7 +22490,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22519,7 +22519,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22533,7 +22533,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22547,7 +22547,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22561,7 +22561,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22575,7 +22575,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22589,7 +22589,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22603,7 +22603,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22617,7 +22617,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22631,7 +22631,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22645,7 +22645,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22659,7 +22659,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22673,7 +22673,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22687,7 +22687,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22701,7 +22701,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22715,7 +22715,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22729,7 +22729,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22770,7 +22770,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22783,7 +22783,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22796,7 +22796,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -22809,7 +22809,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23026,7 +23026,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23040,7 +23040,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23131,7 +23131,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23167,7 +23167,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23233,7 +23233,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23248,7 +23248,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23262,7 +23262,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23276,7 +23276,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23290,7 +23290,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23304,7 +23304,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23318,7 +23318,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23363,7 +23363,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23385,7 +23385,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23399,7 +23399,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23413,7 +23413,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23427,7 +23427,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23441,7 +23441,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23455,7 +23455,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23469,7 +23469,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23483,7 +23483,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23497,7 +23497,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23512,7 +23512,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23526,7 +23526,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23666,7 +23666,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23680,7 +23680,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23694,7 +23694,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23708,7 +23708,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23726,7 +23726,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23917,7 +23917,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23930,7 +23930,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -23943,7 +23943,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -24402,7 +24402,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -24416,7 +24416,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -24430,7 +24430,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -25342,7 +25342,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -25356,7 +25356,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -25511,7 +25511,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26021,7 +26021,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26035,7 +26035,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26236,7 +26236,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26250,7 +26250,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26264,7 +26264,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26278,7 +26278,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26292,7 +26292,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26306,7 +26306,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26345,7 +26345,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26483,7 +26483,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26497,7 +26497,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26511,7 +26511,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26525,7 +26525,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26539,7 +26539,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26561,7 +26561,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26584,7 +26584,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26599,7 +26599,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26614,7 +26614,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26629,7 +26629,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26652,7 +26652,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26681,7 +26681,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26702,7 +26702,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -26820,7 +26820,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27132,7 +27132,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: False
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27145,7 +27145,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27158,7 +27158,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27171,7 +27171,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27184,7 +27184,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27197,7 +27197,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27210,7 +27210,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27223,7 +27223,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27236,7 +27236,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27249,7 +27249,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27262,7 +27262,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27275,7 +27275,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27289,7 +27289,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27669,7 +27669,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27684,7 +27684,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27699,7 +27699,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27713,7 +27713,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27727,7 +27727,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27741,7 +27741,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27755,7 +27755,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27769,7 +27769,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27783,7 +27783,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27797,7 +27797,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27811,7 +27811,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27825,7 +27825,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27839,7 +27839,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27853,7 +27853,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27867,7 +27867,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27881,7 +27881,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27895,7 +27895,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27909,7 +27909,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27923,7 +27923,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27937,7 +27937,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27951,7 +27951,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27965,7 +27965,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -27978,7 +27978,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28000,7 +28000,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28059,7 +28059,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28073,7 +28073,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28086,7 +28086,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28106,7 +28106,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28174,7 +28174,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28196,7 +28196,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28210,7 +28210,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28224,7 +28224,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28238,7 +28238,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28252,7 +28252,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28266,7 +28266,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28280,7 +28280,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28294,7 +28294,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28307,7 +28307,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28320,7 +28320,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28370,7 +28370,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28385,7 +28385,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28400,7 +28400,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28415,7 +28415,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28430,7 +28430,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28445,7 +28445,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28458,7 +28458,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28471,7 +28471,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28484,7 +28484,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28673,7 +28673,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28688,7 +28688,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28703,7 +28703,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28724,7 +28724,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28739,7 +28739,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28766,7 +28766,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28781,7 +28781,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28796,7 +28796,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28811,7 +28811,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28826,7 +28826,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28841,7 +28841,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -28934,7 +28934,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29003,7 +29003,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29036,7 +29036,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29110,7 +29110,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29130,7 +29130,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29161,7 +29161,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29174,7 +29174,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29232,7 +29232,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29402,7 +29402,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29429,7 +29429,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29444,7 +29444,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29507,7 +29507,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29520,7 +29520,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29533,7 +29533,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29578,7 +29578,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29593,7 +29593,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29608,7 +29608,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29623,7 +29623,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29638,7 +29638,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29651,7 +29651,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29664,7 +29664,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29679,7 +29679,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29876,7 +29876,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29909,7 +29909,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29947,7 +29947,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29963,7 +29963,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -29979,7 +29979,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30047,7 +30047,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30336,7 +30336,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30349,7 +30349,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30376,7 +30376,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30465,7 +30465,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30546,7 +30546,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30559,7 +30559,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30572,7 +30572,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30585,7 +30585,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30670,7 +30670,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30684,7 +30684,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30697,7 +30697,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30710,7 +30710,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30723,7 +30723,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30736,7 +30736,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30870,7 +30870,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30884,7 +30884,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30959,7 +30959,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30973,7 +30973,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -30987,7 +30987,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31001,7 +31001,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31015,7 +31015,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31029,7 +31029,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31042,7 +31042,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31055,7 +31055,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31138,7 +31138,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31151,7 +31151,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31164,7 +31164,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31177,7 +31177,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31190,7 +31190,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31204,7 +31204,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31218,7 +31218,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31232,7 +31232,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31246,7 +31246,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31260,7 +31260,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31280,7 +31280,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31295,7 +31295,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31314,7 +31314,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31328,7 +31328,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31347,7 +31347,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31361,7 +31361,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31376,7 +31376,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31400,7 +31400,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31422,7 +31422,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31436,7 +31436,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31461,7 +31461,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31501,7 +31501,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31517,7 +31517,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31532,7 +31532,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31675,7 +31675,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31689,7 +31689,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31703,7 +31703,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31717,7 +31717,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31731,7 +31731,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31746,7 +31746,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31793,7 +31793,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31807,7 +31807,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31821,7 +31821,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31835,7 +31835,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31849,7 +31849,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31863,7 +31863,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31877,7 +31877,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31891,7 +31891,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -31905,7 +31905,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -32170,7 +32170,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -32183,7 +32183,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -32196,7 +32196,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -32209,7 +32209,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -32222,7 +32222,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -32235,7 +32235,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -33789,7 +33789,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -33935,7 +33935,7 @@ Body:
     Trade:
       Override: 100
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
   - Id: 22589
     AegisName: Savage_Ora
@@ -33947,7 +33947,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -33961,7 +33961,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -33975,7 +33975,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -33995,7 +33995,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34009,7 +34009,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34023,7 +34023,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34037,7 +34037,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34183,7 +34183,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34196,7 +34196,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34229,7 +34229,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34247,7 +34247,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34260,7 +34260,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34273,7 +34273,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34286,7 +34286,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34299,7 +34299,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34313,7 +34313,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34416,7 +34416,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34429,7 +34429,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34442,7 +34442,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34455,7 +34455,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34468,7 +34468,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34481,7 +34481,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34494,7 +34494,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34507,7 +34507,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34520,7 +34520,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34533,7 +34533,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34546,7 +34546,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34559,7 +34559,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34572,7 +34572,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34597,7 +34597,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34812,7 +34812,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34825,7 +34825,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34883,7 +34883,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34896,7 +34896,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34909,7 +34909,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34922,7 +34922,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34935,7 +34935,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34948,7 +34948,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34961,7 +34961,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34974,7 +34974,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -34987,7 +34987,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35000,7 +35000,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35013,7 +35013,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35031,7 +35031,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35064,7 +35064,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35077,7 +35077,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35090,7 +35090,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35103,7 +35103,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35116,7 +35116,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35129,7 +35129,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35142,7 +35142,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35155,7 +35155,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35168,7 +35168,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35235,7 +35235,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35248,7 +35248,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35261,7 +35261,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35274,7 +35274,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35287,7 +35287,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35300,7 +35300,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35313,7 +35313,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35332,7 +35332,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35345,7 +35345,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35358,7 +35358,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35407,7 +35407,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35420,7 +35420,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35433,7 +35433,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35446,7 +35446,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35459,7 +35459,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35581,7 +35581,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35663,7 +35663,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35717,7 +35717,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35765,7 +35765,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35778,7 +35778,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35791,7 +35791,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35899,7 +35899,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35917,7 +35917,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35938,7 +35938,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -35951,7 +35951,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36014,7 +36014,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36028,7 +36028,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36063,7 +36063,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36076,7 +36076,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36095,7 +36095,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36128,7 +36128,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36142,7 +36142,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36156,7 +36156,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36170,7 +36170,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36183,7 +36183,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36196,7 +36196,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36209,7 +36209,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36235,7 +36235,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36248,7 +36248,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36261,7 +36261,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36274,7 +36274,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36288,7 +36288,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36302,7 +36302,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36315,7 +36315,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36328,7 +36328,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36413,7 +36413,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36426,7 +36426,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36439,7 +36439,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36452,7 +36452,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36465,7 +36465,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36478,7 +36478,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36577,7 +36577,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36673,7 +36673,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36691,7 +36691,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36704,7 +36704,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36838,7 +36838,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36856,7 +36856,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36869,7 +36869,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36882,7 +36882,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36896,7 +36896,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36909,7 +36909,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36922,7 +36922,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -36935,7 +36935,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -37445,7 +37445,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -37458,7 +37458,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -37820,7 +37820,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -37846,7 +37846,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -38044,7 +38044,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51379,7 +51379,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51392,7 +51392,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51405,7 +51405,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51418,7 +51418,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51431,7 +51431,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51444,7 +51444,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51457,7 +51457,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51531,7 +51531,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51545,7 +51545,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51559,7 +51559,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51573,7 +51573,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51587,7 +51587,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51601,7 +51601,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51615,7 +51615,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51629,7 +51629,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51644,7 +51644,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51659,7 +51659,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -51674,7 +51674,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52261,7 +52261,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52279,7 +52279,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52292,7 +52292,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52327,7 +52327,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52341,7 +52341,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52444,7 +52444,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52457,7 +52457,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52532,7 +52532,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52654,7 +52654,7 @@ Body:
       NoTrade: true
       NoSell: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52801,7 +52801,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52814,7 +52814,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52949,7 +52949,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52962,7 +52962,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52975,7 +52975,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -52988,7 +52988,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -53001,7 +53001,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -53014,7 +53014,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -53027,7 +53027,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -53040,7 +53040,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -53053,7 +53053,7 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
+      NoStorage: false # NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true

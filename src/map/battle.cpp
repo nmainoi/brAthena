@@ -4380,6 +4380,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			if (sc && sc->data[SC_ROLLINGCUTTER])
 				skillratio += sc->data[SC_ROLLINGCUTTER]->val1 * status_get_agi(src);
 			break;
+			skillratio += (skillratio / 100  ) * 20;
 		case GC_DARKCROW:
 			skillratio += 100 * (skill_lv - 1);
 			break;
@@ -4399,6 +4400,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 		case RA_CLUSTERBOMB:
 			skillratio += 100 + 100 * skill_lv;
+			skillratio += (skillratio / 100 )* 30;
 			break;
 		case RA_WUGDASH:// ATK 300%
 			skillratio += 200;

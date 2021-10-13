@@ -51,17 +51,17 @@ end;
 			mes "Voce não mudou nada!";
 			close;
 		}
-		if(.price >= 1){
+		if(#price >= 1){
 			    mes .n$;
-    			mes    "Deseja encantar por ^800000" + .price  + "^000000 caveiras ?";
+    			mes    "Deseja encantar por ^800000" + #price  + "^000000 caveiras ?";
 				if(select("sim") != 1)
 					end;
-				if(countitem(.item_trade)>= .price )
+				if(countitem(.item_trade)>= #price )
 										goto passou;
 				mes "Voce não possui o valor necessario!";
 				close;end;
 				passou:
-						delitem .item_trade, .price;
+						delitem .item_trade, #price;
 						next;
 						mes .n$;
 						mes "Sucesso!";
@@ -85,7 +85,7 @@ F_Menu_enchant:
 
 		 copyarray .@enchant_atqdist2,.Menchant_atqdist,getarraysize(.Menchant_atqdist);
 
-		 .price = .quant_ELMO;
+		 #price = .quant_ELMO;
 		 copyarray .@item_slots,.elmo_slots, getarraysize(.elmo_slots);
 }
 	 if( inarray(.ARWC_list, .@eqip) >= 0 ){  //MEIO
@@ -93,7 +93,7 @@ F_Menu_enchant:
 		 copyarray .@enchant_atq2,.AnelEnchant_atq2,getarraysize(.AnelEnchant_atq2);
 		 copyarray .@enchant_atq1,.AnelEnchant_atq1,getarraysize(.AnelEnchant_atq1);
 
-		 .price = .quant_RWC;
+		 #price = .quant_RWC;
 		 copyarray .@item_slots,.acc_slots, getarraysize(.acc_slots);
 }	
 	 if( inarray(.CRWC_list, .@eqip) >= 0 ){  //MEIO
@@ -101,7 +101,7 @@ F_Menu_enchant:
 		 copyarray .@enchant_atq2,.ColarEnchant_atq2,getarraysize(.ColarEnchant_atq2);
 		 copyarray .@enchant_atq1,.ColarEnchant_atq1,getarraysize(.ColarEnchant_atq1);
 
-		 .price = .quant_RWC;
+		 #price = .quant_RWC;
 		 copyarray .@item_slots,.acc_slots, getarraysize(.acc_slots);
 }		
 	 if(inarray(.fallen_list,.@eqip) >= 0){
@@ -123,7 +123,7 @@ F_Menu_enchant:
 		 copyarray .@enchant_sp2,.FallEnchant_sp2,getarraysize(.FallEnchant_sp2);
 		 copyarray .@enchant_sp1,.FallEnchant_sp,getarraysize(.FallEnchant_sp);
 
-		 .price = .quant_fallen;
+		 #price = .quant_fallen;
 		 copyarray .@item_slots,.fallen_slots, getarraysize(.fallen_slots);
 	 }
 	if(inarray(.Malangdo_lista, .@eqip) >= 0 ){
@@ -137,7 +137,7 @@ F_Menu_enchant:
 
 		 copyarray .@enchant_atqdist2,.Maenchant_atqdist,getarraysize(.Maenchant_atqdist);
 
-		 .price = .quant_Malangdo;
+		 #price = .quant_Malangdo;
 		 copyarray .@item_slots,.Malangdo_slots, getarraysize(.Malangdo_slots);
 
 	} 
@@ -150,7 +150,7 @@ F_Menu_enchant:
 
 		 copyarray .@enchant_atqdist2,.Maenchant_atqdist,getarraysize(.Maenchant_atqdist);
 
-		 .price = .temporal_quant;
+		 #price = .temporal_quant;
 		 copyarray .@item_slots,.temporal_slots, getarraysize(.temporal_slots);
 	}
 	
@@ -425,8 +425,8 @@ end;
 	setarray	.fallen_list[0],2589;	
 	setarray .main_list[getarraysize(.main_list)],2589;
 	
-	setarray .FallEnchant_atq2[0],4820,4705;
-	setarray .FallEnchant_atq[0],4821,4853;
+	setarray .FallEnchant_atq2[0],4821,4705;
+	setarray .FallEnchant_atq[0],4822,4853;
 	//
 	setarray .FallEnchat_atqm2[0],4826,4715;
 	setarray .FallEnchat_atqm[0],4828,4856;

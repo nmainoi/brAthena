@@ -1229,7 +1229,7 @@ enum e_unit_blown unit_blown_immune(struct block_list* bl, uint8 flag)
 					return UB_TARGET_BASILICA;
 #endif
 				// Target has special_state.no_knockback (equip)
-				if( (flag&(0x1|0x2)) && !(flag&0x8) && sd->special_state.no_knockback )
+				if( (flag&(0x1|0x2)) && !(flag&0x8) && sd->special_state.no_knockback || sd->sc.data[SC__MANHOLE] )
 					return UB_TARGET_NO_KNOCKBACK;
 			}
 			break;
