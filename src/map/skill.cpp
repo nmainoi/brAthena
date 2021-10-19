@@ -10366,7 +10366,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			if( sd )
 				skill_blockpc_start(sd,skill_id,4000);
 
-			if(tsc->data[SC_REFRESH]) {
+			if(tsc && tsc->data[SC_REFRESH]) {
 				clif_skill_nodamage(src, bl, skill_id, skill_lv, 2);
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			}

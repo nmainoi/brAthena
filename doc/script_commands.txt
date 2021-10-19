@@ -5959,7 +5959,7 @@ specified amount permanently. The amount can be negative. See 'statusup'.
 *bonus3 <bonus type>,<val1>,<val2>,<val3>;
 *bonus4 <bonus type>,<val1>,<val2>,<val3>,<val4>;
 *bonus5 <bonus type>,<val1>,<val2>,<val3>,<val4>,<val5>;
-
+bonus4    bAutoSpell,"SA_DISPELL",  1,  50 , BF_SHORT+BF_LONG;
 These commands are meant to be used in item scripts. They will probably work
 outside item scripts, but the bonus will not persist for long. They, as
 expected, refer only to an invoking character.
@@ -7715,7 +7715,7 @@ placement of the illustration and takes following values:
 	4	middle of screen without the window header, but still movable
 	255	clear all displayed cutins
 
-The picture is read from data\texture\μ μ €μΈν„°νμ΄μ¤\illust, from both the GRF archive
+The picture is read from data\texture\? ????Έ?„°??΄?¤\illust, from both the GRF archive
 and data folder, and is required to be a bitmap. The file extension .bmp can be
 omitted. Magenta color (#ff00ff) is considered transparent. There is no limit
 placed on the size of the illustrations by the client, although loading of large
