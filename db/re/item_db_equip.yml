@@ -8342,7 +8342,7 @@ Body:
     AegisName: Velum_Spear
     Name: Vellum Spear
     Type: Weapon
-    SubType: 1hSpear
+    SubType: 2hSpear
     Buy: 20
     Weight: 850
     Attack: 150
@@ -43891,7 +43891,6 @@ Body:
     Script: |
       bonus bFlee,10;
       bonus bCritAtkRate,10;
-      autobonus "{ bonus2 bIgnoreMdefClassRate,Class_Normal,25; bonus2 bIgnoreMdefClassRate,Class_Boss,25; }",50,5000,BF_MAGIC,"{ specialeffect2 EF_ENHANCE; }";
   - Id: 5361
     AegisName: Gang_Scarf
     Name: Gangster Scarf
@@ -98234,6 +98233,7 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 20
+    Slots: 1
     Locations:
       Shoes: true
     EquipLevelMin: 99
@@ -98253,6 +98253,7 @@ Body:
     Buy: 20
     Weight: 600
     Defense: 25
+    Slots: 1
     Locations:
       Shoes: true
     EquipLevelMin: 99

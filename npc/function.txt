@@ -14,7 +14,7 @@ function	script	MisterPeso	{
 				next;
 				specialeffect2 EF_SIGHTRASHER;
 				next;
-                message strcharinfo(0),"Você tem " + .@remain_carry + " usos restantes.";
+                message strcharinfo(0),"Voc? tem " + .@remain_carry + " usos restantes.";
 				delitem 7776,1; //Max_Weight_Up_Scroll
 				set gympassmemory,.@add_carry;
 				skill "ALL_INCCARRY",.@add_carry,SKILL_PERM_GRANT;
@@ -254,7 +254,7 @@ autoequip 2936,0;
 	end;
 }
 function	script	F_CONSU	{
-setarray .@items[0],12016,12118,12119,12120,12121,12427,11548,11549,12033,715,716,717,523,12115,12116,12114,12117,12928,12020,14536,12414,525,12424,14538,606,12220,12404,12375,14511,656,645,12029,714;
+setarray .@items[0],12437,12016,12118,12119,12120,12121,12427,11548,11549,12033,715,716,717,523,12115,12116,12114,12117,12928,12020,14536,12414,525,12424,14538,606,12220,12404,12375,14511,656,645,12029,714;
 callfunc "F_CONSU_ESPE", .@items; 
 if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT){
 	setarray .@items2,12731,12728,12731,12733,12729,12730,12726,12725,12727,12732;
@@ -351,6 +351,7 @@ function	script	F_BUFF	{
 		sc_start4 SC_ARMOR_ELEMENT_EARTH,1200000,0,20,-15,0;
 		sc_start4 SC_ARMOR_ELEMENT_WIND,1200000,0,-15,0,20;*/
 		sc_start SC_INCCRI,3600000,30;
+		sc_start SC_EXTRACT_SALAMINE_JUICE,3600000,10;
 		sc_start2 SC_ENERGY_DRINK_RESERCH,3600000,1,3;
 		sc_start2 SC_PROMOTE_HEALTH_RESERCH,3600000,1,3;
 		bonus_script_clear(1);

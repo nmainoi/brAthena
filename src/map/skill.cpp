@@ -46,6 +46,7 @@
 #include "status.hpp"
 #include "unit.hpp"
 
+
 using namespace rathena;
 
 #define SKILLUNITTIMER_INTERVAL	100
@@ -7374,7 +7375,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				short index = dstsd->equip_index[EQI_HAND_R];
 
 				if (index >= 0 && dstsd->inventory_data[index] && dstsd->inventory_data[index]->type == IT_WEAPON)
-					bonus = (8 + 2 * skill_lv) * dstsd->inventory_data[index]->wlv;
+					bonus = (8 + 2 * skill_lv) * dstsd->inventory_data[index]->weapon_level;
 			}
 			if (sd)
 				bonus += (pc_checkskill(sd, SA_FLAMELAUNCHER) + pc_checkskill(sd, SA_FROSTWEAPON) + pc_checkskill(sd, SA_LIGHTNINGLOADER) + pc_checkskill(sd, SA_SEISMICWEAPON)) * 5;
@@ -10373,7 +10374,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				clif_skill_nodamage(src, bl, skill_id, skill_lv, 2);
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			}
-			 if (!(tsc && tsc->data[type]) && !(tsc->data[SC_REFRESH])) 
+			 if (bl->type == BL_PC && !(tsc && tsc->data[type]) && !(tsc->data[SC_REFRESH]))
 			{
 				i = sc_start2(src, bl, type, rate, skill_lv, src->id, (src == bl) ? 5000 : (bl->type == BL_PC) ? skill_get_time(skill_id, skill_lv) : skill_get_time2(skill_id, skill_lv));
 					clif_skill_nodamage(src, bl, skill_id, skill_lv, i);
@@ -17998,8 +17999,9 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 
 	if (!(delaynodex&2)) {
 		if (sc && sc->count) {
-			if (sc->data[SC_POEMBRAGI])
-				time = time * (((sd) ? sd->delayrate : 0) - sc->data[SC_POEMBRAGI]->val3) / 100;
+			map_session_data* sd = (map_session_data*)bl;
+			if (sc->data[SC_POEMBRAGI])		
+				time = time * (( sd ? sd->bonus.delayrate : 0) - sc->data[SC_POEMBRAGI]->val3) / 100;
 				//time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
 			if (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 3 && skill_get_type(skill_id) == BF_MAGIC && skill_get_ele(skill_id, skill_lv) == ELE_WIND)
 				time /= 2; // After Delay of Wind element spells reduced by 50%.
@@ -19073,7 +19075,7 @@ void skill_enchant_elemental_end(struct block_list *bl, int type)
 		return;
 
 	// If it is not on equip change
-	if (type != SC_NONE)
+	if (type != SC_NONE )
 		status_change_end(bl, SC_ENCHANTARMS, INVALID_TIMER); // Should always end except on equip change
 	else {
 		// Check for seven wind (but not level seven!)

@@ -10875,8 +10875,8 @@ static void pc_unequipitem_sub(struct map_session_data* sd, int n, int flag) {
 	int i, iflag;
 	bool status_calc = false;
 
-	if (sd->state.autobonus & sd->inventory.u.items_inventory[n].equip)
-		sd->state.autobonus &= ~sd->inventory.u.items_inventory[n].equip; //Check for activated autobonus [Inkfish]
+/*	if (sd->state.autobonus & sd->inventory.u.items_inventory[n].equip)
+		sd->state.autobonus &= ~sd->inventory.u.items_inventory[n].equip; *///Check for activated autobonus [Inkfish]
 	pc_deleteautobonus( sd->autobonus, sd->inventory.u.items_inventory[n].equip );
 	pc_deleteautobonus( sd->autobonus2, sd->inventory.u.items_inventory[n].equip );
 	pc_deleteautobonus( sd->autobonus3, sd->inventory.u.items_inventory[n].equip );
@@ -10992,6 +10992,7 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 		sd->status.weapon = sd->weapontype2;
 		pc_calcweapontype(sd);
 		clif_changelook(&sd->bl,LOOK_WEAPON,sd->status.weapon);
+
 		if( !battle_config.dancing_weaponswitch_fix )
 			status_change_end(&sd->bl, SC_DANCING, INVALID_TIMER); // Unequipping => stop dancing.
 		if (sd && sd->sc.data[SC_CRUSHSTRIKE])
@@ -11043,7 +11044,8 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 				break;
 			}
 		}
-
+		if (sd->sc.data[SC_ENCHANTARMS])
+			status_change_end(&sd->bl, SC_ENCHANTARMS, INVALID_TIMER);
 		skill_enchant_elemental_end(&sd->bl, SC_NONE);
 		status_change_end(&sd->bl, SC_FEARBREEZE, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_EXEEDBREAK, INVALID_TIMER);

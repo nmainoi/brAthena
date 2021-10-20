@@ -18591,6 +18591,8 @@ Body:
     TargetType: Self
     DamageFlags:
       Splash: true
+    Flags:
+      TargetHidden: false  
     Hit: Multi_Hit
     HitCount: -5
     Element: Water

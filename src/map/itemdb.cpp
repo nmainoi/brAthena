@@ -1090,7 +1090,7 @@ void ItemDatabase::loadingFinished(){
 			}
 		}else if( item->type == IT_ARMOR ){
 			if( item->armor_level == 0 ){
-				ShowWarning( "Item %s is an armor, but does not have an armor level. Consider adding it. Defaulting to 1.\n", item->name.c_str() );
+				//ShowWarning( "Item %s is an armor, but does not have an armor level. Consider adding it. Defaulting to 1.\n", item->name.c_str() );
 				item->armor_level = 1;
 			}
 
