@@ -24558,8 +24558,9 @@ Body:
     Type: Weapon
     TargetType: Attack
     DamageFlags:
-      IgnoreElement: false
+      IgnoreElement: true
       IgnoreFlee: true
+      IgnoreLongCard: true
     Range:
       - Level: 1
         Size: 1

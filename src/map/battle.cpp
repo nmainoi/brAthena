@@ -4287,20 +4287,18 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			//RE_LVL_DMOD(100);
 			break;
 		case RK_HUNDREDSPEAR:
+
+			//skillratio += sstatus->str * 50;
+			//	Dano = { [(Dano base) + (1.000 - Peso da Lança) + (Nv.de Perfurar em Espiral ×50)] ×[1 + (Nv.de Base - 100) ÷200] } %
 			skillratio += 500 + (80 * skill_lv);
 			if (sd) {
 				short index = sd->equip_index[EQI_HAND_R];
-
-				if (index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON)
-					skillratio += max(10000 - sd->inventory_data[index]->weight, 0) / 10;
-				skillratio += 50 * pc_checkskill(sd, LK_SPIRALPIERCE);
-			} // (1 + [(Casters Base Level - 100) / 200])
-			skillratio = skillratio * (100 + (status_get_lv(src) - 100) / 2) / 100;
-/*			skillratio += -100 + 600 + 200 * skill_lv;
-			if (sd)
-				skillratio += 50 * pc_checkskill(sd,LK_SPIRALPIERCE);
-			RE_LVL_DMOD(100);*/
-			skillratio += sstatus->str * 50;
+				if(index>= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON)
+					skillratio += 10000 - sd->inventory_data[index]->weight;
+				if (sd)
+					skillratio += 50 * pc_checkskill(sd, LK_SPIRALPIERCE);
+				skillratio = skillratio * (100 + (status_get_lv(src) - 100) / 2) / 100;
+			}
 			break;
 		case RK_WINDCUTTER:
 			skillratio += -100 + (skill_lv + 2) * 50;
@@ -4317,20 +4315,15 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			//RE_LVL_DMOD(100);
 			break;
 		case RK_IGNITIONBREAK:
+			skillratio += skill_lv * 100;
 			i = distance_bl(src, target);
 			if (i < 2)
-				skillratio += -100 + 300 * skill_lv;
+				skillratio +=   300 * skill_lv;
 			else if (i < 4)
-				skillratio += -100 + 250 * skill_lv;
+				skillratio +=  250 * skill_lv;
 			else
-				skillratio += -100 + 200 * skill_lv;
-			skillratio = skillratio * status_get_lv(src) / 100;
-			// Elemental check, 1.5x damage if your weapon element is fire.
-			if (sstatus->rhw.ele == ELE_FIRE)
-				skillratio += 100 * skill_lv;
-			skillratio += sstatus->str * 50;
-			//skillratio += -100 + 450 * skill_lv;
-			//RE_LVL_DMOD(100);
+				skillratio += 200 * skill_lv;
+			skillratio += (skillratio / 100) * status_get_lv(src);
 			break;
 		case NPC_IGNITIONBREAK:
 			// 3x3 cell Damage   = 1000  1500  2000  2500  3000 %
@@ -4597,18 +4590,26 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
  			break;
 		case SR_TIGERCANNON:
 		{
-			unsigned int hp = sstatus->max_hp * (12 + (skill_lv * 2)) / 100,
-				sp = sstatus->max_sp * (5 + skill_lv) / 100;
+			unsigned int hp = sstatus->max_hp ,
+				sp = sstatus->max_sp ;
 
-			if (wd->miscflag & 8)
+			if (wd->miscflag & 8) {
 				// Base_Damage = [((Caster consumed HP + SP) / 2) x Caster Base Level / 100] %
-				skillratio += -100 + (hp + sp) / 3;
-			else
+				skillratio += (hp + sp) / 2;
+				RE_LVL_DMOD(100);
+				skillratio = skillratio / 5;
+			}
+			else{
+				skillratio += (hp + sp) / 4;
+				RE_LVL_DMOD(100);
+				skillratio = skillratio / 50 ;
+			}
 				// Base_Damage = [((Caster consumed HP + SP) / 4) x Caster Base Level / 100] %
-				skillratio += -100 + (hp + sp) / 6;
-			RE_LVL_DMOD(100);
-			skillratio = (skillratio * 3) / 4;
+			
+			
+			
 		}
+		
 		break;
 
 		case SR_RAMPAGEBLASTER:
@@ -4638,12 +4639,15 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			RE_LVL_DMOD(100);
 			break;
 		case SR_GATEOFHELL:
-			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE)
-				skillratio += -100 + 900 * skill_lv;
-			else
-				skillratio += -100 + 150 * skill_lv;
-			RE_LVL_DMOD(100);
-			skillratio = (skillratio / 100) * 60;
+			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
+				skillratio += 400 * skill_lv;
+				RE_LVL_DMOD(100);
+			}
+			else {
+				skillratio += 200 * skill_lv;
+				RE_LVL_DMOD(100);
+			}
+				
 			break;
 		case SR_SKYNETBLOW:
 			if (wd->miscflag & 8)
@@ -6097,24 +6101,38 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case SR_TIGERCANNON:
 			// (Tiger Cannon skill level x 240) + (Target Base Level x 40)
 			if (wd.miscflag&8) {
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 120 + status_get_lv(target) * 40);
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 500 + status_get_lv(target) * 40);
 			}
 			else
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 60 + status_get_lv(target) * 40);
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 240 + status_get_lv(target) * 40);
 			break;
 		case SR_GATEOFHELL: {
-			status_data *sstatus = status_get_status_data(src);
-			double bonus = 1 + skill_lv * 2 / 10;
-			double bonus2 = 1 + skill_lv * 2 / 20;
+			double bonus = 1.2 + (0.28 * skill_lv);
+			status_data* sstatus = status_get_status_data(src);
 
-			ATK_ADD(wd.damage, wd.damage2, sstatus->max_hp - sstatus->hp);
-			if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
-				ATK_ADD(wd.damage, wd.damage2, static_cast<int64>(sstatus->max_sp * bonus) + 40 * status_get_lv(src));
-			} else
-				ATK_ADD(wd.damage, wd.damage2, static_cast<int64>(sstatus->sp * bonus2) + 5 * status_get_lv(src));
+			
+			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
+				ATK_ADD(wd.damage, wd.damage2, sstatus->max_hp - sstatus->hp / 2);
+				ATK_ADD(wd.damage, wd.damage2, sstatus->sp);
+				ATK_ADD(wd.damage, wd.damage2, 10 * status_get_lv(src));
+			}
+			else
+			{
+				ATK_ADD(wd.damage, wd.damage2, (sstatus->max_hp - sstatus->hp) / 2 );
+				ATK_ADD(wd.damage, wd.damage2,  sstatus->sp );
+				ATK_ADD(wd.damage, wd.damage2, 10 * status_get_lv(src));
+			}
+				
+		
+						
+
+		
+						  /*Bônus sem combo = (HP máx. - HP atual) + (Fator + SP atual) + (Nv.de base × 10)
+						  Bônus com combo = (HP máx. - HP atual) + (Fator + SP máx.) + (Nv.de base × 40)*/
+
 		}
-			break;
-		case MH_TINDER_BREAKER:
+						  break;
+			case MH_TINDER_BREAKER:
 			ATK_ADD(wd.damage, wd.damage2, 2500 * skill_lv + status_get_lv(src)); // !TODO: Confirm base level bonus
 			break;
 		case MH_CBC:
@@ -6799,22 +6817,21 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						if (sc && sc->data[SC_CURSED_SOIL_OPTION])
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
-						
+						skillratio += skillratio * 2;
 						break;
 					case SO_DIAMONDDUST: // !TODO: Confirm formula
 						skillratio += -100 + 200 * ((sd) ? pc_checkskill(sd, SA_FROSTWEAPON) : 0) + sstatus->int_  * skill_lv;
 						RE_LVL_DMOD(100);
 						if( sc && sc->data[SC_COOLER_OPTION] )
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
-						
+						skillratio += skillratio * 2;
 						break;
 					case SO_POISON_BUSTER:
-						skillratio += -100 + 1000 + 300 * skill_lv + sstatus->int_ / 6; // !TODO: Confirm INT bonus
-						if( tsc && tsc->data[SC_CLOUD_POISON] )
-							skillratio += 200 * skill_lv;
-						RE_LVL_DMOD(100);
-						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
-							skillratio += (sd ? sd->status.job_level * 5 : 0);
+						if (tsc && !tsc->data[SC_CLOUD_POISON])
+							break;
+						//Dano = {[(Nv. da habilidade × 300) + 1000] × (Nv. de base ÷ 120)}%
+						skillratio += (skill_lv * 300) + 1000;
+						RE_LVL_DMOD(120);
 						break;
 					case NPC_POISON_BUSTER:
 						skillratio += -100 + 1500 * skill_lv;
@@ -6825,6 +6842,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if (sc && (sc->data[SC_HEATER_OPTION] || sc->data[SC_COOLER_OPTION] ||
 							sc->data[SC_BLAST_OPTION] || sc->data[SC_CURSED_SOIL_OPTION]))
 							skillratio += 20;
+						skillratio  += skillratio * 2;
 						break;
 					case SO_CLOUD_KILL:
 						skillratio += -100 + 40 * skill_lv;
@@ -6832,6 +6850,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if (sc && sc->data[SC_CURSED_SOIL_OPTION])
 							skillratio += (sd ? sd->status.job_level : 0);
 						break;
+						skillratio += skillratio * 2;
 					case NPC_CLOUD_KILL:
 						skillratio += -100 + 50 * skill_lv;
 						break;
