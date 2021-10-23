@@ -6113,13 +6113,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 			
 			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
 				ATK_ADD(wd.damage, wd.damage2, sstatus->max_hp - sstatus->hp / 2);
-				ATK_ADD(wd.damage, wd.damage2, sstatus->sp);
+				ATK_ADD(wd.damage, wd.damage2, sstatus->sp / 2);
 				ATK_ADD(wd.damage, wd.damage2, 10 * status_get_lv(src));
 			}
 			else
 			{
 				ATK_ADD(wd.damage, wd.damage2, (sstatus->max_hp - sstatus->hp) / 2 );
-				ATK_ADD(wd.damage, wd.damage2,  sstatus->sp );
+				ATK_ADD(wd.damage, wd.damage2,  sstatus->sp / 2 );
 				ATK_ADD(wd.damage, wd.damage2, 10 * status_get_lv(src));
 			}
 				

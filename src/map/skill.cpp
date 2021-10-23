@@ -4950,7 +4950,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 
 		// teleport to target (if not on WoE grounds)
 		if (skill_check_unit_movepos(5, src, bl->x, bl->y, 0, 1))
-			skill_blown(src, src, 1, (dir+4)%8, BLOWN_NONE); //Target position is actually one cell next to the target
+			skill_blown(src, src, 1, (dir+4)%8, BLOWN_IGNORE_NO_KNOCKBACK); //Target position is actually one cell next to the target
 
 		// cause damage and knockback if the path to target was a straight one
 		if (path) {
