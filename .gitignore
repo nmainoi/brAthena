@@ -59,7 +59,7 @@ Thumbs.db
 # /conf/
 /conf/import
 /conf/msg_conf/import
-
+/conf/inter_athena.conf
 # /lib
 /lib
 
