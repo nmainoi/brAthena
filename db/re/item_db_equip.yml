@@ -8361,7 +8361,7 @@ Body:
       bonus2 bAddRace,RC_Player_Doram,60;
       .@r = getrefine();
       if (.@r>=6) {
-         bonus2 bSkillAtk,"RK_HUNDREDSPEAR",80;
+         bonus2 bSkillAtk,"RK_HUNDREDSPEAR",50;
          bonus2 bSkillAtk,"LG_PINPOINTATTACK",80;
       }
       if (.@r>=9) {

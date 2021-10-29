@@ -6817,14 +6817,14 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						if (sc && sc->data[SC_CURSED_SOIL_OPTION])
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
-						skillratio += skillratio * 2;
+						skillratio += skillratio * 1.5;
 						break;
 					case SO_DIAMONDDUST: // !TODO: Confirm formula
 						skillratio += -100 + 200 * ((sd) ? pc_checkskill(sd, SA_FROSTWEAPON) : 0) + sstatus->int_  * skill_lv;
 						RE_LVL_DMOD(100);
 						if( sc && sc->data[SC_COOLER_OPTION] )
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
-						skillratio += skillratio * 2;
+						skillratio += skillratio * 1.5;
 						break;
 					case SO_POISON_BUSTER:
 						if (tsc && !tsc->data[SC_CLOUD_POISON])
@@ -6842,7 +6842,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if (sc && (sc->data[SC_HEATER_OPTION] || sc->data[SC_COOLER_OPTION] ||
 							sc->data[SC_BLAST_OPTION] || sc->data[SC_CURSED_SOIL_OPTION]))
 							skillratio += 20;
-						skillratio  += skillratio * 2;
+						skillratio  += skillratio * 1.5;
 						break;
 					case SO_CLOUD_KILL:
 						skillratio += -100 + 40 * skill_lv;
@@ -6850,7 +6850,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if (sc && sc->data[SC_CURSED_SOIL_OPTION])
 							skillratio += (sd ? sd->status.job_level : 0);
 						break;
-						skillratio += skillratio * 2;
+						skillratio += skillratio * 1.5;
 					case NPC_CLOUD_KILL:
 						skillratio += -100 + 50 * skill_lv;
 						break;
@@ -6859,7 +6859,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						if (sc && sc->data[SC_BLAST_OPTION])
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
-						skillratio += skillratio * 3;
+						skillratio += skillratio * 1.5;
 						break;
 					case GN_DEMONIC_FIRE:
 						if (skill_lv > 20)	// Fire expansion Lv.2
