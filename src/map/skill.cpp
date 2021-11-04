@@ -7586,7 +7586,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			}
 			else
 				mer->devotion_flag = 1; // Mercenary Devoting Owner
-
+sc_type removeBuffs[] = {SC_AUTOGUARD, SC_DEFENDER, SC_REFLECTSHIELD, SC_ENDURE};
+                for (int i = 0; i < sizeof(removeBuffs); i++)
+                status_change_end(bl, removeBuffs[i], INVALID_TIMER);
 			clif_skill_nodamage(src, bl, skill_id, skill_lv,
 				sc_start4(src, bl, type, 10000, src->id, i, skill_get_range2(src, skill_id, skill_lv, true), 0, skill_get_time2(skill_id, skill_lv)));
 			clif_devotion(src, NULL);
