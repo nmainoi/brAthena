@@ -77230,9 +77230,13 @@ Body:
     Refineable: true
     View: 991
     Script: |
-      .@r = max(5,getrefine());
+      .@r = getrefine();
+      if (.@r > 6 ){
       bonus2 bSubEle,Ele_Neutral,.@r;
       bonus bLongAtkDef,.@r;
+      }
+      bonus2 bSubEle,Ele_Neutral,5;
+      bonus bLongAtkDef,5;
       bonus bUnbreakableHelm;
   - Id: 18879
     AegisName: Angry_Scorpion_Hat

@@ -4,6 +4,12 @@ end;
 }
 -	script	Buff	-1,{
 OnAtNPC:
+for (.@i = 0; i < getarraysize(.black_list) ;i++ ) {
+	if(getstatus(.black_list[i])){
+		message strcharinfo(0),"Não é possivel usar este comando com status negativos";
+		end;
+	}
+}
 		 if (!vip_status(VIP_STATUS_ACTIVE)) {
 			 setlook LOOK_BODY2,0;
             message strcharinfo(0),"Seja VIP e desfrute de benefícios exclusivos.";
@@ -22,6 +28,7 @@ callfunc "F_BUFF","2";
 end;
 	
 OnInit:
+	setarray .black_list[0],SC_STONE,SC_FREEZE;
 	bindatcmd "buffs",strnpcinfo(3)+"::OnAtNPC";
 	bindatcmd "buff",strnpcinfo(3)+"::OnAtNPC";
 	set .allowed,0; 

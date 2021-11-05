@@ -2537,16 +2537,19 @@ static void pc_bonus_autospell(std::vector<s_autospell> &spell, short id, short 
 	if (!rate)
 		return;
 
+	//if (id == SA_DISPELL)
+	//	flag |= BF_WEAPON | BF_SKILL | BF_NORMAL | BF_SHORT | BF_LONG;
+	//else {
 	if (!(flag&BF_RANGEMASK))
 		flag |= BF_SHORT | BF_LONG; //No range defined? Use both.
 	if (!(flag&BF_WEAPONMASK))
 		flag |= BF_WEAPON; //No attack type defined? Use weapon.
-	if (!(flag&BF_SKILLMASK)) {
-		if (flag&(BF_MAGIC | BF_MISC))
+	if (!(flag & BF_SKILLMASK)) {
+		if (flag & (BF_MAGIC | BF_MISC))
 			flag |= BF_SKILL; //These two would never trigger without BF_SKILL
-		if (flag&BF_WEAPON)
+		if (flag & BF_WEAPON)
 			flag |= BF_NORMAL; //By default autospells should only trigger on normal weapon attacks.
-	}
+	}//}
 
 	for (auto &it : spell) {
 		if ((it.card_id == card_id || it.rate < 0 || rate < 0) && it.id == id && it.lv == lv && it.flag == flag) {
