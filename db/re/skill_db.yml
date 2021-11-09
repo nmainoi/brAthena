@@ -23996,10 +23996,10 @@ Body:
     Flags:
       TargetTrap: true
     Hit: Multi_Hit
-    HitCount: -3
-    Knockback: 3
+    HitCount: 3
+    Knockback: 5
     Element: Weapon
-    SplashArea: 2
+    SplashArea: 5
     CopyFlags:
       Skill:
         Reproduce: true
@@ -37298,3 +37298,34 @@ Body:
     SplashArea: 15
     Duration1: 10000
     Cooldown: 600000
+  - Id: 10020
+    Name: SR_SKYNETBLOW2
+    Description: Sky Net Blow
+    MaxLevel: 5
+    Type: Weapon
+    Range: 1
+    TargetType: Self
+    DamageFlags:
+      Splash: true
+    Flags:
+      TargetTrap: true
+    Hit: Multi_Hit
+    HitCount: 3
+    Knockback: 5
+    Element: Weapon
+    SplashArea: 5
+    CopyFlags:
+      Skill:
+        Reproduce: true
+    Requires:
+      SpCost:
+        - Level: 1
+          Amount: 8
+        - Level: 2
+          Amount: 9
+        - Level: 3
+          Amount: 10
+        - Level: 4
+          Amount: 11
+        - Level: 5
+          Amount: 12

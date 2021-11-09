@@ -4242,6 +4242,13 @@ static TIMER_FUNC(skill_timerskill){
 					skl->skill_id,skl->skill_lv,tick,skl->flag|BCT_ENEMY|SD_SPLASH|1,skill_castend_damage_id);
 				break;
 			}
+			if (skl->skill_id == SR_SKYNETBLOW2) {
+				skill_area_temp[1] = 0;
+				clif_skill_damage(src,src,tick,status_get_amotion(src),0,-30000,1,skl->skill_id,skl->skill_lv,DMG_SINGLE);
+				map_foreachinallrange(skill_area_sub,src,skill_get_splash(skl->skill_id,skl->skill_lv),BL_CHAR|BL_SKILL,src,
+					skl->skill_id,skl->skill_lv,tick,skl->flag|BCT_ENEMY|SD_SPLASH|1,skill_castend_damage_id);
+				break;
+			}
 
 			if(target == NULL)
 				break; // Target offline?
@@ -5186,6 +5193,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	//case LG_RAYOFGENESIS:
 	case LG_EARTHDRIVE:
 	case SR_RAMPAGEBLASTER:
+	case SR_SKYNETBLOW2:
 	case SR_SKYNETBLOW:
 	case SR_WINDMILL:
 	case SR_RIDEINLIGHTNING:
@@ -7749,6 +7757,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case NC_AXETORNADO:
 	case GC_COUNTERSLASH:
 	case SR_SKYNETBLOW:
+	case SR_SKYNETBLOW2:
 	case SR_RAMPAGEBLASTER:
 	case SR_HOWLINGOFLION:
 	case LG_CANNONSPEAR:
@@ -7792,8 +7801,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				src, skill_id, skill_lv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		//	if( !i && ( skill_id == RK_WINDCUTTER || skill_id == NC_AXETORNADO || skill_id == SR_SKYNETBLOW || skill_id == KO_HAPPOKUNAI ) )
 		if (!i && (skill_id == NC_AXETORNADO || skill_id == SR_SKYNETBLOW || skill_id == KO_HAPPOKUNAI))
+			clif_skill_damage(src,src,tick, status_get_amotion(src), 5000, -30000, 1, skill_id, skill_lv, DMG_SINGLE);
+			if (!i &&  skill_id == SR_SKYNETBLOW2 )
 			clif_skill_damage(src,src,tick, status_get_amotion(src), 0, -30000, 1, skill_id, skill_lv, DMG_SINGLE);
 	}
+
 		break;
 
 	case NPC_IGNITIONBREAK:

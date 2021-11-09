@@ -4649,6 +4649,15 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			}
 				
 			break;
+		case SR_SKYNETBLOW2:
+			if (wd->miscflag & 8)
+				//ATK [{(Skill Level x 100) + (Caster AGI) + 150} x Caster Base Level / 100] %
+				skillratio += -100 + 100 * skill_lv + sstatus->agi + 150;
+			else
+				//ATK [{(Skill Level x 80) + (Caster AGI)} x Caster Base Level / 100] %
+				skillratio += -100 + 80 * skill_lv + sstatus->agi;
+			RE_LVL_DMOD(100);
+			break;		
 		case SR_SKYNETBLOW:
 			if (wd->miscflag & 8)
 				//ATK [{(Skill Level x 100) + (Caster AGI) + 150} x Caster Base Level / 100] %
